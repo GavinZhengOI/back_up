@@ -397,11 +397,15 @@
       
         
           
-            <h2 id="什么是优先队列？"><a href="#什么是优先队列？" class="headerlink" title="什么是优先队列？"></a>什么是优先队列？</h2><p>曾经有这样一个笑话。<del>一名程序员不爱洗袜子，</del>然而他又不想穿着臭袜子去上班，所以每天他需要挑选出臭味指数最低的袜子。如果直接寻找臭味指数最低的袜子，那么每天上班前都需要O(n)的时间来寻找。为了节省时间，他自己做了一个优先队列（也叫“堆”）。优先队列的队首就是臭味指数最低的袜子。如果不算入队所需时间，那拿袜子的复杂度就是O(1)。这样就可以大大的节约时间。</p>
-<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>当每天晚上，这名程序员脱下一双袜子后，会先评定这双袜子的臭味指数。然后会从队首开始寻找。如果队首的袜子没有这双臭，那就一直向下寻找，直到找到一双比手上袜子还臭的袜子，把手上的袜子放置在这双袜子之前，就完成了入队的操作。同时这个优先队列也是依照从小到大的顺序排列。</p>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><p>优先队列的内部其实是二叉堆，实现起来比较麻烦。但是我们万能的STL已经封装了这个函数。经过简单的调用就可以直接使用。<a href="https://www.luogu.org/problemnew/show/P3378" title="例题：洛谷P3378" target="_blank" rel="noopener">例题：洛谷P3378</a><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;//queue头文件包含了优先队列</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">com</span>&#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> x&gt;y;<span class="comment">//指越小的优先级越高（从小到大）。</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">priority_queue&lt;<span class="keyword">int</span>,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;,com &gt; a;</span><br><span class="line"><span class="comment">//priority_queue指的就是优先队列。第一个元素指的是优先队列中元素的类型。</span></span><br><span class="line"><span class="comment">//第二个元素直接写vector&lt;第一个元素&gt;即可。（别忘了调用vector）</span></span><br><span class="line"><span class="comment">//第三个元素指比较函数com（这个要自己写）</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;<span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> b;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;b;</span><br><span class="line">        <span class="keyword">if</span>(b==<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="built_in">cin</span>&gt;&gt;b;a.push(b);<span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(b==<span class="number">2</span>) <span class="built_in">cout</span>&lt;&lt;a.top()&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">if</span>(b==<span class="number">3</span>) a.pop();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-          
+          什么是优先队列？曾经有这样一个笑话。一名程序员不爱洗袜子，然而他又不想穿着臭袜子去上班，所以每天他需要挑选出臭味指数最低的袜子。如果直接寻找臭味指数最低的袜子，那么每天上班前都需要O(n)的时间来寻找。为了节省时间，他自己做了一个优先队列（也叫“堆”）。优先队列的队首就是臭味指数最低的袜子。如果不算
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/gavinzheng/2018/10/01/[STL]优先队列（堆）的使用[7]/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -569,9 +573,15 @@
       
         
           
-            <p>首先调用“map”库<br><code>#include&lt;map&gt;</code><br>接着定义一个map对象(“key”和“value”分别是对应的数据类型)<br><code>map&lt;key,value&gt; hash</code><br>接着就可以用<code>hash[&quot;asda&quot;]=4</code>进行对应的赋值操作<br><code>cout&lt;&lt;hash[&quot;asda&quot;]</code>输出结果为4</p>
-
-          
+          首先调用“map”库#include&lt;map&gt;接着定义一个map对象(“key”和“value”分别是对应的数据类型)map&lt;key,value&gt; hash接着就可以用hash[&quot;asda&quot;]=4进行对应的赋值操作cout&lt;&lt;hash[&quo
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/gavinzheng/2018/10/01/[STL]哈希映射——map的使用[01]/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -739,14 +749,18 @@
       
         
           
-            <p><a href="http://poj.org/problem?id=2018" title="传送门" target="_blank" rel="noopener">传送门</a><br>给定一个正整数序列A，求一个平均数最大的、长度不小于L的字段。</p>
-<p>首先，对于这道题，我们可以每次二分一个平均值。然后验证这个平均值是否合法。</p>
-<p>那么如何验证平均值呢？只需要把，每个元素a减掉当前二分的平均值，得到新的元素b。那就代表着取这个元素后会对总体区间有b的贡献。（b可能为负）</p>
-<p>那题目就转换为了在新生成的数组b内，取一个长度大于L的区间使和最大。若这个最大和大于当前二分的平均值，则证明这个平均值是可以达到的。所以只需要写一个浮点二分即可。</p>
-<p>那我们只需要解决最后一个问题。在$O(n)$的时间内在数组B中求一个和最大且长度大于等于L的区间。很容易可以发现这个区间内的和可以用前缀和表示。<br>$$<br>A_{j}+A_{j+1}+A_{j+2}+…+A_{i}=sum[i]-sum[j-1]<br>$$<br>很容易就可以想到$O(n)$的枚举终点（$\geq L$）。因为区间和等于$sum[i]-sum[j-1]$，且终点固定，所以我们只需要贪心的使$sum[j-1]$最小即可。当终点为L时，起点只能为1。所以当终点为L+1时，起点就可以为1或2。终点每次增加1，起点的可能性也会增加1。所以每次扩展终点就可以$O(1)$的计算出新的最大值了。</p>
-<p>需要特别注意的是，二分的左区间的初值应该为0。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 100500</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> a[maxn];</span><br><span class="line"><span class="keyword">int</span> n,f;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">double</span> b[maxn],pre[maxn];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;f);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a[i]);</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">double</span> l,r;l=<span class="number">0</span>;r=<span class="number">1e6</span>;	</span><br><span class="line">	<span class="keyword">while</span>(r-l&gt;<span class="number">0.000001</span>)&#123;</span><br><span class="line">		<span class="keyword">long</span> <span class="keyword">double</span> mid=(l+r)/<span class="number">2</span>;</span><br><span class="line">		pre[<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">			b[i]=(<span class="keyword">long</span> <span class="keyword">double</span>)a[i]-mid;</span><br><span class="line">			pre[i]=pre[i<span class="number">-1</span>]+b[i];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">long</span> <span class="keyword">double</span> ma=<span class="number">1e10</span>;<span class="comment">//最大前缀和 </span></span><br><span class="line">		<span class="keyword">long</span> <span class="keyword">double</span> ans=<span class="number">-1e10</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> end=f;end&lt;=n;end++)&#123;</span><br><span class="line">			<span class="keyword">int</span> start=end-f+<span class="number">1</span>;</span><br><span class="line">			ma=min(ma,pre[start<span class="number">-1</span>]);</span><br><span class="line">			ans=max(ans,pre[end]-ma);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(ans&gt;=<span class="number">0</span>)&#123;</span><br><span class="line">			l=mid;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			r=mid;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> ans=(<span class="keyword">int</span>)(r*<span class="number">1000</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d"</span>,ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-          
+          传送门给定一个正整数序列A，求一个平均数最大的、长度不小于L的字段。
+首先，对于这道题，我们可以每次二分一个平均值。然后验证这个平均值是否合法。
+那么如何验证平均值呢？只需要把，每个元素a减掉当前二分的平均值，得到新的元素b。那就代表着取这个元素后会对总体区间有b的贡献。（b可能为负）
+那题目就转换
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/gavinzheng/2018/10/01/[二分] POJ2018 Best Cow Fences [94]/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -914,10 +928,16 @@
       
         
           
-            <p>其实对于二分最正确的写法应该是如下两种。<br>首先，结束条件都应该是<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">其次，求mid和取mid按照以下方法写</span><br><span class="line">```cpp</span><br><span class="line">//第一种</span><br><span class="line">mid=(l+r)&gt;&gt;1;</span><br><span class="line">//与之搭配：</span><br><span class="line">l=mid+1;</span><br><span class="line">r=mid;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//第二种 </span></span><br><span class="line">mid=(l+r+<span class="number">1</span>)&gt;&gt;<span class="number">1</span>;</span><br><span class="line"><span class="comment">//与之搭配：</span></span><br><span class="line">l=mid;</span><br><span class="line">r=mid<span class="number">-1</span>;</span><br></pre></td></tr></table></figure>
-
-          
+          其实对于二分最正确的写法应该是如下两种。首先，结束条件都应该是1234567其次，求mid和取mid按照以下方法写```cpp//第一种mid=(l+r)&gt;&gt;1;//与之搭配：l=mid+1;r=mid;
+12345//第二种 mid=(l+r+1)&gt;&gt;1;//与之搭配：l=
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/gavinzheng/2018/10/01/[二分][如何正确的写二分][44]/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

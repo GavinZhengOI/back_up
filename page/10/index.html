@@ -397,11 +397,15 @@
       
         
           
-            <h2 id="主要思想"><a href="#主要思想" class="headerlink" title="主要思想"></a>主要思想</h2><p>1、next作用是已经匹配过的模式串和对应的主串提供一个跳转的坐标指示。<br>2、假设已匹配四位，next=2。若第五位匹配不成功，则可以将匹配磁头调到第二位+1=第三位（这时将前面已匹配的全部舍弃只留两位）<br>主：  ABCDABCDABD<br>模式：ABCDABD<br>第一步：已匹配6位<br><strong>ABCDAB</strong>CDABD<br><strong>ABCDAB</strong>D<br>第二步：因为不匹配，且第前面6位最大相同真前后缀长度为2。所以将主串前（6-2）位删除，将匹配磁头跳至第二位<br><del>ABCD</del>  <strong>AB</strong>CDABD<br><strong>AB</strong>CDABD<br>然后逐位匹配</p>
-<p>3、当求next时，其实就是自己匹配自己，而且初始的时候两个指针错开以为。也就是说i指针从第二位开始寻找指针j所指向的模式串的头部。当找到一部分匹配时，因为模式串中匹配的部分在主串头部，而i指针所标记的则是尾部。所以j则是[0-i]这部分的head值<br>开始匹配<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> ABCDABD</span><br><span class="line"> *ABCDABD</span><br><span class="line">-1</span><br></pre></td></tr></table></figure></p>
-<p>程序处理中唯一与KMP匹配的区别就是每次成功匹配后刷新一下head的值(head的值就是当前匹配成功的位数j)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> ABCDABD</span><br><span class="line"> ****ABCDABD</span><br><span class="line">-1000012</span><br></pre></td></tr></table></figure></p>
-
-          
+          主要思想1、next作用是已经匹配过的模式串和对应的主串提供一个跳转的坐标指示。2、假设已匹配四位，next=2。若第五位匹配不成功，则可以将匹配磁头调到第二位+1=第三位（这时将前面已匹配的全部舍弃只留两位）主：  ABCDABCDABD模式：ABCDABD第一步：已匹配6位ABCDABCDABD
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/gavinzheng/2018/10/01/[算法模板]KMP字符串[11]/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -569,15 +573,17 @@
       
         
           
-            <p>板子题<a href="http://poj.org/problem?id=2533" title="POJ2533" target="_blank" rel="noopener">POJ2533</a></p>
-<p>若定义$a[]$为原始数据，再定义$f[i]$，指长度为$i$的LIS的最小末尾数是哪一个。</p>
-<p>举个例子，当我们的a数组为&lt;2,7,3,4,8,5&gt;，而f数组全部为inf。<br>第一次，将2插入。因为的$f[1]=inf&gt;2$所以$f[1]=2$。<br>第二次，将7插入。因为$f[1]=2&lt;7$，所以我们开始查询$f[2]$。因为$f[2]=inf&gt;7$所以替换:$f[2]=7$。</p>
-<p>以此类推。又因为$f[]$一定是个递增序列。所以替换的位置可用二分查找。复杂度$O(nlogn)$。</p>
-<p>UPDATE:需要注意一下两点细节：<br>首先，二分的”left”应该是0。(有可能出现在第一位)。</p>
-<p>其次，b[]的初值应该为序列中最小值-1。若序列中有元素为0，他就会WA掉。</p>
-<p>POJ 2533 AC代码:<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;ctime&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 1050</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> <span class="built_in">map</span>[maxn],n;</span><br><span class="line"><span class="keyword">int</span> b[maxn];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lower</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> num)</span></span>&#123;</span><br><span class="line">	<span class="keyword">while</span>(l!=r)&#123;</span><br><span class="line">		<span class="keyword">int</span> mid=(l+r+<span class="number">1</span>)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span>(b[mid]&lt;num) l=mid;</span><br><span class="line">		<span class="keyword">else</span> r=mid<span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> l;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;<span class="built_in">map</span>[i]);</span><br><span class="line">	<span class="keyword">int</span> last=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=maxn;i++) b[i]=-(<span class="number">1e9</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(b[last]&lt;<span class="built_in">map</span>[i])&#123;</span><br><span class="line">			b[++last]=<span class="built_in">map</span>[i];<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span> location=lower(<span class="number">0</span>,last,<span class="built_in">map</span>[i]);</span><br><span class="line">		b[location+<span class="number">1</span>]=<span class="built_in">map</span>[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d"</span>,last);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-          
+          板子题POJ2533
+若定义$a[]$为原始数据，再定义$f[i]$，指长度为$i$的LIS的最小末尾数是哪一个。
+举个例子，当我们的a数组为&lt;2,7,3,4,8,5&gt;，而f数组全部为inf。第一次，将2插入。因为的$f[1]=inf&gt;2$所以$f[1]=2$。第二次，将7插入。因
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/gavinzheng/2018/10/01/[算法模板]O(nlogn)复杂度下的LIS求解[15]/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -745,9 +751,15 @@
       
         
           
-            <p>这个代码是在<a href="http://www.gavinzheng.tk/index.php/archives/129/" title="BZOJ 3402" target="_blank" rel="noopener">BZOJ 3402</a>的背景下写的<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 20050</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxm 50050</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> inf 999999999</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">bool</span> check[maxn];</span><br><span class="line"><span class="keyword">int</span> dis[maxn];</span><br><span class="line"><span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt;line;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;side[maxn];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=maxn<span class="number">-10</span>;i++)&#123;</span><br><span class="line">		dis[i]=inf;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> n,m;<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;m);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">		<span class="keyword">int</span> a,b;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;a,&amp;b);</span><br><span class="line">		side[a].push_back(b);</span><br><span class="line">		side[b].push_back(a);</span><br><span class="line">	&#125;</span><br><span class="line">	line.push(<span class="number">1</span>);</span><br><span class="line">	dis[<span class="number">1</span>]=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(!line.empty())&#123;</span><br><span class="line">		<span class="keyword">int</span> now=line.front();line.pop();check[now]=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;side[now].size();i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(dis[now]+<span class="number">1</span>&lt;dis[side[now][i]])&#123;</span><br><span class="line">				dis[side[now][i]]=dis[now]+<span class="number">1</span>;</span><br><span class="line">				<span class="keyword">if</span>(check[side[now][i]]==<span class="number">0</span>)&#123;</span><br><span class="line">					check[side[now][i]]=<span class="number">1</span>;</span><br><span class="line">					line.push(side[now][i]);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;			</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> ma=<span class="number">0</span>,num=<span class="number">0</span>,g;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(dis[i]&gt;ma&amp;&amp;dis[i]&lt;inf)&#123;</span><br><span class="line">			ma=dis[i];num=<span class="number">1</span>;g=i;</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(dis[i]==ma) num++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d %d %d"</span>,g,ma,num);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-          
+          这个代码是在BZOJ 3402的背景下写的123456789101112131415161718192021222324252627282930313233343536373839404142434445464748#include&lt;cstdio&gt;#include&lt;vector&g
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/gavinzheng/2018/10/01/[算法模板]SPFA求最短路[23]/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -915,12 +927,16 @@
       
         
           
-            <h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>本以为会写模板就是理解了dij，最终因为没有判重被一道矩阵dij卡住。全T，没有一分。。。。。。。</p>
-<h1 id="dijkstra理论知识"><a href="#dijkstra理论知识" class="headerlink" title="dijkstra理论知识"></a>dijkstra理论知识</h1><p>首先，我们需要明确一点：dij的基础原理——贪心。<br>为什么说是贪心呢？因为dij在更新的时候不会像DFS一样一直搜下去。也就是说，对于每一个枚举到的更新节点（堆优化中从堆里拿出来的），我们只会更新与其相邻的一圈节点。（当然，更新前要做判断。这就是松弛操作）。<br>当然，当一个点对与之相邻的所有点进行完松弛操作后，我们就可以不管这个点了。因为我们每次选择进行更新的节点均是没走过中dis最小的。<strong>因此由还未更新的节点中转得到的dis值是不可能大于现在的dis值的。所以在没有更新的节点中dis最小的那一个的dis值一定是已经确定的！</strong><br>在最优化dij中起始的判断有两种写法：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//第一种</span></span><br><span class="line">node now=<span class="built_in">queue</span>.top();<span class="comment">//queue为堆(按照dis从小到大排序)</span></span><br><span class="line"><span class="keyword">if</span>(check[now])&#123;<span class="comment">//若已经被更新过</span></span><br><span class="line"> <span class="keyword">continue</span>；</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//第二种</span></span><br><span class="line">node now=<span class="built_in">queue</span>.top();</span><br><span class="line"><span class="keyword">if</span>(now.dis&gt;=dis[now.num])&#123;</span><br><span class="line"><span class="keyword">continue</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>其实这两种都是正确的。第一种比较好理解（若更新过就不更新了）。在第二种写法中，若一个点已经被更新过，那么这个点的dis值一定是最小的，任何情况的dis值都不可能严格小于它。所以也是成立的。</p>
-
-          
+          引言本以为会写模板就是理解了dij，最终因为没有判重被一道矩阵dij卡住。全T，没有一分。。。。。。。
+dijkstra理论知识首先，我们需要明确一点：dij的基础原理——贪心。为什么说是贪心呢？因为dij在更新的时候不会像DFS一样一直搜下去。也就是说，对于每一个枚举到的更新节点（堆优化中从堆里拿
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/gavinzheng/2018/10/01/[算法模板]堆优化dijkstra以及对dij的深度理解[14]/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

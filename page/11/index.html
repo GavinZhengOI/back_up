@@ -397,9 +397,16 @@
       
         
           
-            <p>定义一个map[n][n]的数组记录矩阵，初值设为INF<br><img src="http://www.gavinzheng.tk/usr/uploads/2018/08/2286558217.png" alt=""><br>暴力一发就好了<br>n^3复杂度看看能不能出奇迹</p>
+          定义一个map[n][n]的数组记录矩阵，初值设为INF暴力一发就好了n^3复杂度看看能不能出奇迹
 
           
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/gavinzheng/2018/10/01/[算法模板]多源最短路 Floyd 弗洛伊德算法[34]/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -567,17 +574,15 @@
       
         
           
-            <p>首先我们需要定义一个f[]数组作为DP数组，a[]数组作为初始数据的数组。f[i]代表<strong>以i结尾</strong>的序列最长的长度。（所有元素初值为1，因为单个元素也算是一个最短的LIS序列）那么求f[i]就看作是把在f[1~(i-1)]后面添加一个元素（如果可以的话）后的最大值。<br>例如：序列1 2 3。因为f<a href="https://www.luogu.org/problemnew/show/P1091" target="_blank" rel="noopener">1</a>=1,f[2]=2，因为第三个数比前两个数都大，所以我们可以把第三个元素添加在f<a href="https://www.luogu.org/problemnew/show/P1091" target="_blank" rel="noopener">1</a>或f[2]的后面使其成为一个更长的序列。所以f[3]=max(f<a href="https://www.luogu.org/problemnew/show/P1091" target="_blank" rel="noopener">1</a>+1,f[2]+1)=3。<br>例题：<a href="https://www.luogu.org/problemnew/show/P1091" target="_blank" rel="noopener">洛谷 P1091</a></p>
-<hr>
-<pre><code>for(int i=1;i&lt;=n;i++){// 枚举前i个数
-for(int h=1;h&lt;=i-1;h++){//枚举i前面所有的数，看看可以将i添加在哪个数后面 
-    if(a[h]&lt;a[i]){//h元素小于i元素，将i元素加在最后仍是一个LIS。就填加这个元素试试
-        f[i]=max(f[i],f[h]+1);//不断更新最大值
-    } 
-} 
-</code></pre><p>最后f[n]就是答案。</p>
-
-          
+          首先我们需要定义一个f[]数组作为DP数组，a[]数组作为初始数据的数组。f[i]代表以i结尾的序列最长的长度。（所有元素初值为1，因为单个元素也算是一个最短的LIS序列）那么求f[i]就看作是把在f[1~(i-1)]后面添加一个元素（如果可以的话）后的最大值。例如：序列1 2 3。因为f1=1,f
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/gavinzheng/2018/10/01/[算法模板]最长上升子序列[1]/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -745,10 +750,16 @@ for(int h=1;h&lt;=i-1;h++){//枚举i前面所有的数，看看可以将i添加�
       
         
           
-            <p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=6315" title="HDU6315" target="_blank" rel="noopener">HDU6315</a><br>因为这道题要求的是$\sum \left \lfloor \frac{a_{i}}{b_{i}} \right \rfloor$。同时所有a的初值均为0。而答案改变当且仅当一个a加到了b。答案就会+1。</p>
-<p>那我们考虑用线段树维护值b，意思是对于每个元素。再加上b就会对总答案有贡献。很容易想到所有初始$b_{i}$值均为$a_{i}$。</p>
-
-          
+          HDU6315因为这道题要求的是$\sum \left \lfloor \frac{a_{i}}{b_{i}} \right \rfloor$。同时所有a的初值均为0。而答案改变当且仅当一个a加到了b。答案就会+1。
+那我们考虑用线段树维护值b，意思是对于每个元素。再加上b就会对总答案有贡献。很容易
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/gavinzheng/2018/10/01/[线段树] HDU [35]/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -916,13 +927,17 @@ for(int h=1;h&lt;=i-1;h++){//枚举i前面所有的数，看看可以将i添加�
       
         
           
-            <p><a href="https://cn.vjudge.net/contest/258382#problem/E" title="题面" target="_blank" rel="noopener">题面</a><br>众所周知，再一个序列上，我们可以$O(n)$的求出最大子段和。但是针对这个50000次询问的题目明显是要炸掉的。</p>
-<p>我们就可以使用线段树来维护区间最大值。</p>
-<p>用线段树维护三个值: lmax,rmax,midmax。分别代表当前区间最大前缀和，最大后缀和，以及最大字段和。sum代表的是区间所有数之和。</p>
-<p>那么可以得出$lmax[now]=max(lmax[now<em>2],sum[now</em>2]+lmax[now<em>2+1])$<br>rmax求法同理。<br>$midmax[now]=rmax[now</em>2]+lmax[now*2]+1$。</p>
-<p>不管是查询还是修改，每次操作复杂度$O(logn)$，符合要求。</p>
-
-          
+          题面众所周知，再一个序列上，我们可以$O(n)$的求出最大子段和。但是针对这个50000次询问的题目明显是要炸掉的。
+我们就可以使用线段树来维护区间最大值。
+用线段树维护三个值: lmax,rmax,midmax。分别代表当前区间最大前缀和，最大后缀和，以及最大字段和。sum代表的是区间所有数之和。
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/gavinzheng/2018/10/01/[线段树] SPOJ GSS[25]/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

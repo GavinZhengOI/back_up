@@ -363,17 +363,15 @@
       
         
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
+          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in 
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/gavinzheng/2018/10/06/hello-world/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -541,16 +539,23 @@
       
         
           
-            <h2 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h2><p>快速排序的基本原理是分治算法，具体分为如下几步：</p>
-<ol>
-<li>选取一个“基准”。将比基准小的放到基准左边，比基准大的放在基准右边。</li>
-<li>递归的处理基准左边和右边（即给左边和右边各选取一个基准递归处理）<br><a href="https://zh.wikipedia.org/wiki/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F" target="_blank" rel="noopener"><img src="http://www.gavinzheng.tk/usr/uploads/2018/07/75506344.gif" alt=""></a><blockquote>
-<p>图片摘自维基百科</p>
-</blockquote>
-</li>
-</ol>
+          基本原理快速排序的基本原理是分治算法，具体分为如下几步：
+
+选取一个“基准”。将比基准小的放到基准左边，比基准大的放在基准右边。
+递归的处理基准左边和右边（即给左边和右边各选取一个基准递归处理）
+图片摘自维基百科
+
+
+
 
           
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/gavinzheng/2018/10/01/[快速排序STL] sort的原理和运用[02]/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -718,12 +723,16 @@
       
         
           
-            <p>Description<br>　　在N×N的棋盘里面放K个国王，使他们互不攻击，共有多少种摆放方案。国王能攻击到它上下左右，以及左上<br>左下右上右下八个方向上附近的各一个格子，共8个格子。</p>
-<p>Input<br>　　只有一行，包含两个数N，K （ 1 &lt;=N &lt;=9, 0 &lt;= K &lt;= N * N）</p>
-<p>Output<br>　　方案数。</p>
-<p>Sample Input<br>3 2<br>Sample Output<br>16</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> <span class="built_in">map</span>[<span class="number">1</span>&lt;&lt;<span class="number">15</span>],tot=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> f[<span class="number">15</span>][<span class="number">1</span>&lt;&lt;<span class="number">12</span>][<span class="number">100</span>];</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> gs[<span class="number">1</span>&lt;&lt;<span class="number">12</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">low_bit</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> -x&amp;x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n,k;<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;k);</span><br><span class="line">	<span class="keyword">int</span> maxi=<span class="number">1</span>&lt;&lt;n;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;maxi;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(((i&amp;(i&lt;&lt;<span class="number">1</span>))==<span class="number">0</span>)&amp;&amp;((i&amp;(i&gt;&gt;<span class="number">1</span>))==<span class="number">0</span>))&#123;</span><br><span class="line">			<span class="built_in">map</span>[++tot]=i;<span class="keyword">int</span> now=i;</span><br><span class="line">			<span class="keyword">while</span>(now!=<span class="number">0</span>)&#123;</span><br><span class="line">				now-=low_bit(now);gs[i]++;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=tot;i++) f[<span class="number">1</span>][<span class="built_in">map</span>[i]][gs[<span class="built_in">map</span>[i]]]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> ans=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> k1=<span class="number">1</span>;k1&lt;=tot;k1++)&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> k2=<span class="number">1</span>;k2&lt;=tot;k2++)&#123;</span><br><span class="line">				<span class="keyword">if</span>(((<span class="built_in">map</span>[k2]&lt;&lt;<span class="number">1</span>)&amp;<span class="built_in">map</span>[k1])==<span class="number">0</span>&amp;&amp;((<span class="built_in">map</span>[k2]&gt;&gt;<span class="number">1</span>)&amp;<span class="built_in">map</span>[k1])==<span class="number">0</span>&amp;&amp;(<span class="built_in">map</span>[k2]&amp;<span class="built_in">map</span>[k1])==<span class="number">0</span>)&#123;</span><br><span class="line">					<span class="comment">//f[i][map[k1]][]+=f[i-1][map[k2]][];</span></span><br><span class="line">					<span class="keyword">for</span>(<span class="keyword">int</span> now=k;now&gt;=gs[<span class="built_in">map</span>[k1]];now--)&#123;</span><br><span class="line">						f[i][<span class="built_in">map</span>[k1]][now]+=f[i<span class="number">-1</span>][<span class="built_in">map</span>[k2]][now-gs[<span class="built_in">map</span>[k1]]];</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=tot;i++)&#123;</span><br><span class="line">		ans+=f[n][<span class="built_in">map</span>[i]][k];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%lld"</span>,ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
+          Description　　在N×N的棋盘里面放K个国王，使他们互不攻击，共有多少种摆放方案。国王能攻击到它上下左右，以及左上左下右上右下八个方向上附近的各一个格子，共8个格子。
+Input　　只有一行，包含两个数N，K （ 1 &lt;=N &lt;=9, 0 &lt;= K &lt;= N * N
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/gavinzheng/2018/10/01/BZOJ 1087 [SCOI2005]互不侵犯King[73]/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -891,15 +900,15 @@
       
         
           
-            <p>Description<br>　　相信大家都玩过扫雷的游戏。那是在一个n*m的矩阵里面有一些雷，要你根据一些信息找出雷来。万圣节到了<br>，“余”人国流行起了一种简单的扫雷游戏，这个游戏规则和扫雷一样，如果某个格子没有雷，那么它里面的数字<br>表示和它8连通的格子里面雷的数目。现在棋盘是n×2的，第一列里面某些格子是雷，而第二列没有雷，如下图：<br>由于第一列的雷可能有多种方案满足第二列的数的限制，你的任务即根据第二列的信息确定第一列雷有多少种摆放<br>方案。</p>
-<p>Input<br>　　第一行为N，第二行有N个数，依次为第二列的格子中的数。（1&lt;= N &lt;= 10000）</p>
-<p>Output<br>　　一个数，即第一列中雷的摆放方案数。</p>
-<p>Sample Input<br>2</p>
-<p>1 1<br>Sample Output<br>2</p>
-<hr>
-<p><code>f[i][a][b]</code>代表第i个格子，自己状态为a（1代表放了，0代表没放），上一个状态为b（1代表放了，0代表没放）的时候的方案总数。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 10055</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> <span class="built_in">map</span>[maxn];</span><br><span class="line"><span class="keyword">int</span> f[maxn][<span class="number">3</span>][<span class="number">3</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;<span class="built_in">map</span>[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">map</span>[<span class="number">1</span>]==<span class="number">1</span>)&#123;</span><br><span class="line">    f[<span class="number">1</span>][<span class="number">1</span>][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">    f[<span class="number">1</span>][<span class="number">0</span>][<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">map</span>[<span class="number">1</span>]==<span class="number">2</span>)&#123;</span><br><span class="line">        f[<span class="number">1</span>][<span class="number">1</span>][<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">map</span>[<span class="number">1</span>]==<span class="number">0</span>) f[<span class="number">1</span>][<span class="number">0</span>][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">map</span>[i]==<span class="number">0</span>)&#123;</span><br><span class="line">            f[i][<span class="number">0</span>][<span class="number">0</span>]+=f[i<span class="number">-1</span>][<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">map</span>[i]==<span class="number">1</span>)&#123;</span><br><span class="line">            f[i][<span class="number">0</span>][<span class="number">0</span>]+=f[i<span class="number">-1</span>][<span class="number">1</span>][<span class="number">0</span>];</span><br><span class="line">            f[i][<span class="number">1</span>][<span class="number">0</span>]+=f[i<span class="number">-1</span>][<span class="number">0</span>][<span class="number">1</span>];</span><br><span class="line">            f[i][<span class="number">0</span>][<span class="number">1</span>]+=f[i<span class="number">-1</span>][<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">map</span>[i]==<span class="number">2</span>)&#123;</span><br><span class="line">            f[i][<span class="number">1</span>][<span class="number">0</span>]+=f[i<span class="number">-1</span>][<span class="number">1</span>][<span class="number">1</span>];</span><br><span class="line">            f[i][<span class="number">1</span>][<span class="number">1</span>]+=f[i<span class="number">-1</span>][<span class="number">0</span>][<span class="number">1</span>];</span><br><span class="line">            f[i][<span class="number">0</span>][<span class="number">1</span>]+=f[i<span class="number">-1</span>][<span class="number">1</span>][<span class="number">0</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">map</span>[i]==<span class="number">3</span>)&#123;</span><br><span class="line">            f[i][<span class="number">1</span>][<span class="number">1</span>]+=f[i<span class="number">-1</span>][<span class="number">1</span>][<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">int</span> ans=<span class="number">0</span>;<span class="comment">//ans+=f[n][1][1];</span></span><br><span class="line">    ans+=f[n][<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">    ans+=f[n][<span class="number">1</span>][<span class="number">0</span>];</span><br><span class="line"><span class="comment">//	ans+=f[n][0][1];</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d"</span>,ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-          
+          Description　　相信大家都玩过扫雷的游戏。那是在一个n*m的矩阵里面有一些雷，要你根据一些信息找出雷来。万圣节到了，“余”人国流行起了一种简单的扫雷游戏，这个游戏规则和扫雷一样，如果某个格子没有雷，那么它里面的数字表示和它8连通的格子里面雷的数目。现在棋盘是n×2的，第一列里面某些格子是雷
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/gavinzheng/2018/10/01/BZOJ 1088 [SCOI2005]扫雷Mine[53]/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

@@ -397,9 +397,16 @@
       
         
           
-            <p>11cross.phppagepublish711100483c277a02f0213c97c15894bc37e865 � @$</p>
+          11cross.phppagepublish711100483c277a02f0213c97c15894bc37e865 � @$
 
           
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/gavinzheng/2018/10/01/时光机cross[4]/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -567,18 +574,19 @@
       
         
           
-            <p>直接切入主题。</p>
-<ol>
-<li><p>在所有函数开头加上<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">```cpp</span><br><span class="line">inline void test1()&#123;</span><br><span class="line">	return;</span><br><span class="line">&#125;</span><br><span class="line">inline int test2()&#123;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-</li>
-<li><p>换成c读写，别用输入输出流。如果一定要用输入输出流请在主函数开始时加入<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">**c读写字符的时候要读掉结尾的换行符等垃圾！**</span><br><span class="line">```cpp</span><br><span class="line">for(int i=1;i&lt;=n;i++)&#123;</span><br><span class="line">	char a;scanf(&quot;%c&quot;,&amp;a);//读取一行中有用的数据</span><br><span class="line">	char gg;</span><br><span class="line">	gets(gg);//读取一行中剩下的垃圾</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-</li>
-<li><p>千万别用STL！！！！！</p>
-</li>
-<li>优化常数，特别是循环以及多次调用函数中的常数！！</li>
-</ol>
+          直接切入主题。
 
-          
+在所有函数开头加上1234567```cppinline void test1()&#123;	return;&#125;inline int test2()&#123;	return 0;&#125;
+
+换成c读写，别用输入输出流。如果一定要用输入输出流请在主函数开始时加入123
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/gavinzheng/2018/10/01/暴力的优化方法[71]/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -746,13 +754,16 @@
       
         
           
-            <h2 id="对拍-Linux下对拍"><a href="#对拍-Linux下对拍" class="headerlink" title="对拍(Linux下对拍)"></a>对拍(Linux下对拍)</h2><p>执行方法：在终端下，进入当前目录，输入”<strong>sh ./nick.sh</strong>“,（其中nick.sh为当前shell脚本名）</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">true</span>; <span class="keyword">do</span></span><br><span class="line">./make&gt;tmp.in #出数据</span><br><span class="line">./tmp&lt;tmp.in&gt;tmp.out #被测程序</span><br><span class="line">./tmp2&lt;tmp.in&gt;tmp2.out #正确（暴力）程序</span><br><span class="line"><span class="keyword">if</span> diff tmp.out tmp2.out; then #比较两个输出文件</span><br><span class="line"><span class="built_in">printf</span> AC #结果相同显示AC</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">echo WA #结果不同显示WA，并退出</span><br><span class="line">#cat tmp.out tmp2.out</span><br><span class="line"><span class="built_in">exit</span> <span class="number">0</span></span><br><span class="line">fi #<span class="keyword">if</span>的结束标志,与C语言相反，<span class="number">0</span>为真</span><br><span class="line">done # <span class="keyword">while</span>的结束标志</span><br><span class="line"> </span><br><span class="line">#BY NICK WONG <span class="number">2014</span><span class="number">-08</span><span class="number">-29</span></span><br><span class="line">#在终端下，进入当前目录，输入<span class="string">"sh ./nick.sh"</span>,（其中nick.sh为当前shell脚本名） <span class="string">'#'</span>表示单行注释</span><br><span class="line">#diff在两文件相同时返回空串</span><br></pre></td></tr></table></figure>
-<h2 id="随机数的生成"><a href="#随机数的生成" class="headerlink" title="随机数的生成"></a>随机数的生成</h2><h3 id="rand函数"><a href="#rand函数" class="headerlink" title="rand函数"></a>rand函数</h3><p>rand()产生的是假随机数。当初始化值相同时，输出值相同。</p>
-<h3 id="srand函数"><a href="#srand函数" class="headerlink" title="srand函数"></a>srand函数</h3><p>需要调用stdlib.h</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;time.h&gt; </span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>; </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">r</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> srand((<span class="keyword">unsigned</span>)time(NILL))%n;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">    	<span class="keyword">int</span> n;<span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++&#123;</span><br><span class="line">        	<span class="built_in">cout</span>&lt;&lt;r(<span class="number">20</span>)<span class="comment">//输出一个小于20的随机数</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
+          对拍(Linux下对拍)执行方法：在终端下，进入当前目录，输入”sh ./nick.sh“,（其中nick.sh为当前shell脚本名）
+12345678910111213141516while true; do./make&gt;tmp.in #出数据./tmp&lt;tmp.in&gt;tmp.
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/gavinzheng/2018/10/01/考试技巧 NOIP2018前的总结[75]/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -920,9 +931,16 @@
       
         
           
-            <p>21links.phppagepublish011100217e1ec5c7678a0ed7738c4d8a27ee26 � Q</p>
+          21links.phppagepublish011100217e1ec5c7678a0ed7738c4d8a27ee26 � Q
 
           
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/gavinzheng/2018/10/01/链接库[6]/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

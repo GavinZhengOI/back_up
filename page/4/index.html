@@ -397,11 +397,15 @@
       
         
           
-            <p>Description<br>有n个机器，每个机器有2个芯片，每个芯片可以放k个电池。<br>每个芯片能量是k个电池的能量的最小值。<br>两个芯片的能量之差越小，这个机器就工作的越好。<br>现在有2nk个电池，已知它们的能量，我们要把它们放在n个机器上的芯片上，<br>使得所有机器的能量之差的最大值最小。<br>Input<br>第一行，两个正整数，n和k。<br>第二行，2nk个整数，表示每个电池的能量。<br>Output<br>一行一个整数，表示所有机器的能量之差的最大值最小是多少。<br>Sample Input<br>2 3</p>
-<p>1 2 3 4 5 6 7 8 9 10 11 12<br>Sample Output<br>1<br>HINT<br>2nk &lt;= 10^6, 1 &lt;= pi &lt;= 10^9。</p>
-<p>一时间没有想出正解。无奈之下看了下dalao的博客。因为昨天做BZ1034做到一点多。特别困，也没有心情仔细想。晚上回来睡了一会。再想想，一下子豁然开朗。<br><strong>一句话题解：二分答案，贪心验证。</strong><br>也就是先二分寻找一个答案（就是“所有机器的能量之差的最大值最小”）。然后只要用贪心的方式验证这个答案是否可以实现就好了。<br>至于验证答案。可以先将所有电池电量从小到大排序。然后从后往前遍历。同时维护一个队列（话说我用STL竟然没炸）。每次判断当前电池和它前面电池的电量差符不符合二分出的答案的要求。再看看队列里有没有多于<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">至于为什么这儿没做，自己想想，应该很容易想出来吧。</span><br><span class="line">```cpp</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">#include&lt;queue&gt;</span><br><span class="line">#define maxn 1000500</span><br><span class="line">using namespace std;</span><br><span class="line">int data[maxn];</span><br><span class="line">int n,k;</span><br><span class="line">bool check(long long num)&#123;</span><br><span class="line">	queue&lt;int&gt;line;</span><br><span class="line">	for(int i=2*n*k;i&gt;=1;i--)&#123;</span><br><span class="line">		if(line.size()&lt;(2*k-2))&#123;</span><br><span class="line">			line.push(data[i]);continue;</span><br><span class="line">		&#125;</span><br><span class="line">		if((data[i]-data[i-1])&lt;=num)&#123;</span><br><span class="line">			i--;</span><br><span class="line">			for(int h=1;h&lt;=2*k-2;h++)&#123;</span><br><span class="line">				line.pop();</span><br><span class="line">			&#125;</span><br><span class="line">			continue;</span><br><span class="line">		&#125;</span><br><span class="line">		line.push(num);</span><br><span class="line">	&#125;</span><br><span class="line">	if(line.empty()) return 1;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">	scanf(&quot;%d%d&quot;,&amp;n,&amp;k);</span><br><span class="line">	for(int i=1;i&lt;=2*n*k;i++)&#123;</span><br><span class="line">		scanf(&quot;%d&quot;,&amp;data[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	sort(data+1,data+1+(2*n*k));</span><br><span class="line">	long long le=0,ri=1000000050;</span><br><span class="line">	while(le&lt;=ri)&#123;</span><br><span class="line">		long long mid=(le+ri)/2;</span><br><span class="line">		if(check(mid)==1)&#123;</span><br><span class="line">			ri=mid-1;</span><br><span class="line">		&#125;</span><br><span class="line">		else&#123;</span><br><span class="line">			le=mid+1;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	printf(&quot;%lld&quot;,le);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-          
+          Description有n个机器，每个机器有2个芯片，每个芯片可以放k个电池。每个芯片能量是k个电池的能量的最小值。两个芯片的能量之差越小，这个机器就工作的越好。现在有2nk个电池，已知它们的能量，我们要把它们放在n个机器上的芯片上，使得所有机器的能量之差的最大值最小。Input第一行，两个正整数，
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/gavinzheng/2018/10/01/BZOJ 3969 [WF2013]Low Power[32]/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -569,23 +573,16 @@
       
         
           
-            <p>Description<br> 在实现程序自动分析的过程中,常常需要判定一些约束条件是否能被同时满足。</p>
-<p>考虑一个约束满足问题的简化版本：假设x1,x2,x3,…代表程序中出现的变量，给定n个形如xi=xj或xi≠xj的变量相等/不等的约束条件，请判定是否可以分别为每一个变量赋予恰当的值，使得上述所有约束条件同时被满足。例如，一个问题中的约束条件为：x1=x2，x2=x3，x3=x4，x1≠x4，这些约束条件显然是不可能同时被满足的，因此这个问题应判定为不可被满足。<br>现在给出一些约束满足问题，请分别对它们进行判定。<br>Input<br>输入文件的第1行包含1个正整数t，表示需要判定的问题个数。注意这些问题之间是相互独立的。</p>
-<p>对于每个问题，包含若干行：<br>第1行包含1个正整数n，表示该问题中需要被满足的约束条件个数。<br>接下来n行，每行包括3个整数i,j,e，描述1个相等/不等的约束条件，相邻整数之间用单个空格隔开。若e=1，则该约束条件为xi=xj；若e=0，则该约束条件为xi≠xj。<br>Output<br>输出文件包括t行。</p>
-<p>输出文件的第k行输出一个字符串“YES”或者“NO”（不包含引号，字母全部大写），“YES”表示输入中的第k个问题判定为可以被满足，“NO”表示不可被满足。<br>Sample Input<br>2</p>
-<p>2</p>
-<p>1 2 1</p>
-<p>1 2 0</p>
-<p>2</p>
-<p>1 2 1</p>
-<p>2 1 1<br>Sample Output<br>NO</p>
-<p>YES<br>HINT<br> 在第一个问题中，约束条件为：x1=x2,x1≠x2。这两个约束条件互相矛盾，因此不可被同时满足。</p>
-<p>在第二个问题中，约束条件为：x1=x2,x2=x1。这两个约束条件是等价的，可以被同时满足。</p>
-<p>1≤n≤1000000</p>
-<p>1≤i,j≤1000000000</p>
-<p>这道题就是裸的并查集+离散化。并查集就不说了吧，离散化就是使用两个STL：<code>lower_bound()</code>和<code>unique()</code>。分别是二分查找和去重。<br>离散化的时候就先把遇到的所有点存入数组。然后用<code>unique()</code>去掉重叠部分。需要的时候就用<code>lower_bound()</code>找到对应的值。<br>这里给出两个STL的使用方法：<br><a href="http://www.gavinzheng.tk/index.php/archives/120/" title="lower_bound使用" target="_blank" rel="noopener">lower_bound使用</a><br><a href="http://www.gavinzheng.tk/index.php/archives/119/" title="unique的使用" target="_blank" rel="noopener">unique的使用</a></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**************************************************************</span></span><br><span class="line"><span class="comment">    Problem: 4195</span></span><br><span class="line"><span class="comment">    User: GavinZheng</span></span><br><span class="line"><span class="comment">    Language: C++</span></span><br><span class="line"><span class="comment">    Result: Accepted</span></span><br><span class="line"><span class="comment">    Time:3528 ms</span></span><br><span class="line"><span class="comment">    Memory:29168 kb</span></span><br><span class="line"><span class="comment">****************************************************************/</span></span><br><span class="line"> </span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 1005000</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> fa[maxn];</span><br><span class="line"><span class="keyword">int</span> intro[maxn];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">task</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> i,j,e;</span><br><span class="line">&#125;task[maxn];</span><br><span class="line"><span class="keyword">int</span> sorting[maxn*<span class="number">2</span>];</span><br><span class="line"><span class="keyword">int</span> cnt=<span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(fa[x]==x) <span class="keyword">return</span> x;</span><br><span class="line">    fa[x]=get(fa[x]);</span><br><span class="line">    <span class="keyword">return</span> fa[x];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">uni</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">    fa[get(x)]=get(y);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; check1;</span><br><span class="line">    <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; check2;</span><br><span class="line">    <span class="keyword">int</span> n;<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=<span class="number">1000050</span>;i++)&#123;</span><br><span class="line">        fa[i]=i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> h=<span class="number">1</span>;h&lt;=n;h++)&#123;</span><br><span class="line">        <span class="keyword">int</span> i,j,e;<span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;i,&amp;j,&amp;e);</span><br><span class="line">        task[h].i=i;task[h].j=j;task[h].e=e;</span><br><span class="line">        sorting[++cnt]=i;sorting[++cnt]=j;</span><br><span class="line">    &#125;</span><br><span class="line">    sort(sorting+<span class="number">1</span>,sorting+<span class="number">1</span>+cnt);<span class="keyword">int</span> len=unique(sorting+<span class="number">1</span>,sorting+<span class="number">1</span>+cnt)-(sorting+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=len;i++)&#123;</span><br><span class="line">        intro[i]=sorting[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> h=<span class="number">1</span>;h&lt;=n;h++)&#123;   </span><br><span class="line">        <span class="keyword">int</span> i=task[h].i,j=task[h].j,e=task[h].e;</span><br><span class="line">        i=lower_bound(intro+<span class="number">1</span>,intro+<span class="number">1</span>+len,i)-intro;</span><br><span class="line">        j=lower_bound(intro+<span class="number">1</span>,intro+<span class="number">1</span>+len,j)-intro;</span><br><span class="line">        <span class="keyword">if</span>(e==<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(get(i)!=get(j))&#123;</span><br><span class="line">                uni(i,j);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            check1.push(i);</span><br><span class="line">            check2.push(j);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(!check1.empty())&#123;</span><br><span class="line">        <span class="keyword">int</span> a=check1.front();</span><br><span class="line">        <span class="keyword">int</span> b=check2.front();</span><br><span class="line">        check1.pop();check2.pop();</span><br><span class="line">        <span class="keyword">if</span>(get(a)==get(b))&#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"NO\n"</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"YES\n"</span>);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t;<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;t);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=t;i++)&#123;</span><br><span class="line">        solve();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
+          Description 在实现程序自动分析的过程中,常常需要判定一些约束条件是否能被同时满足。
+考虑一个约束满足问题的简化版本：假设x1,x2,x3,…代表程序中出现的变量，给定n个形如xi=xj或xi≠xj的变量相等/不等的约束条件，请判定是否可以分别为每一个变量赋予恰当的值，使得上述所有约束条件
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/gavinzheng/2018/10/01/BZOJ 4195 [Noi2015]程序自动分析[82]/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -753,15 +750,15 @@
       
         
           
-            <p>Description<br>如图所示为某生态系统的食物网示意图，据图回答第1小题<br>现在给你n个物种和m条能量流动关系，求其中的食物链条数。<br>物种的名称为从1到n编号<br>M条能量流动关系形如<br>a1 b1<br>a2 b2<br>a3 b3<br>……<br>am-1 bm-1<br>am bm<br>其中ai bi表示能量从物种ai流向物种bi,注意单独的一种孤立生物不算一条食物链<br>Input<br>第一行两个整数n和m,接下来m行每行两个整数ai bi描述m条能量流动关系。<br>（数据保证输入数据符号生物学特点，且不会有重复的能量流动关系出现）<br>1&lt;=N&lt;=100000 0&lt;=m&lt;=200000<br>题目保证答案不会爆 int<br>Output<br>一个整数即食物网中的食物链条数</p>
-<p>Sample Input<br>10 16<br>1 2<br>1 4<br>1 10<br>2 3<br>2 5<br>4 3<br>4 5<br>4 8<br>6 5<br>7 6<br>7 9<br>8 5<br>9 8<br>10 6<br>10 7<br>10 9<br>Sample Output<br>9</p>
-<p>这东西就是一个拓扑水题啊。。。。还是要注意几个坑点：</p>
-<ol>
-<li>单个生物无法成食物链</li>
-<li>统计答案的时候所有食物链终点生物的答案都要被计入最后的1总答案。</li>
-</ol>
-
-          
+          Description如图所示为某生态系统的食物网示意图，据图回答第1小题现在给你n个物种和m条能量流动关系，求其中的食物链条数。物种的名称为从1到n编号M条能量流动关系形如a1 b1a2 b2a3 b3……am-1 bm-1am bm其中ai bi表示能量从物种ai流向物种bi,注意单独的一种孤立
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/gavinzheng/2018/10/01/BZOJ 4562  [Haoi2016]食物链[92]/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -929,16 +926,17 @@
       
         
           
-            <h2 id="二维数点"><a href="#二维数点" class="headerlink" title="二维数点"></a>二维数点</h2><p>BZOJ2453<br>BZOJ2120</p>
-<p>##线段树</p>
-<h3 id="线段树的特殊运算"><a href="#线段树的特殊运算" class="headerlink" title="线段树的特殊运算"></a>线段树的特殊运算</h3><h4 id="开根号"><a href="#开根号" class="headerlink" title="开根号"></a>开根号</h4><p>首先考虑把一个数分为它所有质因数的积，对于质因数$j$,其指数为$i$,只要开$logi$次$i$就会变成1。因为每一次开根号的实质就是将所有质因子的质数/2。又因为$i_{max}=logn$，所以最多只需要开$loglogn$次这个数就会变成1。</p>
-<p>所以我i们只需要加一个lazytag，标记这个区间内的所有元素是不是都是1。若递归到这里查询lasytag是1的话就不用递归下去了。</p>
-<h4 id="取模"><a href="#取模" class="headerlink" title="取模"></a>取模</h4><p>假设题目要求对区间内的所有数对$y$取模。那么我们只需要维护一个区间最大值，若这个区间的最大值小于y，那么我们则不需要对这个区间进行操作。又因为可以证明对于每个不为1的$y$，对$a$这个元素进行取模。$(a\bmod y) \leq \frac{a}{2}$。所以最多只要进行$loga$次有效取模，a就会变为一个$\leq 1$的数。也就是说不用再进行取模了。</p>
-<p>###线段树的简单应用<br><a href="http://acm.hdu.edu.cn/showproblem.php?pid=6315" title="HDU6315" target="_blank" rel="noopener">HDU6315</a><br><a href="http://www.gavinzheng.tk/index.php/archives/204/" target="_blank" rel="noopener">题解</a></p>
-<p><a href="https://www.spoj.com/problems/GSS3/en/" target="_blank" rel="noopener">SPOJ GSS3</a><br><a href="http://www.gavinzheng.tk/index.php/archives/207/" title="题解" target="_blank" rel="noopener">题解</a></p>
-<p>CF914D</p>
-
-          
+          二维数点BZOJ2453BZOJ2120
+##线段树
+线段树的特殊运算开根号首先考虑把一个数分为它所有质因数的积，对于质因数$j$,其指数为$i$,只要开$logi$次$i$就会变成1。因为每一次开根号的实质就是将所有质因子的质数/2。又因为$i_{max}=logn$，所以最多只需要开$loglo
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/gavinzheng/2018/10/01/DAY1 数据结构[05]/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

@@ -397,10 +397,15 @@
       
         
           
-            <p>scanf(“%格式控制符1%格式控制符2”,&amp;变量1，&amp;变量2); 如果输入对象为char数组，不用写变量前的&amp;。<br>printf(“%格式控制符1%格式控制符2”,变量1，变量2);<br>这两个都不能处理string<br>格式控制符:<br>d int<br>f float<br>lf double<br>ld long<br>lld long long<br>Lf long double<br>c char<br>s char数组</p>
-<p>**读完一行字符后请用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">```cpp</span><br><span class="line">for(int i=1;i&lt;=n;i++)&#123;</span><br><span class="line">	char a;scanf(&quot;%c&quot;,&amp;a);//读取一行中有用的数据</span><br><span class="line">	char gg;</span><br><span class="line">	gets(gg);//读取一行中剩下的垃圾</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-          
+          scanf(“%格式控制符1%格式控制符2”,&amp;变量1，&amp;变量2); 如果输入对象为char数组，不用写变量前的&amp;。printf(“%格式控制符1%格式控制符2”,变量1，变量2);这两个都不能处理string格式控制符:d intf floatlf doubleld lon
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/gavinzheng/2018/10/01/[读写优化]C的读写[21]/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -568,9 +573,16 @@
       
         
           
-            <p><img src="http://www.gavinzheng.tk/usr/uploads/2018/07/3887400086.jpeg" alt="45d17973eeb471d7c450699e717ee329_3105_2258.jpeg"></p>
+          
 
           
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/gavinzheng/2018/10/01/[读写优化]fread的使用[31]/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -738,11 +750,15 @@
       
         
           
-            <p>T3<br>首先，我们先暴力统计出对于每一个前缀需要删除的个数。<br>然后我们用ans+（对于所有后缀最多<strong>多出来</strong>多少个<strong>未在第一次处理中消掉</strong>的1）即为答案。<br>证明比较容易，因为只需要把（对于所有后缀最多<strong>多出来</strong>多少个<strong>未在第一次处理中消掉</strong>的1）中“多出来的1”全部删除，那其他的后缀也一定合法。（因为对于多出来1最多的那个后缀，多出来的1最多只有一个是它自己“创造的”，其他的都是他后面的点积累给他的。当然，对于所有长度比其他合法后缀小，自己却不合法的串。有的已经在前一次删除前缀时被删除了。剩余的就会在第二次删除被删除。）</p>
-<p>以下来自ZR dalao SovietPower</p>
-<p> 记前缀和为$pre$，后缀和为$suf$。<br>一个显然的贪心是，从前往后枚举，找到一个$pre&lt;0$的位置就把这个$1$删掉。然后对修改后的后缀和再这么求一遍。<br>事实上如果只考虑前缀（或者处理完前缀考虑后缀和），我们只需要找到一个$\min{pre_k}/\min{sum_k}$，记$i/j$为最小的前/后缀和的下标，那么$|pre_i|$就是前面总共要删的次数（$|sum_j|$为后面要删的次数）。<br>所以我们要求：$\min{pre_i}-pre_{l-1}+\min{sum_j}-sum_{r+1}$。<br>两个$\min$的和能否直接用线段树维护？<br>我们发现$i&lt;j$时，两个$\min$互不影响；$j\leq i$时，答案可以表示为$\min{pre_k}+sum_j(k&lt;j)$（怎么说…）。所以可以用线段树先找左边的最小的$pre$，然后用$sum$更新。<br>前/后缀和可能没有（如$01$），可以把初始前/后缀和$&gt;0$的直接设为$0$；或者查的时候直接查$[l-1,r+1]$。</p>
-
-          
+          T3首先，我们先暴力统计出对于每一个前缀需要删除的个数。然后我们用ans+（对于所有后缀最多多出来多少个未在第一次处理中消掉的1）即为答案。证明比较容易，因为只需要把（对于所有后缀最多多出来多少个未在第一次处理中消掉的1）中“多出来的1”全部删除，那其他的后缀也一定合法。（因为对于多出来1最多的那个
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/gavinzheng/2018/10/01/[题解]ZROI 提高组DAY[24]/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -910,18 +926,15 @@
       
         
           
-            <p>Description<br>　　第XXXX届NOI期间，为了加强各省选手之间的交流，组委会决定组织一场省际电子竞技大赛，每一个省的代表<br>队由n名选手组成，比赛的项目是老少咸宜的网络游戏泡泡堂。每一场比赛前，对阵双方的教练向组委会提交一份<br>参赛选手的名单，决定了选手上场的顺序，一经确定，不得修改。比赛中，双方的一号选手，二号选手……，n号<br>选手捉对厮杀，共进行n场比赛。每胜一场比赛得2分，平一场得1分，输一场不得分。最终将双方的单场得分相加<br>得出总分，总分高的队伍晋级(总分相同抽签决定)。作为浙江队的领队，你已经在事先将各省所有选手的泡泡堂水<br>平了解的一清二楚，并将其用一个实力值来衡量。为简化问题，我们假定选手在游戏中完全不受任何外界因素干扰<br>，即实力强的选手一定可以战胜实力弱的选手，而两个实力相同的选手一定会战平。由于完全不知道对手会使用何<br>种策略来确定出场顺序，所以所有的队伍都采取了这样一种策略，就是完全随机决定出场顺序。当然你不想这样不<br>明不白的进行比赛。你想事先了解一下在最好与最坏的情况下，浙江队最终分别能得到多少分。</p>
-<p>Input<br>　　输入的第一行为一个整数n，表示每支代表队的人数。接下来n行，每行一个整数，描述了n位浙江队的选手的<br>实力值。接下来n行，每行一个整数，描述了你的对手的n位选手的实力值。 20％的数据中，1&lt;=n&lt;=10； 40％的数<br>据中，1&lt;=n&lt;=100； 60％的数据中，1&lt;=n&lt;=1000； 100％的数据中，1&lt;=n&lt;=100000，且所有选手的实力值在0到100<br>00000之间。</p>
-<p>Output<br>　　包括两个用空格隔开的整数，分别表示浙江队在最好与最坏的情况下分别能得多少分。不要在行末输出多余的<br>空白字符。</p>
-<p>Sample Input<br>2</p>
-<p>1</p>
-<p>3</p>
-<p>2</p>
-<p>4<br>Sample Output<br>2 0</p>
-<p>样例说明</p>
-<p>我们分别称4位选手为A,B,C,D。则可能出现以下4种对战方式，最好情况下可得2分，最坏情况下得0分。<br><a href="https://www.lydsy.com/JudgeOnline/problem.php?id=1034" target="_blank" rel="noopener"><img src="http://www.gavinzheng.tk/usr/uploads/2018/07/242742057.png" alt=""></a></p>
-
-          
+          Description　　第XXXX届NOI期间，为了加强各省选手之间的交流，组委会决定组织一场省际电子竞技大赛，每一个省的代表队由n名选手组成，比赛的项目是老少咸宜的网络游戏泡泡堂。每一场比赛前，对阵双方的教练向组委会提交一份参赛选手的名单，决定了选手上场的顺序，一经确定，不得修改。比赛中，双方的
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/gavinzheng/2018/10/01/BZOJ 1034 [ZJOI2008]泡泡堂BNB[42]/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

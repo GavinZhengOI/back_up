@@ -397,29 +397,16 @@
       
         
           
-            <p>Description<br>　　给一个数字串s和正整数d, 统计s有多少种不同的排列能被d整除（可以有前导0）。例如123434有90种排列能<br>被2整除，其中末位为2的有30种，末位为4的有60种。</p>
-<p>Input<br>　　输入第一行是一个整数T，表示测试数据的个数，以下每行一组s和d，中间用空格隔开。s保证只包含数字0, 1<br>, 2, 3, 4, 5, 6, 7, 8, 9.</p>
-<p>Output<br>　　每个数据仅一行，表示能被d整除的排列的个数。</p>
-<p>Sample Input<br>7</p>
-<p>000 1</p>
-<p>001 1</p>
-<p>1234567890 1</p>
-<p>123434 2</p>
-<p>1234 7</p>
-<p>12345 17</p>
-<p>12345678 29<br>Sample Output<br>1</p>
-<p>3</p>
-<p>3628800</p>
-<p>90</p>
-<p>3</p>
-<p>6</p>
-<p>1398<br>HINT<br>在前三个例子中，排列分别有1, 3, 3628800种，它们都是1的倍数。</p>
-<p>【限制】</p>
-<p>100%的数据满足：s的长度不超过10, 1&lt;=d&lt;=1000, 1&lt;=T&lt;=15</p>
-<hr>
-<p>这道题可以直接打暴力。用<code>algorithm</code>库中的<code>next_permutation(a+1,a+1+n)</code>即可求出a[1]到a[n]的所有全排列，并改变a数组的顺序。如果有下一个全排列，它的返回值为1，否则为0。为了求得全部的的全排列，应该先将a数组排序。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t;<span class="built_in">cin</span>&gt;&gt;t;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=t;i++)&#123;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> all=<span class="number">0</span>;</span><br><span class="line">        <span class="built_in">string</span> a;<span class="built_in">cin</span>&gt;&gt;a;<span class="keyword">int</span> d;<span class="built_in">cin</span>&gt;&gt;d;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> <span class="built_in">map</span>[<span class="number">15</span>]=&#123;<span class="number">0</span>&#125;;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> h=<span class="number">0</span>;h&lt;a.size();h++)&#123;</span><br><span class="line">            <span class="built_in">map</span>[h]=a[h]-<span class="string">'0'</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> len=a.size();</span><br><span class="line">        sort(<span class="built_in">map</span>,<span class="built_in">map</span>+len);</span><br><span class="line">        <span class="keyword">do</span>&#123;</span><br><span class="line">            <span class="keyword">long</span> <span class="keyword">long</span> ans=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> h=<span class="number">0</span>;h&lt;len;h++)&#123;</span><br><span class="line">                ans=ans*<span class="number">10l</span>l+<span class="built_in">map</span>[h];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(ans%d==<span class="number">0</span>) all++;</span><br><span class="line">        &#125;<span class="keyword">while</span>(next_permutation(<span class="built_in">map</span>,<span class="built_in">map</span>+len));</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;all&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-          
+          Description　　给一个数字串s和正整数d, 统计s有多少种不同的排列能被d整除（可以有前导0）。例如123434有90种排列能被2整除，其中末位为2的有30种，末位为4的有60种。
+Input　　输入第一行是一个整数T，表示测试数据的个数，以下每行一组s和d，中间用空格隔开。s保证只包含数
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/gavinzheng/2018/10/01/BZOJ 1072 [SCOI2007]排列perm [93]/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -587,30 +574,18 @@
       
         
           
-            <p>Description<br>　　windy定义了一种windy数。不含前导零且相邻两个数字之差至少为2的正整数被称为windy数。 windy想知道，<br>在A和B之间，包括A和B，总共有多少个windy数？</p>
-<p>Input<br>　　包含两个整数，A B。</p>
-<p>Output<br>　　一个整数</p>
-<p>Sample Input<br>【输入样例一】</p>
-<p>1 10</p>
-<p>【输入样例二】</p>
-<p>25 50<br>Sample Output<br>【输出样例一】</p>
-<p>9</p>
-<p>【输出样例二】</p>
-<p>20<br>HINT<br>【数据规模和约定】</p>
-<p>100%的数据，满足 1 &lt;= A &lt;= B &lt;= 2000000000 。</p>
-<hr>
-<blockquote>
-<p>在信息学竞赛中,有这样一类问题:求给定区间中,满足给定条件的某个 D 进制数或此类数的数量。所求的限定条件往往与数位有关,例如数位之和、指定数码个数、数的大小顺序分组等等。题目给定的区间往往很大,无法采用朴素的方法求解。此时,我们就需要利用数位的性质,设计 log(n)级别复杂度的算法。解决这类问题最基本的思想就是“逐位确定”的方法。 ——摘自 刘聪《浅谈数位类统计问题》</p>
-</blockquote>
-<p>做这道题我们分为如下几步</p>
-<ol>
-<li>预处理出所有windy数。dp[i][j]代表长度为i，以j开头的windy数的个数。（这里只需要计算出个数，不需要求出具体数值）</li>
-<li>先将所有长度比上限x小的windy数（因为长度比上限小，所以一定可用，直接累加预处理的dp[][]即可）。</li>
-<li>计算长度一样，但是开头比上限小的windy数（同理，直接累加至答案）。</li>
-<li>枚举位数（len-1）至1。这个位数之前的全部为一样的数字。然后枚举当前位置上的数（这个数一定小于上限的这位数）。<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> dp[<span class="number">15</span>][<span class="number">15</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">abs</span><span class="params">(<span class="keyword">int</span> gg)</span></span>&#123;<span class="comment">//自己写的abs函数，也可以直接调用cmath </span></span><br><span class="line">	<span class="keyword">if</span>(gg&lt;<span class="number">0</span>) <span class="keyword">return</span> (-gg);</span><br><span class="line">	<span class="keyword">return</span> gg;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=<span class="number">9</span>;i++) dp[<span class="number">1</span>][i]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;<span class="number">11</span>;i++)&#123;<span class="comment">//枚举长度 </span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> h=<span class="number">0</span>;h&lt;=<span class="number">9</span>;h++)&#123;<span class="comment">//虽然最高位为不能为0，但是仍然需要计算最高位为0 的情况。原因之后会提到。 </span></span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>;k&lt;=<span class="number">9</span>;k++)&#123;<span class="comment">//"i,h"枚举的是当前情况 </span></span><br><span class="line">				<span class="keyword">if</span>(<span class="built_in">abs</span>(h-k)&gt;<span class="number">1</span>) dp[i][h]+=dp[i<span class="number">-1</span>][k];<span class="comment">// 状态转移，将所有可行情况累加至当前情况。 </span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">get_ans</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> ans=<span class="number">0</span>;<span class="keyword">int</span> cnt=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> num[<span class="number">14</span>]=&#123;<span class="number">0</span>&#125;;</span><br><span class="line">	<span class="keyword">while</span>(x)&#123;<span class="comment">//将原来的上限x分解为每一位。 </span></span><br><span class="line">		num[++cnt]=x%<span class="number">10</span>;</span><br><span class="line">		x/=<span class="number">10</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> len=cnt;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;len;i++)&#123;<span class="comment">//长度比极限值小的数 </span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> h=<span class="number">1</span>;h&lt;=<span class="number">9</span>;h++)&#123;</span><br><span class="line">			ans+=dp[i][h];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;num[len];i++)&#123;<span class="comment">//长度相同，但是第一个数不一样 </span></span><br><span class="line">		ans+=dp[len][i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=len<span class="number">-1</span>;i&gt;=<span class="number">1</span>;i--)&#123;<span class="comment">//在最高位相同的条件下，从高位到地位一次枚举。i之前的位数和上限完全相等 </span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> h=<span class="number">0</span>;h&lt;num[i];h++)&#123;<span class="comment">//枚举第i位可能的情况（从i到1的字串起始点可以为0，循环从0开始） </span></span><br><span class="line">			<span class="keyword">if</span>(<span class="built_in">abs</span>(h-num[i+<span class="number">1</span>])&gt;=<span class="number">2</span>) ans+=dp[i][h];</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(<span class="built_in">abs</span>(num[i+<span class="number">1</span>]-num[i])&lt;<span class="number">2</span>) <span class="keyword">break</span>;<span class="comment">//意思是上限的第i位和第i+1为差值小于2。因为接着循环考虑的是第i-1位以前全部和上限相等的情况。明显不符合题目条件，所以终止循环。 </span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	init();</span><br><span class="line">	<span class="keyword">int</span> a,b;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;a&gt;&gt;b;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;get_ans(b+<span class="number">1</span>)-get_ans(a);<span class="comment">//前缀和思路计算出区间 </span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ol>
-
-          
+          Description　　windy定义了一种windy数。不含前导零且相邻两个数字之差至少为2的正整数被称为windy数。 windy想知道，在A和B之间，包括A和B，总共有多少个windy数？
+Input　　包含两个整数，A B。
+Output　　一个整数
+Sample Input【输入样例一】
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/gavinzheng/2018/10/01/[数位DP] BZOJ1026 [SCOI2009]windy数[83]/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -778,33 +753,21 @@
       
         
           
-            <h2 id="数学符号"><a href="#数学符号" class="headerlink" title="数学符号"></a>数学符号</h2><p><a href="https://zh.wikipedia.org/wiki/%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7%E8%A1%A8" title="维基百科——数学符号表" target="_blank" rel="noopener">维基百科——数学符号表</a></p>
-<p>##小常识</p>
-<h3 id="质数的密度"><a href="#质数的密度" class="headerlink" title="质数的密度"></a>质数的密度</h3><p><img src="http://www.gavinzheng.tk/usr/uploads/2018/07/4014602392.png" alt=""></p>
-<p>###以2为底log的计算方法<br>n=&gt;log（计算器默认以10为底数）<br>/2=&gt;log</p>
-<p>##乘法逆元</p>
-<p>###定义<br>一个数n的乘法逆元&amp;n的意义是<strong>在%p的的意义下</strong>，a/n=a*(&amp;n)。也就是在%p意义下的“倒数”。</p>
-<p>###计算</p>
-<h2 id="欧几里得算法"><a href="#欧几里得算法" class="headerlink" title="欧几里得算法"></a>欧几里得算法</h2><h3 id="朴素欧几里得（辗转相除）"><a href="#朴素欧几里得（辗转相除）" class="headerlink" title="朴素欧几里得（辗转相除）"></a>朴素欧几里得（辗转相除）</h3><p>令gcd(a,b)=d;<br>则a=xd;b=yd;<br><strong>所以当a=b时 gcd(a,b)=gcd(b,a-b);</strong><br><strong>当a&gt;b时，a-b=(x-y)d。所以gcd(yd,(x-y)d)=gcd(b,a-b)=d;成立</strong><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> m=max(a,b),n=min(a,b);</span><br><span class="line">	<span class="keyword">if</span>(m%n==<span class="number">0</span>) <span class="keyword">return</span> n;</span><br><span class="line">	<span class="keyword">return</span> gcd(n,m%n);</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>###扩展欧几里得<br>扩展欧几里得算法就是利用递归求解的方式解不定方程ax+by=gcd(a,b)<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">exgcd</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b,<span class="keyword">int</span> &amp;x,<span class="keyword">int</span> &amp;y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(b==<span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        x=<span class="number">1</span>;</span><br><span class="line">        y=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> r=exgcd(b,a%b,x,y);</span><br><span class="line">    <span class="keyword">int</span> t=x;</span><br><span class="line">    x=y;</span><br><span class="line">    y=t-a/b*y;</span><br><span class="line">    <span class="keyword">return</span> r;<span class="comment">//r=gcd(a,b);x,y的值已经修改过(传递的是指针)</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>###裴蜀定理<br><img src="http://www.gavinzheng.tk/usr/uploads/2018/07/2709920359.png" alt=""></p>
-<h3 id="解不定方程（二元一次）"><a href="#解不定方程（二元一次）" class="headerlink" title="解不定方程（二元一次）"></a>解不定方程（二元一次）</h3><p><img src="http://www.gavinzheng.tk/usr/uploads/2018/07/2738665449.png" alt=""><br>当在解这个二元一次不定方程时，可以先使用EXGCD求出一组解。再用 <img src="http://www.gavinzheng.tk/usr/uploads/2018/07/1316482773.png" alt=""><br>即可得出通解（其中t为变量）</p>
-<h2 id="素数筛法"><a href="#素数筛法" class="headerlink" title="素数筛法"></a>素数筛法</h2><h3 id="埃拉托斯特尼筛法"><a href="#埃拉托斯特尼筛法" class="headerlink" title="埃拉托斯特尼筛法"></a>埃拉托斯特尼筛法</h3><p>（部分摘自维基百科）<br>这也是一种比较常规的筛法。即每找到一个素数时，将他的倍数全部标记为和数。没有被标记的即为素数。<br>复杂度O(nloglogn)<br><a href="https://zh.wikipedia.org/wiki/%E5%9F%83%E6%8B%89%E6%89%98%E6%96%AF%E7%89%B9%E5%B0%BC%E7%AD%9B%E6%B3%95" target="_blank" rel="noopener"><img src="http://www.gavinzheng.tk/usr/uploads/2018/07/2458147733.gif" alt=""></a><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> flag[MAXN] = &#123;<span class="number">1</span>&#125;;    <span class="comment">//将标识初始化为true</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">erat</span><span class="params">(<span class="keyword">int</span> maxn)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	flag[<span class="number">0</span>]=<span class="number">0</span>;            <span class="comment">//0不是素数</span></span><br><span class="line">	flag[<span class="number">1</span>]=<span class="number">0</span>;            <span class="comment">//1不是素数</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=maxn;++i)</span><br><span class="line">	&#123;</span><br><span class="line">         <span class="comment">/*当i为素数时，i的所有倍数都不是素数*/</span></span><br><span class="line">		<span class="keyword">if</span>(flag[i])</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j=i*i;j&lt;=maxn;j+=i)</span><br><span class="line">			&#123;</span><br><span class="line">				flag[j]=<span class="number">0</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="欧拉筛法（线性筛素数）"><a href="#欧拉筛法（线性筛素数）" class="headerlink" title="欧拉筛法（线性筛素数）"></a>欧拉筛法（线性筛素数）</h3><p>埃氏筛法可能将一个和数筛去多次（flag[一个和数]多次被修改为‘0’）这样会浪费比较多的时间复杂度。欧拉筛法的核心在于<strong>每个和数只会被它最小的质因子筛掉</strong>。<br>复杂度O(n)<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">euler_sieve</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    totPrimes = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">memset</span>(flag, <span class="number">0</span>, <span class="keyword">sizeof</span>(flag));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++) &#123;</span><br><span class="line">	<span class="keyword">if</span> (!flag[i])</span><br><span class="line">	    primes[totPrimes++] = i;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; i * primes[j] &lt;= n&amp;&amp;j&lt;totPrimes; j++) &#123;</span><br><span class="line">	    flag[i * primes[j]] = <span class="literal">true</span>;</span><br><span class="line">	    <span class="keyword">if</span> (i % primes[j] == <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>其中<figure class="highlight plain"><figcaption><span>(i % primes[j] </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">##欧拉定理</span><br><span class="line">###欧拉函数</span><br><span class="line">欧拉函数ф(n)是指小于等于正整数n的正整数中与与其互质的数的个数。例如：</span><br><span class="line">ф(8)=4 因为在小于等于8的正整数中，有1,3,5,7(共四个)与8互质。(互质的定义时gcd(a,b)=1。所以1和8互质)。</span><br><span class="line">另外，欧拉函数时积性函数，即：φ(m)*φ(n)=φ(mn)</span><br><span class="line">#### 欧拉函数的求解——解法一</span><br><span class="line">期望复杂度O(sqrt(n))</span><br><span class="line">```cpp</span><br><span class="line">int euler(int n)&#123;</span><br><span class="line">    int ret = n;</span><br><span class="line">    for(int i=0;P[i]*P[i]&lt;=n;++i)&#123; //P是保存质数的数组</span><br><span class="line">        if ( n % P[i] ) continue;</span><br><span class="line">        </span><br><span class="line">        ret -= ret / P[i];//计算欧拉函数</span><br><span class="line">        n /= P[i];</span><br><span class="line">        while( 0 == n % P[i] ) n /= P[i];</span><br><span class="line">        if ( 1 == n ) break;//这三行用于加速并有助于最后得到大的质因子</span><br><span class="line">    &#125;</span><br><span class="line">    if ( n != 1 ) ret -= ret / n;  //假如n含有超过SIZE的质因子</span><br><span class="line">    return ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>###欧拉定理<br>当满足gcd(a,n)=1时（即a和n互质）：<br><img src="http://www.gavinzheng.tk/usr/uploads/2018/07/4247385013.png" alt=""><br>举个例子：<br><img src="http://www.gavinzheng.tk/usr/uploads/2018/07/2991678604.png" alt=""><br>结果与定理一致</p>
-<p>拓展：<br><img src="http://www.gavinzheng.tk/usr/uploads/2018/07/469709505.png" alt=""></p>
-<h3 id="费马小定理"><a href="#费马小定理" class="headerlink" title="费马小定理"></a>费马小定理</h3><p>即当a是一个整数，p是一个质数。那么：<br><img src="http://www.gavinzheng.tk/usr/uploads/2018/07/3562879528.png" alt=""><br>且当a不是p的倍数时（即a%p!=0时）：<br><img src="http://www.gavinzheng.tk/usr/uploads/2018/07/2542195197.png" alt=""></p>
-<p>##二项式定理<br>二项式定理可以写作：<br><img src="http://www.gavinzheng.tk/usr/uploads/2018/07/4128287882.png" alt=""><br>即：<br><img src="http://www.gavinzheng.tk/usr/uploads/2018/07/3949700470.png" alt=""></p>
-<p>##排列与组合</p>
-<p>###排列（考虑取出顺序）<br>即从n个数中拿出m个组成数列。有多少种取法。用A(n,m)表示。求解：<br><img src="http://www.gavinzheng.tk/usr/uploads/2018/07/575648968.png" alt=""></p>
-<p>###组合（不考虑取出顺序）<br>即从n个数中拿出m个数。有多少种取法。(两种取法所有元素相同视为一种取法)。用C(n,m)表示。求解：<br><img src="http://www.gavinzheng.tk/usr/uploads/2018/07/3693131334.png" alt=""></p>
-<p>###计算组合数</p>
-<p>####解法一——递归求解</p>
-<p>####解法二——逆元计算</p>
-<p>###卢卡斯定理（优化大组合数计算）<br><img src="http://www.gavinzheng.tk/usr/uploads/2018/07/3330995324.png" alt=""></p>
-
-          
+          数学符号维基百科——数学符号表
+##小常识
+质数的密度
+###以2为底log的计算方法n=&gt;log（计算器默认以10为底数）/2=&gt;log
+##乘法逆元
+###定义一个数n的乘法逆元&amp;n的意义是在%p的的意义下，a/n=a*(&amp;n)。也就是在%p意义下的“倒数”。
+###
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/gavinzheng/2018/10/01/[数论]基础数论[41]/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -972,11 +935,16 @@
       
         
           
-            <p><a href="https://www.luogu.org/problemnew/show/UVA10917" title="传送门1" target="_blank" rel="noopener">传送门1</a><br><a href="https://uva.onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;category=21&amp;page=show_problem&amp;problem=1858" title="传送门2" target="_blank" rel="noopener">传送门2</a><br>其实这道题最重要的一点就是如何删除多余的边，使其送一个带环的图变成一个不带环的图。</p>
-<p>记节点$i$到终点的距离为$dis[i]$。那么一条从$b$到$a$的边当且仅当$dis[a]&lt;dis[b]$时才可能被走过。所以我们只需要从终点出发，跑一边最短路。将所有符合上述条件的有效有向边连接即可。易证得出的图一定没有环。</p>
-<p>那么我们最终会得到一棵树。树上的所有边都是可以被走的“有效边”。所以用动态规划求一下路径条数即可。</p>
-
-          
+          传送门1传送门2其实这道题最重要的一点就是如何删除多余的边，使其送一个带环的图变成一个不带环的图。
+记节点$i$到终点的距离为$dis[i]$。那么一条从$b$到$a$的边当且仅当$dis[a]&lt;dis[b]$时才可能被走过。所以我们只需要从终点出发，跑一边最短路。将所有符合上述条件的有效有向
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/gavinzheng/2018/10/01/[最短路]UVA10917 Walk Through the Forest[04]/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

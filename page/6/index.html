@@ -397,12 +397,17 @@
       
         
           
-            <h2 id="黄学长的博客"><a href="#黄学长的博客" class="headerlink" title="黄学长的博客"></a>黄学长的博客</h2><p>大量一句话题解和靠谱的优质代码<br><a href="http://hzwer.com/" target="_blank" rel="noopener">http://hzwer.com/</a></p>
-<p>##莫比乌斯反演<br><a href="http://vfleaking.blog.uoj.ac/slide/87#/" target="_blank" rel="noopener">http://vfleaking.blog.uoj.ac/slide/87#/</a></p>
-<p><a href="https://blog.csdn.net/brazy/article/details/77305255" target="_blank" rel="noopener">https://blog.csdn.net/brazy/article/details/77305255</a><br>入门必学！！！极其详细</p>
-<p>##数学期望/期望DP<br><a href="https://blog.sengxian.com/algorithms/probability-and-expected-value-dynamic-programming" target="_blank" rel="noopener">https://blog.sengxian.com/algorithms/probability-and-expected-value-dynamic-programming</a><br>很详细。例题有梯度。01pagepublish011100a1a0d13385176cf740fb3b96aa463577 � �</p>
-
-          
+          黄学长的博客大量一句话题解和靠谱的优质代码http://hzwer.com/
+##莫比乌斯反演http://vfleaking.blog.uoj.ac/slide/87#/
+https://blog.csdn.net/brazy/article/details/77305255入门必学！！！极其详细
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/gavinzheng/2018/10/01/OI学习资料[54]/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -570,9 +575,16 @@
       
         
           
-            <p>语法：<code>lower_bound(开始位置,结束位置，查找值)</code></p>
+          语法：lower_bound(开始位置,结束位置，查找值)
 
           
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/gavinzheng/2018/10/01/[STL]lower_bound的使用[72]/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -740,13 +752,15 @@
       
         
           
-            <p>memset主要用于较大结构体和数组的初始化/赋值操作语法如下：<br><code>memset(数组名，装填的数，清零的位数)</code><br>注意：memset只能给<br>例如：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a[<span class="number">100</span>];</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;a[<span class="number">1</span>]&lt;&lt;<span class="string">' '</span>&lt;&lt;a[<span class="number">50</span>]&lt;&lt;<span class="string">' '</span>&lt;&lt;a[<span class="number">99</span>];</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>输出结果为随机值（计算机内存中没有被清零的值）。<br>我们加上memset函数<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">   <span class="keyword">int</span> a[<span class="number">100</span>];</span><br><span class="line">    <span class="built_in">memset</span>(a,<span class="number">0</span>,<span class="keyword">sizeof</span>(a)); </span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;a[<span class="number">1</span>]&lt;&lt;<span class="string">' '</span>&lt;&lt;a[<span class="number">50</span>]&lt;&lt;<span class="string">' '</span>&lt;&lt;a[<span class="number">99</span>];</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>输出结果均为0</p>
-<hr>
-<p>当我们清空结构体数组时，可以用：<code>memset(结构体名称,0,sizeof(struct 结构体类型名称)*结构体下标);</code></p>
-
-          
+          memset主要用于较大结构体和数组的初始化/赋值操作语法如下：memset(数组名，装填的数，清零的位数)注意：memset只能给例如：1234567#include&lt;iostream&gt;using namespace std;int main()&#123;    int a[100]
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/gavinzheng/2018/10/01/[STL]memset的使用[8]/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -914,9 +928,15 @@
       
         
           
-            <p>unique()可以去重一个数组（将重复相邻元素丢到数组最后面，所以我们需要先从小到大排序）。语法：<br>unique（a+1,a+1+需要去重长度）<br>当我们需要求得去重后序列的长度是，我们可以使用：<br><code>len=unique(a+1,a+ori_len)-(a+1)</code><br>示例代码<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a[<span class="number">10</span>]=&#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>&#125;;</span><br><span class="line">	<span class="keyword">int</span> ori_len=<span class="number">6</span>;</span><br><span class="line">	<span class="keyword">int</span> len=unique(a+<span class="number">1</span>,a+<span class="number">1</span>+ori_len)-(a+<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=len;i++)&#123;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;a[i]&lt;&lt;<span class="string">' '</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"><span class="comment">//输出结果为1 2 3 5</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-          
+          unique()可以去重一个数组（将重复相邻元素丢到数组最后面，所以我们需要先从小到大排序）。语法：unique（a+1,a+1+需要去重长度）当我们需要求得去重后序列的长度是，我们可以使用：len=unique(a+1,a+ori_len)-(a+1)示例代码12345678910111213#i
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/gavinzheng/2018/10/01/[STL]unique()去重函数[62]/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
