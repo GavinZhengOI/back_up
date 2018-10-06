@@ -110,7 +110,7 @@
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="Gavin&#39;s Blog">
-<meta property="og:url" content="https://oigavinzheng.gitee.io/gavinzheng/page/6/index.html">
+<meta property="og:url" content="https://oigavinzheng.gitee.io/gavinzheng/page/14/index.html">
 <meta property="og:site_name" content="Gavin&#39;s Blog">
 <meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
@@ -121,7 +121,7 @@
 
 
 
-  <link rel="canonical" href="https://oigavinzheng.gitee.io/gavinzheng/page/6/"/>
+  <link rel="canonical" href="https://oigavinzheng.gitee.io/gavinzheng/page/14/"/>
 
 
 
@@ -281,7 +281,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://oigavinzheng.gitee.io/gavinzheng/gavinzheng/2018/10/01/OI学习资料[54]/">
+    <link itemprop="mainEntityOfPage" href="https://oigavinzheng.gitee.io/gavinzheng/gavinzheng/2018/10/01/时光机cross[4]/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="GavinZheng">
@@ -300,8 +300,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/gavinzheng/2018/10/01/OI学习资料[54]/" itemprop="url">
-                  OI学习资料
+                <a class="post-title-link" href="/gavinzheng/2018/10/01/时光机cross[4]/" itemprop="url">
+                  时光机cross
                 </a>
               
             
@@ -397,10 +397,7 @@
       
         
           
-            <h2 id="黄学长的博客"><a href="#黄学长的博客" class="headerlink" title="黄学长的博客"></a>黄学长的博客</h2><p>大量一句话题解和靠谱的优质代码<br><a href="http://hzwer.com/" target="_blank" rel="noopener">http://hzwer.com/</a></p>
-<p>##莫比乌斯反演<br><a href="http://vfleaking.blog.uoj.ac/slide/87#/" target="_blank" rel="noopener">http://vfleaking.blog.uoj.ac/slide/87#/</a></p>
-<p><a href="https://blog.csdn.net/brazy/article/details/77305255" target="_blank" rel="noopener">https://blog.csdn.net/brazy/article/details/77305255</a><br>入门必学！！！极其详细</p>
-<p>##数学期望/期望DP<br><a href="https://blog.sengxian.com/algorithms/probability-and-expected-value-dynamic-programming" target="_blank" rel="noopener">https://blog.sengxian.com/algorithms/probability-and-expected-value-dynamic-programming</a><br>很详细。例题有梯度。01pagepublish011100a1a0d13385176cf740fb3b96aa463577 � �</p>
+            <p>11cross.phppagepublish711100483c277a02f0213c97c15894bc37e865 � @$</p>
 
           
         
@@ -454,7 +451,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://oigavinzheng.gitee.io/gavinzheng/gavinzheng/2018/10/01/[STL]lower_bound的使用[72]/">
+    <link itemprop="mainEntityOfPage" href="https://oigavinzheng.gitee.io/gavinzheng/gavinzheng/2018/10/01/暴力的优化方法[71]/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="GavinZheng">
@@ -473,8 +470,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/gavinzheng/2018/10/01/[STL]lower_bound的使用[72]/" itemprop="url">
-                  [STL]lower_bound的使用
+                <a class="post-title-link" href="/gavinzheng/2018/10/01/暴力的优化方法[71]/" itemprop="url">
+                  暴力的优化方法
                 </a>
               
             
@@ -570,7 +567,16 @@
       
         
           
-            <p>语法：<code>lower_bound(开始位置,结束位置，查找值)</code></p>
+            <p>直接切入主题。</p>
+<ol>
+<li><p>在所有函数开头加上<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">```cpp</span><br><span class="line">inline void test1()&#123;</span><br><span class="line">	return;</span><br><span class="line">&#125;</span><br><span class="line">inline int test2()&#123;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li><p>换成c读写，别用输入输出流。如果一定要用输入输出流请在主函数开始时加入<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">**c读写字符的时候要读掉结尾的换行符等垃圾！**</span><br><span class="line">```cpp</span><br><span class="line">for(int i=1;i&lt;=n;i++)&#123;</span><br><span class="line">	char a;scanf(&quot;%c&quot;,&amp;a);//读取一行中有用的数据</span><br><span class="line">	char gg;</span><br><span class="line">	gets(gg);//读取一行中剩下的垃圾</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li><p>千万别用STL！！！！！</p>
+</li>
+<li>优化常数，特别是循环以及多次调用函数中的常数！！</li>
+</ol>
 
           
         
@@ -624,7 +630,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://oigavinzheng.gitee.io/gavinzheng/gavinzheng/2018/10/01/[STL]memset的使用[8]/">
+    <link itemprop="mainEntityOfPage" href="https://oigavinzheng.gitee.io/gavinzheng/gavinzheng/2018/10/01/考试技巧 NOIP2018前的总结[75]/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="GavinZheng">
@@ -643,8 +649,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/gavinzheng/2018/10/01/[STL]memset的使用[8]/" itemprop="url">
-                  [STL]memset的使用
+                <a class="post-title-link" href="/gavinzheng/2018/10/01/考试技巧 NOIP2018前的总结[75]/" itemprop="url">
+                  考试技巧 NOIP2018前的总结
                 </a>
               
             
@@ -740,11 +746,11 @@
       
         
           
-            <p>memset主要用于较大结构体和数组的初始化/赋值操作语法如下：<br><code>memset(数组名，装填的数，清零的位数)</code><br>注意：memset只能给<br>例如：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a[<span class="number">100</span>];</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;a[<span class="number">1</span>]&lt;&lt;<span class="string">' '</span>&lt;&lt;a[<span class="number">50</span>]&lt;&lt;<span class="string">' '</span>&lt;&lt;a[<span class="number">99</span>];</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>输出结果为随机值（计算机内存中没有被清零的值）。<br>我们加上memset函数<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">   <span class="keyword">int</span> a[<span class="number">100</span>];</span><br><span class="line">    <span class="built_in">memset</span>(a,<span class="number">0</span>,<span class="keyword">sizeof</span>(a)); </span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;a[<span class="number">1</span>]&lt;&lt;<span class="string">' '</span>&lt;&lt;a[<span class="number">50</span>]&lt;&lt;<span class="string">' '</span>&lt;&lt;a[<span class="number">99</span>];</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>输出结果均为0</p>
-<hr>
-<p>当我们清空结构体数组时，可以用：<code>memset(结构体名称,0,sizeof(struct 结构体类型名称)*结构体下标);</code></p>
+            <h2 id="对拍-Linux下对拍"><a href="#对拍-Linux下对拍" class="headerlink" title="对拍(Linux下对拍)"></a>对拍(Linux下对拍)</h2><p>执行方法：在终端下，进入当前目录，输入”<strong>sh ./nick.sh</strong>“,（其中nick.sh为当前shell脚本名）</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">true</span>; <span class="keyword">do</span></span><br><span class="line">./make&gt;tmp.in #出数据</span><br><span class="line">./tmp&lt;tmp.in&gt;tmp.out #被测程序</span><br><span class="line">./tmp2&lt;tmp.in&gt;tmp2.out #正确（暴力）程序</span><br><span class="line"><span class="keyword">if</span> diff tmp.out tmp2.out; then #比较两个输出文件</span><br><span class="line"><span class="built_in">printf</span> AC #结果相同显示AC</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">echo WA #结果不同显示WA，并退出</span><br><span class="line">#cat tmp.out tmp2.out</span><br><span class="line"><span class="built_in">exit</span> <span class="number">0</span></span><br><span class="line">fi #<span class="keyword">if</span>的结束标志,与C语言相反，<span class="number">0</span>为真</span><br><span class="line">done # <span class="keyword">while</span>的结束标志</span><br><span class="line"> </span><br><span class="line">#BY NICK WONG <span class="number">2014</span><span class="number">-08</span><span class="number">-29</span></span><br><span class="line">#在终端下，进入当前目录，输入<span class="string">"sh ./nick.sh"</span>,（其中nick.sh为当前shell脚本名） <span class="string">'#'</span>表示单行注释</span><br><span class="line">#diff在两文件相同时返回空串</span><br></pre></td></tr></table></figure>
+<h2 id="随机数的生成"><a href="#随机数的生成" class="headerlink" title="随机数的生成"></a>随机数的生成</h2><h3 id="rand函数"><a href="#rand函数" class="headerlink" title="rand函数"></a>rand函数</h3><p>rand()产生的是假随机数。当初始化值相同时，输出值相同。</p>
+<h3 id="srand函数"><a href="#srand函数" class="headerlink" title="srand函数"></a>srand函数</h3><p>需要调用stdlib.h</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;time.h&gt; </span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>; </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">r</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> srand((<span class="keyword">unsigned</span>)time(NILL))%n;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">    	<span class="keyword">int</span> n;<span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++&#123;</span><br><span class="line">        	<span class="built_in">cout</span>&lt;&lt;r(<span class="number">20</span>)<span class="comment">//输出一个小于20的随机数</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
           
         
@@ -798,7 +804,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://oigavinzheng.gitee.io/gavinzheng/gavinzheng/2018/10/01/[STL]unique()去重函数[62]/">
+    <link itemprop="mainEntityOfPage" href="https://oigavinzheng.gitee.io/gavinzheng/gavinzheng/2018/10/01/链接库[6]/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="GavinZheng">
@@ -817,8 +823,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/gavinzheng/2018/10/01/[STL]unique()去重函数[62]/" itemprop="url">
-                  [STL]unique()去重函数
+                <a class="post-title-link" href="/gavinzheng/2018/10/01/链接库[6]/" itemprop="url">
+                  链接库
                 </a>
               
             
@@ -914,7 +920,7 @@
       
         
           
-            <p>unique()可以去重一个数组（将重复相邻元素丢到数组最后面，所以我们需要先从小到大排序）。语法：<br>unique（a+1,a+1+需要去重长度）<br>当我们需要求得去重后序列的长度是，我们可以使用：<br><code>len=unique(a+1,a+ori_len)-(a+1)</code><br>示例代码<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a[<span class="number">10</span>]=&#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>&#125;;</span><br><span class="line">	<span class="keyword">int</span> ori_len=<span class="number">6</span>;</span><br><span class="line">	<span class="keyword">int</span> len=unique(a+<span class="number">1</span>,a+<span class="number">1</span>+ori_len)-(a+<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=len;i++)&#123;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;a[i]&lt;&lt;<span class="string">' '</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"><span class="comment">//输出结果为1 2 3 5</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+            <p>21links.phppagepublish011100217e1ec5c7678a0ed7738c4d8a27ee26 � Q</p>
 
           
         
@@ -957,7 +963,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/gavinzheng/page/5/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/gavinzheng/">1</a><span class="space">&hellip;</span><a class="page-number" href="/gavinzheng/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/gavinzheng/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/gavinzheng/page/15/">15</a><a class="extend next" rel="next" href="/gavinzheng/page/7/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/gavinzheng/page/13/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/gavinzheng/">1</a><span class="space">&hellip;</span><a class="page-number" href="/gavinzheng/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/gavinzheng/page/15/">15</a><a class="extend next" rel="next" href="/gavinzheng/page/15/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 

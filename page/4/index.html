@@ -281,7 +281,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://oigavinzheng.gitee.io/gavinzheng/gavinzheng/2018/10/01/[数论]基础数论[41]/">
+    <link itemprop="mainEntityOfPage" href="https://oigavinzheng.gitee.io/gavinzheng/gavinzheng/2018/10/01/BZOJ 3969 [WF2013]Low Power[32]/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="GavinZheng">
@@ -300,8 +300,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/gavinzheng/2018/10/01/[数论]基础数论[41]/" itemprop="url">
-                  [数论]基础数论
+                <a class="post-title-link" href="/gavinzheng/2018/10/01/BZOJ 3969 [WF2013]Low Power[32]/" itemprop="url">
+                  BZOJ 3969 [WF2013]Low Power
                 </a>
               
             
@@ -397,31 +397,9 @@
       
         
           
-            <h2 id="数学符号"><a href="#数学符号" class="headerlink" title="数学符号"></a>数学符号</h2><p><a href="https://zh.wikipedia.org/wiki/%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7%E8%A1%A8" title="维基百科——数学符号表" target="_blank" rel="noopener">维基百科——数学符号表</a></p>
-<p>##小常识</p>
-<h3 id="质数的密度"><a href="#质数的密度" class="headerlink" title="质数的密度"></a>质数的密度</h3><p><img src="http://www.gavinzheng.tk/usr/uploads/2018/07/4014602392.png" alt=""></p>
-<p>###以2为底log的计算方法<br>n=&gt;log（计算器默认以10为底数）<br>/2=&gt;log</p>
-<p>##乘法逆元</p>
-<p>###定义<br>一个数n的乘法逆元&amp;n的意义是<strong>在%p的的意义下</strong>，a/n=a*(&amp;n)。也就是在%p意义下的“倒数”。</p>
-<p>###计算</p>
-<h2 id="欧几里得算法"><a href="#欧几里得算法" class="headerlink" title="欧几里得算法"></a>欧几里得算法</h2><h3 id="朴素欧几里得（辗转相除）"><a href="#朴素欧几里得（辗转相除）" class="headerlink" title="朴素欧几里得（辗转相除）"></a>朴素欧几里得（辗转相除）</h3><p>令gcd(a,b)=d;<br>则a=xd;b=yd;<br><strong>所以当a=b时 gcd(a,b)=gcd(b,a-b);</strong><br><strong>当a&gt;b时，a-b=(x-y)d。所以gcd(yd,(x-y)d)=gcd(b,a-b)=d;成立</strong><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> m=max(a,b),n=min(a,b);</span><br><span class="line">	<span class="keyword">if</span>(m%n==<span class="number">0</span>) <span class="keyword">return</span> n;</span><br><span class="line">	<span class="keyword">return</span> gcd(n,m%n);</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>###扩展欧几里得<br>扩展欧几里得算法就是利用递归求解的方式解不定方程ax+by=gcd(a,b)<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">exgcd</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b,<span class="keyword">int</span> &amp;x,<span class="keyword">int</span> &amp;y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(b==<span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        x=<span class="number">1</span>;</span><br><span class="line">        y=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> r=exgcd(b,a%b,x,y);</span><br><span class="line">    <span class="keyword">int</span> t=x;</span><br><span class="line">    x=y;</span><br><span class="line">    y=t-a/b*y;</span><br><span class="line">    <span class="keyword">return</span> r;<span class="comment">//r=gcd(a,b);x,y的值已经修改过(传递的是指针)</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>###裴蜀定理<br><img src="http://www.gavinzheng.tk/usr/uploads/2018/07/2709920359.png" alt=""></p>
-<h3 id="解不定方程（二元一次）"><a href="#解不定方程（二元一次）" class="headerlink" title="解不定方程（二元一次）"></a>解不定方程（二元一次）</h3><p><img src="http://www.gavinzheng.tk/usr/uploads/2018/07/2738665449.png" alt=""><br>当在解这个二元一次不定方程时，可以先使用EXGCD求出一组解。再用 <img src="http://www.gavinzheng.tk/usr/uploads/2018/07/1316482773.png" alt=""><br>即可得出通解（其中t为变量）</p>
-<h2 id="素数筛法"><a href="#素数筛法" class="headerlink" title="素数筛法"></a>素数筛法</h2><h3 id="埃拉托斯特尼筛法"><a href="#埃拉托斯特尼筛法" class="headerlink" title="埃拉托斯特尼筛法"></a>埃拉托斯特尼筛法</h3><p>（部分摘自维基百科）<br>这也是一种比较常规的筛法。即每找到一个素数时，将他的倍数全部标记为和数。没有被标记的即为素数。<br>复杂度O(nloglogn)<br><a href="https://zh.wikipedia.org/wiki/%E5%9F%83%E6%8B%89%E6%89%98%E6%96%AF%E7%89%B9%E5%B0%BC%E7%AD%9B%E6%B3%95" target="_blank" rel="noopener"><img src="http://www.gavinzheng.tk/usr/uploads/2018/07/2458147733.gif" alt=""></a><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> flag[MAXN] = &#123;<span class="number">1</span>&#125;;    <span class="comment">//将标识初始化为true</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">erat</span><span class="params">(<span class="keyword">int</span> maxn)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	flag[<span class="number">0</span>]=<span class="number">0</span>;            <span class="comment">//0不是素数</span></span><br><span class="line">	flag[<span class="number">1</span>]=<span class="number">0</span>;            <span class="comment">//1不是素数</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=maxn;++i)</span><br><span class="line">	&#123;</span><br><span class="line">         <span class="comment">/*当i为素数时，i的所有倍数都不是素数*/</span></span><br><span class="line">		<span class="keyword">if</span>(flag[i])</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j=i*i;j&lt;=maxn;j+=i)</span><br><span class="line">			&#123;</span><br><span class="line">				flag[j]=<span class="number">0</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="欧拉筛法（线性筛素数）"><a href="#欧拉筛法（线性筛素数）" class="headerlink" title="欧拉筛法（线性筛素数）"></a>欧拉筛法（线性筛素数）</h3><p>埃氏筛法可能将一个和数筛去多次（flag[一个和数]多次被修改为‘0’）这样会浪费比较多的时间复杂度。欧拉筛法的核心在于<strong>每个和数只会被它最小的质因子筛掉</strong>。<br>复杂度O(n)<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">euler_sieve</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    totPrimes = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">memset</span>(flag, <span class="number">0</span>, <span class="keyword">sizeof</span>(flag));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++) &#123;</span><br><span class="line">	<span class="keyword">if</span> (!flag[i])</span><br><span class="line">	    primes[totPrimes++] = i;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; i * primes[j] &lt;= n&amp;&amp;j&lt;totPrimes; j++) &#123;</span><br><span class="line">	    flag[i * primes[j]] = <span class="literal">true</span>;</span><br><span class="line">	    <span class="keyword">if</span> (i % primes[j] == <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>其中<figure class="highlight plain"><figcaption><span>(i % primes[j] </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">##欧拉定理</span><br><span class="line">###欧拉函数</span><br><span class="line">欧拉函数ф(n)是指小于等于正整数n的正整数中与与其互质的数的个数。例如：</span><br><span class="line">ф(8)=4 因为在小于等于8的正整数中，有1,3,5,7(共四个)与8互质。(互质的定义时gcd(a,b)=1。所以1和8互质)。</span><br><span class="line">另外，欧拉函数时积性函数，即：φ(m)*φ(n)=φ(mn)</span><br><span class="line">#### 欧拉函数的求解——解法一</span><br><span class="line">期望复杂度O(sqrt(n))</span><br><span class="line">```cpp</span><br><span class="line">int euler(int n)&#123;</span><br><span class="line">    int ret = n;</span><br><span class="line">    for(int i=0;P[i]*P[i]&lt;=n;++i)&#123; //P是保存质数的数组</span><br><span class="line">        if ( n % P[i] ) continue;</span><br><span class="line">        </span><br><span class="line">        ret -= ret / P[i];//计算欧拉函数</span><br><span class="line">        n /= P[i];</span><br><span class="line">        while( 0 == n % P[i] ) n /= P[i];</span><br><span class="line">        if ( 1 == n ) break;//这三行用于加速并有助于最后得到大的质因子</span><br><span class="line">    &#125;</span><br><span class="line">    if ( n != 1 ) ret -= ret / n;  //假如n含有超过SIZE的质因子</span><br><span class="line">    return ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>###欧拉定理<br>当满足gcd(a,n)=1时（即a和n互质）：<br><img src="http://www.gavinzheng.tk/usr/uploads/2018/07/4247385013.png" alt=""><br>举个例子：<br><img src="http://www.gavinzheng.tk/usr/uploads/2018/07/2991678604.png" alt=""><br>结果与定理一致</p>
-<p>拓展：<br><img src="http://www.gavinzheng.tk/usr/uploads/2018/07/469709505.png" alt=""></p>
-<h3 id="费马小定理"><a href="#费马小定理" class="headerlink" title="费马小定理"></a>费马小定理</h3><p>即当a是一个整数，p是一个质数。那么：<br><img src="http://www.gavinzheng.tk/usr/uploads/2018/07/3562879528.png" alt=""><br>且当a不是p的倍数时（即a%p!=0时）：<br><img src="http://www.gavinzheng.tk/usr/uploads/2018/07/2542195197.png" alt=""></p>
-<p>##二项式定理<br>二项式定理可以写作：<br><img src="http://www.gavinzheng.tk/usr/uploads/2018/07/4128287882.png" alt=""><br>即：<br><img src="http://www.gavinzheng.tk/usr/uploads/2018/07/3949700470.png" alt=""></p>
-<p>##排列与组合</p>
-<p>###排列（考虑取出顺序）<br>即从n个数中拿出m个组成数列。有多少种取法。用A(n,m)表示。求解：<br><img src="http://www.gavinzheng.tk/usr/uploads/2018/07/575648968.png" alt=""></p>
-<p>###组合（不考虑取出顺序）<br>即从n个数中拿出m个数。有多少种取法。(两种取法所有元素相同视为一种取法)。用C(n,m)表示。求解：<br><img src="http://www.gavinzheng.tk/usr/uploads/2018/07/3693131334.png" alt=""></p>
-<p>###计算组合数</p>
-<p>####解法一——递归求解</p>
-<p>####解法二——逆元计算</p>
-<p>###卢卡斯定理（优化大组合数计算）<br><img src="http://www.gavinzheng.tk/usr/uploads/2018/07/3330995324.png" alt=""></p>
+            <p>Description<br>有n个机器，每个机器有2个芯片，每个芯片可以放k个电池。<br>每个芯片能量是k个电池的能量的最小值。<br>两个芯片的能量之差越小，这个机器就工作的越好。<br>现在有2nk个电池，已知它们的能量，我们要把它们放在n个机器上的芯片上，<br>使得所有机器的能量之差的最大值最小。<br>Input<br>第一行，两个正整数，n和k。<br>第二行，2nk个整数，表示每个电池的能量。<br>Output<br>一行一个整数，表示所有机器的能量之差的最大值最小是多少。<br>Sample Input<br>2 3</p>
+<p>1 2 3 4 5 6 7 8 9 10 11 12<br>Sample Output<br>1<br>HINT<br>2nk &lt;= 10^6, 1 &lt;= pi &lt;= 10^9。</p>
+<p>一时间没有想出正解。无奈之下看了下dalao的博客。因为昨天做BZ1034做到一点多。特别困，也没有心情仔细想。晚上回来睡了一会。再想想，一下子豁然开朗。<br><strong>一句话题解：二分答案，贪心验证。</strong><br>也就是先二分寻找一个答案（就是“所有机器的能量之差的最大值最小”）。然后只要用贪心的方式验证这个答案是否可以实现就好了。<br>至于验证答案。可以先将所有电池电量从小到大排序。然后从后往前遍历。同时维护一个队列（话说我用STL竟然没炸）。每次判断当前电池和它前面电池的电量差符不符合二分出的答案的要求。再看看队列里有没有多于<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">至于为什么这儿没做，自己想想，应该很容易想出来吧。</span><br><span class="line">```cpp</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">#include&lt;queue&gt;</span><br><span class="line">#define maxn 1000500</span><br><span class="line">using namespace std;</span><br><span class="line">int data[maxn];</span><br><span class="line">int n,k;</span><br><span class="line">bool check(long long num)&#123;</span><br><span class="line">	queue&lt;int&gt;line;</span><br><span class="line">	for(int i=2*n*k;i&gt;=1;i--)&#123;</span><br><span class="line">		if(line.size()&lt;(2*k-2))&#123;</span><br><span class="line">			line.push(data[i]);continue;</span><br><span class="line">		&#125;</span><br><span class="line">		if((data[i]-data[i-1])&lt;=num)&#123;</span><br><span class="line">			i--;</span><br><span class="line">			for(int h=1;h&lt;=2*k-2;h++)&#123;</span><br><span class="line">				line.pop();</span><br><span class="line">			&#125;</span><br><span class="line">			continue;</span><br><span class="line">		&#125;</span><br><span class="line">		line.push(num);</span><br><span class="line">	&#125;</span><br><span class="line">	if(line.empty()) return 1;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">	scanf(&quot;%d%d&quot;,&amp;n,&amp;k);</span><br><span class="line">	for(int i=1;i&lt;=2*n*k;i++)&#123;</span><br><span class="line">		scanf(&quot;%d&quot;,&amp;data[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	sort(data+1,data+1+(2*n*k));</span><br><span class="line">	long long le=0,ri=1000000050;</span><br><span class="line">	while(le&lt;=ri)&#123;</span><br><span class="line">		long long mid=(le+ri)/2;</span><br><span class="line">		if(check(mid)==1)&#123;</span><br><span class="line">			ri=mid-1;</span><br><span class="line">		&#125;</span><br><span class="line">		else&#123;</span><br><span class="line">			le=mid+1;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	printf(&quot;%lld&quot;,le);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
           
         
@@ -475,7 +453,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://oigavinzheng.gitee.io/gavinzheng/gavinzheng/2018/10/01/[最短路]UVA10917 Walk Through the Forest[04]/">
+    <link itemprop="mainEntityOfPage" href="https://oigavinzheng.gitee.io/gavinzheng/gavinzheng/2018/10/01/BZOJ 4195 [Noi2015]程序自动分析[82]/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="GavinZheng">
@@ -494,8 +472,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/gavinzheng/2018/10/01/[最短路]UVA10917 Walk Through the Forest[04]/" itemprop="url">
-                  [最短路]UVA10917 Walk Through the Forest
+                <a class="post-title-link" href="/gavinzheng/2018/10/01/BZOJ 4195 [Noi2015]程序自动分析[82]/" itemprop="url">
+                  BZOJ 4195 [Noi2015]程序自动分析
                 </a>
               
             
@@ -591,9 +569,197 @@
       
         
           
-            <p><a href="https://www.luogu.org/problemnew/show/UVA10917" title="传送门1" target="_blank" rel="noopener">传送门1</a><br><a href="https://uva.onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;category=21&amp;page=show_problem&amp;problem=1858" title="传送门2" target="_blank" rel="noopener">传送门2</a><br>其实这道题最重要的一点就是如何删除多余的边，使其送一个带环的图变成一个不带环的图。</p>
-<p>记节点$i$到终点的距离为$dis[i]$。那么一条从$b$到$a$的边当且仅当$dis[a]&lt;dis[b]$时才可能被走过。所以我们只需要从终点出发，跑一边最短路。将所有符合上述条件的有效有向边连接即可。易证得出的图一定没有环。</p>
-<p>那么我们最终会得到一棵树。树上的所有边都是可以被走的“有效边”。所以用动态规划求一下路径条数即可。</p>
+            <p>Description<br> 在实现程序自动分析的过程中,常常需要判定一些约束条件是否能被同时满足。</p>
+<p>考虑一个约束满足问题的简化版本：假设x1,x2,x3,…代表程序中出现的变量，给定n个形如xi=xj或xi≠xj的变量相等/不等的约束条件，请判定是否可以分别为每一个变量赋予恰当的值，使得上述所有约束条件同时被满足。例如，一个问题中的约束条件为：x1=x2，x2=x3，x3=x4，x1≠x4，这些约束条件显然是不可能同时被满足的，因此这个问题应判定为不可被满足。<br>现在给出一些约束满足问题，请分别对它们进行判定。<br>Input<br>输入文件的第1行包含1个正整数t，表示需要判定的问题个数。注意这些问题之间是相互独立的。</p>
+<p>对于每个问题，包含若干行：<br>第1行包含1个正整数n，表示该问题中需要被满足的约束条件个数。<br>接下来n行，每行包括3个整数i,j,e，描述1个相等/不等的约束条件，相邻整数之间用单个空格隔开。若e=1，则该约束条件为xi=xj；若e=0，则该约束条件为xi≠xj。<br>Output<br>输出文件包括t行。</p>
+<p>输出文件的第k行输出一个字符串“YES”或者“NO”（不包含引号，字母全部大写），“YES”表示输入中的第k个问题判定为可以被满足，“NO”表示不可被满足。<br>Sample Input<br>2</p>
+<p>2</p>
+<p>1 2 1</p>
+<p>1 2 0</p>
+<p>2</p>
+<p>1 2 1</p>
+<p>2 1 1<br>Sample Output<br>NO</p>
+<p>YES<br>HINT<br> 在第一个问题中，约束条件为：x1=x2,x1≠x2。这两个约束条件互相矛盾，因此不可被同时满足。</p>
+<p>在第二个问题中，约束条件为：x1=x2,x2=x1。这两个约束条件是等价的，可以被同时满足。</p>
+<p>1≤n≤1000000</p>
+<p>1≤i,j≤1000000000</p>
+<p>这道题就是裸的并查集+离散化。并查集就不说了吧，离散化就是使用两个STL：<code>lower_bound()</code>和<code>unique()</code>。分别是二分查找和去重。<br>离散化的时候就先把遇到的所有点存入数组。然后用<code>unique()</code>去掉重叠部分。需要的时候就用<code>lower_bound()</code>找到对应的值。<br>这里给出两个STL的使用方法：<br><a href="http://www.gavinzheng.tk/index.php/archives/120/" title="lower_bound使用" target="_blank" rel="noopener">lower_bound使用</a><br><a href="http://www.gavinzheng.tk/index.php/archives/119/" title="unique的使用" target="_blank" rel="noopener">unique的使用</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**************************************************************</span></span><br><span class="line"><span class="comment">    Problem: 4195</span></span><br><span class="line"><span class="comment">    User: GavinZheng</span></span><br><span class="line"><span class="comment">    Language: C++</span></span><br><span class="line"><span class="comment">    Result: Accepted</span></span><br><span class="line"><span class="comment">    Time:3528 ms</span></span><br><span class="line"><span class="comment">    Memory:29168 kb</span></span><br><span class="line"><span class="comment">****************************************************************/</span></span><br><span class="line"> </span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 1005000</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> fa[maxn];</span><br><span class="line"><span class="keyword">int</span> intro[maxn];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">task</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> i,j,e;</span><br><span class="line">&#125;task[maxn];</span><br><span class="line"><span class="keyword">int</span> sorting[maxn*<span class="number">2</span>];</span><br><span class="line"><span class="keyword">int</span> cnt=<span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(fa[x]==x) <span class="keyword">return</span> x;</span><br><span class="line">    fa[x]=get(fa[x]);</span><br><span class="line">    <span class="keyword">return</span> fa[x];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">uni</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">    fa[get(x)]=get(y);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; check1;</span><br><span class="line">    <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; check2;</span><br><span class="line">    <span class="keyword">int</span> n;<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=<span class="number">1000050</span>;i++)&#123;</span><br><span class="line">        fa[i]=i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> h=<span class="number">1</span>;h&lt;=n;h++)&#123;</span><br><span class="line">        <span class="keyword">int</span> i,j,e;<span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;i,&amp;j,&amp;e);</span><br><span class="line">        task[h].i=i;task[h].j=j;task[h].e=e;</span><br><span class="line">        sorting[++cnt]=i;sorting[++cnt]=j;</span><br><span class="line">    &#125;</span><br><span class="line">    sort(sorting+<span class="number">1</span>,sorting+<span class="number">1</span>+cnt);<span class="keyword">int</span> len=unique(sorting+<span class="number">1</span>,sorting+<span class="number">1</span>+cnt)-(sorting+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=len;i++)&#123;</span><br><span class="line">        intro[i]=sorting[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> h=<span class="number">1</span>;h&lt;=n;h++)&#123;   </span><br><span class="line">        <span class="keyword">int</span> i=task[h].i,j=task[h].j,e=task[h].e;</span><br><span class="line">        i=lower_bound(intro+<span class="number">1</span>,intro+<span class="number">1</span>+len,i)-intro;</span><br><span class="line">        j=lower_bound(intro+<span class="number">1</span>,intro+<span class="number">1</span>+len,j)-intro;</span><br><span class="line">        <span class="keyword">if</span>(e==<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(get(i)!=get(j))&#123;</span><br><span class="line">                uni(i,j);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            check1.push(i);</span><br><span class="line">            check2.push(j);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(!check1.empty())&#123;</span><br><span class="line">        <span class="keyword">int</span> a=check1.front();</span><br><span class="line">        <span class="keyword">int</span> b=check2.front();</span><br><span class="line">        check1.pop();check2.pop();</span><br><span class="line">        <span class="keyword">if</span>(get(a)==get(b))&#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"NO\n"</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"YES\n"</span>);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t;<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;t);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=t;i++)&#123;</span><br><span class="line">        solve();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://oigavinzheng.gitee.io/gavinzheng/gavinzheng/2018/10/01/BZOJ 4562  [Haoi2016]食物链[92]/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="GavinZheng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/gavinzheng/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gavin's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/gavinzheng/2018/10/01/BZOJ 4562  [Haoi2016]食物链[92]/" itemprop="url">
+                  BZOJ 4562  [Haoi2016]食物链
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-10-01 20:22:00" itemprop="dateCreated datePublished" datetime="2018-10-01T20:22:00+08:00">2018-10-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-10-06 18:14:41" itemprop="dateModified" datetime="2018-10-06T18:14:41+08:00">2018-10-06</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/gavinzheng/categories/Historic/" itemprop="url" rel="index"><span itemprop="name">Historic</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Description<br>如图所示为某生态系统的食物网示意图，据图回答第1小题<br>现在给你n个物种和m条能量流动关系，求其中的食物链条数。<br>物种的名称为从1到n编号<br>M条能量流动关系形如<br>a1 b1<br>a2 b2<br>a3 b3<br>……<br>am-1 bm-1<br>am bm<br>其中ai bi表示能量从物种ai流向物种bi,注意单独的一种孤立生物不算一条食物链<br>Input<br>第一行两个整数n和m,接下来m行每行两个整数ai bi描述m条能量流动关系。<br>（数据保证输入数据符号生物学特点，且不会有重复的能量流动关系出现）<br>1&lt;=N&lt;=100000 0&lt;=m&lt;=200000<br>题目保证答案不会爆 int<br>Output<br>一个整数即食物网中的食物链条数</p>
+<p>Sample Input<br>10 16<br>1 2<br>1 4<br>1 10<br>2 3<br>2 5<br>4 3<br>4 5<br>4 8<br>6 5<br>7 6<br>7 9<br>8 5<br>9 8<br>10 6<br>10 7<br>10 9<br>Sample Output<br>9</p>
+<p>这东西就是一个拓扑水题啊。。。。还是要注意几个坑点：</p>
+<ol>
+<li>单个生物无法成食物链</li>
+<li>统计答案的时候所有食物链终点生物的答案都要被计入最后的1总答案。</li>
+</ol>
 
           
         
@@ -647,7 +813,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://oigavinzheng.gitee.io/gavinzheng/gavinzheng/2018/10/01/[树链剖分]树链剖分求LCA[9]/">
+    <link itemprop="mainEntityOfPage" href="https://oigavinzheng.gitee.io/gavinzheng/gavinzheng/2018/10/01/DAY1 数据结构[05]/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="GavinZheng">
@@ -666,8 +832,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/gavinzheng/2018/10/01/[树链剖分]树链剖分求LCA[9]/" itemprop="url">
-                  [树链剖分]树链剖分求LCA
+                <a class="post-title-link" href="/gavinzheng/2018/10/01/DAY1 数据结构[05]/" itemprop="url">
+                  DAY1 数据结构
                 </a>
               
             
@@ -763,1234 +929,14 @@
       
         
           
-            <p>##树剖步骤</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 500005</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> tot=<span class="number">0</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">gg</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> pa,size,top,h_son,deep;</span><br><span class="line">&#125;tree[maxn];</span><br><span class="line"><span class="keyword">int</span> head[maxn*<span class="number">2</span>];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">side</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> from,to,next;</span><br><span class="line">&#125;edge[maxn*<span class="number">2</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">	edge[++tot].next=head[x];</span><br><span class="line">	head[x]=tot;</span><br><span class="line">	edge[tot].to=y;edge[tot].from=x;<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs1</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> deep)</span></span>&#123;</span><br><span class="line">	tree[x].size=<span class="number">1</span>;</span><br><span class="line">	tree[x].deep=deep;</span><br><span class="line">	<span class="keyword">int</span> maxsize=<span class="number">-1</span>;<span class="keyword">int</span> num=<span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=head[x];i!=<span class="number">-1</span>;i=edge[i].next)&#123;</span><br><span class="line">		<span class="keyword">if</span>(edge[i].to==tree[x].pa) <span class="keyword">continue</span>;</span><br><span class="line">		tree[edge[i].to].pa=x;</span><br><span class="line">		dfs1(edge[i].to,deep+<span class="number">1</span>);</span><br><span class="line">		<span class="keyword">if</span>(tree[edge[i].to].size&gt;maxsize)&#123;</span><br><span class="line">			maxsize=tree[edge[i].to].size;</span><br><span class="line">			num=edge[i].to;</span><br><span class="line">		&#125;</span><br><span class="line">		tree[x].size+=tree[edge[i].to].size;</span><br><span class="line">	&#125;</span><br><span class="line">	tree[x].h_son=num;</span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs2</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(tree[tree[x].pa].h_son==x)&#123;</span><br><span class="line">		tree[x].top=tree[tree[x].pa].top;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span>&#123;</span><br><span class="line">		tree[x].top=x;</span><br><span class="line">	&#125;	</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=head[x];i!=<span class="number">-1</span>;i=edge[i].next)&#123;</span><br><span class="line">		<span class="keyword">if</span>(edge[i].to!=tree[x].pa)&#123;</span><br><span class="line">			dfs2(edge[i].to);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n,m,s;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;n,&amp;m,&amp;s);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=n+<span class="number">2</span>;i++)&#123;head[i]=<span class="number">-1</span>;&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n<span class="number">-1</span>;i++)&#123;</span><br><span class="line">		<span class="keyword">int</span> a,b;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;a,&amp;b);</span><br><span class="line">		add(a,b);</span><br><span class="line">		add(b,a);</span><br><span class="line">	&#125;</span><br><span class="line">	tree[s].pa=s;tree[s].top=s;</span><br><span class="line">	dfs1(s,<span class="number">1</span>);</span><br><span class="line">	dfs2(s);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">		<span class="keyword">int</span> a,b;<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;a,&amp;b);</span><br><span class="line">		<span class="keyword">while</span>(tree[a].top!=tree[b].top)&#123;</span><br><span class="line">			<span class="keyword">int</span> c;</span><br><span class="line">			<span class="keyword">if</span>(tree[tree[a].top].deep&gt;tree[tree[b].top].deep)&#123;</span><br><span class="line">				c=a;</span><br><span class="line">				a=tree[tree[c].top].pa;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span>&#123;c=b;</span><br><span class="line">				b=tree[tree[c].top].pa;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">		&#125;	</span><br><span class="line">		<span class="keyword">if</span>(tree[a].deep&gt;tree[b].deep)&#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,b);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,a);</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>参考<br><a href="http://www.cnblogs.com/chinhhh/p/7965433.html" title="dalao的博客" target="_blank" rel="noopener">dalao的博客</a><br><a href="https://blog.csdn.net/lian233/article/details/58251510" title="dalao2的博客" target="_blank" rel="noopener">dalao2的博客</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://oigavinzheng.gitee.io/gavinzheng/gavinzheng/2018/10/01/[模拟]POJ1958 四座汉诺塔[84]/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="GavinZheng">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/gavinzheng/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Gavin's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/gavinzheng/2018/10/01/[模拟]POJ1958 四座汉诺塔[84]/" itemprop="url">
-                  [模拟]POJ1958 四座汉诺塔
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-10-01 20:22:00" itemprop="dateCreated datePublished" datetime="2018-10-01T20:22:00+08:00">2018-10-01</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-10-06 18:14:41" itemprop="dateModified" datetime="2018-10-06T18:14:41+08:00">2018-10-06</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/gavinzheng/categories/Historic/" itemprop="url" rel="index"><span itemprop="name">Historic</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>众所周知，三座汉诺塔可以用递推求解。$d[i]=2*d[i-1]+1$意思就是把前$i-1$个盘子放在中间，然后把最大的盘子放在最右边，最后将前$i-1$个盘子移动到右边。</p>
-<p>对于此题。我们有两个柱子用于“中转”。那就很容易推得$f[n]=min_{1\leq j&lt;n}\left { 2*f[j]+d[n-j] \right }$。其中，f指的是在四重汉诺塔问题下的解，而d指的是在三重汉诺塔问题下的解。(因为把前j项放在了一根柱子上，剩下的只能用三重汉诺塔求解)</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> f[<span class="number">30</span>],d[<span class="number">30</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n=<span class="number">12</span>;</span><br><span class="line">	d[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=n+<span class="number">2</span>;i++)&#123;</span><br><span class="line">		d[i]=<span class="number">2</span>*d[i<span class="number">-1</span>]+<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	f[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		<span class="keyword">int</span> mi=<span class="number">99999999</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;i;j++)&#123;</span><br><span class="line">			mi=min(mi,<span class="number">2</span>*f[j]+d[i-j]);</span><br><span class="line">		&#125;</span><br><span class="line">		f[i]=mi;</span><br><span class="line">	&#125;	</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">12</span>;i++)&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,f[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://oigavinzheng.gitee.io/gavinzheng/gavinzheng/2018/10/01/[状压DP]BZOJ 1725 [Usaco2006 Nov]Corn Fields牧场的安排[63]/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="GavinZheng">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/gavinzheng/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Gavin's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/gavinzheng/2018/10/01/[状压DP]BZOJ 1725 [Usaco2006 Nov]Corn Fields牧场的安排[63]/" itemprop="url">
-                  [状压DP]BZOJ 1725 [Usaco2006 Nov]Corn Fields牧场的安排
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-10-01 20:22:00" itemprop="dateCreated datePublished" datetime="2018-10-01T20:22:00+08:00">2018-10-01</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-10-06 18:14:41" itemprop="dateModified" datetime="2018-10-06T18:14:41+08:00">2018-10-06</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/gavinzheng/categories/Historic/" itemprop="url" rel="index"><span itemprop="name">Historic</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Description<br>Farmer John新买了一块长方形的牧场，这块牧场被划分成M列N行(1&lt;=M&lt;=12; 1&lt;=N&lt;=12)，每一格都是一块正方形的土地。FJ打算在牧场上的某几格土地里种上美味的草，供他的奶牛们享用。遗憾的是，有些土地相当的贫瘠，不能用来放牧。并且，奶牛们喜欢独占一块草地的感觉，于是FJ不会选择两块相邻的土地，也就是说，没有哪两块草地有公共边。当然，FJ还没有决定在哪些土地上种草。 作为一个好奇的农场主，FJ想知道，如果不考虑草地的总块数，那么，一共有多少种种植方案可供他选择。当然，把新的牧场荒废，不在任何土地上种草，也算一种方案。请你帮FJ算一下这个总方案数。</p>
-<p>Input</p>
-<ul>
-<li><p>第1行: 两个正整数M和N，用空格隔开</p>
-</li>
-<li><p>第2..M+1行: 每行包含N个用空格隔开的整数，描述了每块土地的状态。输入的第i+1行描述了第i行的土地。所有整数均为0或1，是1的话，表示这块土地足够肥沃，0则表示这块地上不适合种草</p>
-</li>
-</ul>
-<p>Output</p>
-<ul>
-<li>第1行: 输出一个整数，即牧场分配总方案数除以100,000,000的余数</li>
-</ul>
-<p>Sample Input<br>2 3</p>
-<p>1 1 1</p>
-<p>0 1 0</p>
-<p>Sample Output<br>9</p>
-<p>输出说明:</p>
-<p>按下图把各块土地编号：</p>
-<p>1 2 3</p>
-<p>  4</p>
-<p>   只开辟一块草地的话，有4种方案：选1、2、3、4中的任一块。开辟两块草地的话，有3种方案：13、14以及34。选三块草地只有一种方案：134。再加把牧场荒废的那一种，总方案数为4+3+1+1=9种。</p>
-<p>HINT</p>
-<p>Source<br>Gold</p>
-<hr>
-<p>这道题其实算是一道状压DP的模板题。先预处理一个s[]数组，代表每一行可行的方案。保证s[]中所有数化为二进制后没有相邻的1。<br>然后读入数据，将田地中贫瘠的地方记录为1。（当s[i]和田地进行对比时，如果s[i]&amp;田地==0，就是合法的，其他情况不合法，因为作物种在了贫瘠的土地上）<br>定义<code>f[i][s[j]]</code>代表第i行，状态为s[j]时有多少种不同的种法。<br>具体状态转移过程和初始化看代码。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mod 100000000</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 16</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">int</span> s[<span class="number">1</span>&lt;&lt;maxn];</span><br><span class="line"><span class="keyword">int</span> fields[<span class="number">16</span>];</span><br><span class="line"><span class="keyword">int</span> tot=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> f[<span class="number">20</span>][<span class="number">1</span>&lt;&lt;maxn];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;m);</span><br><span class="line">    <span class="keyword">int</span> maxi=<span class="number">1</span>&lt;&lt;m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;maxi;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>((i&amp;(i&lt;&lt;<span class="number">1</span>))==<span class="number">0</span>&amp;&amp;(i&amp;(i&gt;&gt;<span class="number">1</span>))==<span class="number">0</span>)&#123;</span><br><span class="line">            s[++tot]=i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> h=<span class="number">1</span>;h&lt;=m;h++)&#123;</span><br><span class="line">            <span class="keyword">int</span> a;<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a);</span><br><span class="line">            fields[i]&lt;&lt;=<span class="number">1</span>;<span class="keyword">if</span>(a==<span class="number">0</span>) fields[i]++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=tot;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>((fields[<span class="number">1</span>]&amp;s[i])==<span class="number">0</span>)&#123;</span><br><span class="line">            f[<span class="number">1</span>][s[i]]=<span class="number">1l</span>l;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> h=<span class="number">1</span>;h&lt;=tot;h++)&#123;</span><br><span class="line">            <span class="keyword">if</span>((s[h]&amp;fields[i])==<span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">1</span>;k&lt;=tot;k++)&#123;</span><br><span class="line">                    <span class="keyword">if</span>((s[k]&amp;s[h])==<span class="number">0</span>)&#123;</span><br><span class="line">                        f[i][s[h]]+=f[i<span class="number">-1</span>][s[k]];</span><br><span class="line">                        f[i][s[h]]%=mod;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> ans=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=tot;i++)&#123;</span><br><span class="line">        ans+=f[n][s[i]];</span><br><span class="line">        ans%=mod;	</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%lld"</span>,ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://oigavinzheng.gitee.io/gavinzheng/gavinzheng/2018/10/01/[算法模板]3种背包[74]/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="GavinZheng">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/gavinzheng/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Gavin's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/gavinzheng/2018/10/01/[算法模板]3种背包[74]/" itemprop="url">
-                  [算法模板]3种背包
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-10-01 20:22:00" itemprop="dateCreated datePublished" datetime="2018-10-01T20:22:00+08:00">2018-10-01</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-10-06 18:14:41" itemprop="dateModified" datetime="2018-10-06T18:14:41+08:00">2018-10-06</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/gavinzheng/categories/Historic/" itemprop="url" rel="index"><span itemprop="name">Historic</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://oigavinzheng.gitee.io/gavinzheng/gavinzheng/2018/10/01/[算法模板]KMP字符串[11]/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="GavinZheng">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/gavinzheng/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Gavin's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/gavinzheng/2018/10/01/[算法模板]KMP字符串[11]/" itemprop="url">
-                  [算法模板]KMP字符串
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-10-01 20:22:00" itemprop="dateCreated datePublished" datetime="2018-10-01T20:22:00+08:00">2018-10-01</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-10-06 18:14:41" itemprop="dateModified" datetime="2018-10-06T18:14:41+08:00">2018-10-06</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/gavinzheng/categories/Historic/" itemprop="url" rel="index"><span itemprop="name">Historic</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="主要思想"><a href="#主要思想" class="headerlink" title="主要思想"></a>主要思想</h2><p>1、next作用是已经匹配过的模式串和对应的主串提供一个跳转的坐标指示。<br>2、假设已匹配四位，next=2。若第五位匹配不成功，则可以将匹配磁头调到第二位+1=第三位（这时将前面已匹配的全部舍弃只留两位）<br>主：  ABCDABCDABD<br>模式：ABCDABD<br>第一步：已匹配6位<br><strong>ABCDAB</strong>CDABD<br><strong>ABCDAB</strong>D<br>第二步：因为不匹配，且第前面6位最大相同真前后缀长度为2。所以将主串前（6-2）位删除，将匹配磁头跳至第二位<br><del>ABCD</del>  <strong>AB</strong>CDABD<br><strong>AB</strong>CDABD<br>然后逐位匹配</p>
-<p>3、当求next时，其实就是自己匹配自己，而且初始的时候两个指针错开以为。也就是说i指针从第二位开始寻找指针j所指向的模式串的头部。当找到一部分匹配时，因为模式串中匹配的部分在主串头部，而i指针所标记的则是尾部。所以j则是[0-i]这部分的head值<br>开始匹配<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> ABCDABD</span><br><span class="line"> *ABCDABD</span><br><span class="line">-1</span><br></pre></td></tr></table></figure></p>
-<p>程序处理中唯一与KMP匹配的区别就是每次成功匹配后刷新一下head的值(head的值就是当前匹配成功的位数j)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> ABCDABD</span><br><span class="line"> ****ABCDABD</span><br><span class="line">-1000012</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://oigavinzheng.gitee.io/gavinzheng/gavinzheng/2018/10/01/[算法模板]O(nlogn)复杂度下的LIS求解[15]/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="GavinZheng">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/gavinzheng/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Gavin's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/gavinzheng/2018/10/01/[算法模板]O(nlogn)复杂度下的LIS求解[15]/" itemprop="url">
-                  [算法模板]O(nlogn)复杂度下的LIS求解
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-10-01 20:22:00" itemprop="dateCreated datePublished" datetime="2018-10-01T20:22:00+08:00">2018-10-01</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-10-06 18:14:41" itemprop="dateModified" datetime="2018-10-06T18:14:41+08:00">2018-10-06</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/gavinzheng/categories/Historic/" itemprop="url" rel="index"><span itemprop="name">Historic</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>板子题<a href="http://poj.org/problem?id=2533" title="POJ2533" target="_blank" rel="noopener">POJ2533</a></p>
-<p>若定义$a[]$为原始数据，再定义$f[i]$，指长度为$i$的LIS的最小末尾数是哪一个。</p>
-<p>举个例子，当我们的a数组为&lt;2,7,3,4,8,5&gt;，而f数组全部为inf。<br>第一次，将2插入。因为的$f[1]=inf&gt;2$所以$f[1]=2$。<br>第二次，将7插入。因为$f[1]=2&lt;7$，所以我们开始查询$f[2]$。因为$f[2]=inf&gt;7$所以替换:$f[2]=7$。</p>
-<p>以此类推。又因为$f[]$一定是个递增序列。所以替换的位置可用二分查找。复杂度$O(nlogn)$。</p>
-<p>UPDATE:需要注意一下两点细节：<br>首先，二分的”left”应该是0。(有可能出现在第一位)。</p>
-<p>其次，b[]的初值应该为序列中最小值-1。若序列中有元素为0，他就会WA掉。</p>
-<p>POJ 2533 AC代码:<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;ctime&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 1050</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> <span class="built_in">map</span>[maxn],n;</span><br><span class="line"><span class="keyword">int</span> b[maxn];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lower</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> num)</span></span>&#123;</span><br><span class="line">	<span class="keyword">while</span>(l!=r)&#123;</span><br><span class="line">		<span class="keyword">int</span> mid=(l+r+<span class="number">1</span>)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span>(b[mid]&lt;num) l=mid;</span><br><span class="line">		<span class="keyword">else</span> r=mid<span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> l;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;<span class="built_in">map</span>[i]);</span><br><span class="line">	<span class="keyword">int</span> last=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=maxn;i++) b[i]=-(<span class="number">1e9</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(b[last]&lt;<span class="built_in">map</span>[i])&#123;</span><br><span class="line">			b[++last]=<span class="built_in">map</span>[i];<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span> location=lower(<span class="number">0</span>,last,<span class="built_in">map</span>[i]);</span><br><span class="line">		b[location+<span class="number">1</span>]=<span class="built_in">map</span>[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d"</span>,last);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://oigavinzheng.gitee.io/gavinzheng/gavinzheng/2018/10/01/[算法模板]SPFA求最短路[23]/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="GavinZheng">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/gavinzheng/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Gavin's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/gavinzheng/2018/10/01/[算法模板]SPFA求最短路[23]/" itemprop="url">
-                  [算法模板]SPFA求最短路
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-10-01 20:22:00" itemprop="dateCreated datePublished" datetime="2018-10-01T20:22:00+08:00">2018-10-01</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-10-06 18:14:41" itemprop="dateModified" datetime="2018-10-06T18:14:41+08:00">2018-10-06</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/gavinzheng/categories/Historic/" itemprop="url" rel="index"><span itemprop="name">Historic</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>这个代码是在<a href="http://www.gavinzheng.tk/index.php/archives/129/" title="BZOJ 3402" target="_blank" rel="noopener">BZOJ 3402</a>的背景下写的<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 20050</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxm 50050</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> inf 999999999</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">bool</span> check[maxn];</span><br><span class="line"><span class="keyword">int</span> dis[maxn];</span><br><span class="line"><span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt;line;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;side[maxn];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=maxn<span class="number">-10</span>;i++)&#123;</span><br><span class="line">		dis[i]=inf;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> n,m;<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;m);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">		<span class="keyword">int</span> a,b;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;a,&amp;b);</span><br><span class="line">		side[a].push_back(b);</span><br><span class="line">		side[b].push_back(a);</span><br><span class="line">	&#125;</span><br><span class="line">	line.push(<span class="number">1</span>);</span><br><span class="line">	dis[<span class="number">1</span>]=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(!line.empty())&#123;</span><br><span class="line">		<span class="keyword">int</span> now=line.front();line.pop();check[now]=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;side[now].size();i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(dis[now]+<span class="number">1</span>&lt;dis[side[now][i]])&#123;</span><br><span class="line">				dis[side[now][i]]=dis[now]+<span class="number">1</span>;</span><br><span class="line">				<span class="keyword">if</span>(check[side[now][i]]==<span class="number">0</span>)&#123;</span><br><span class="line">					check[side[now][i]]=<span class="number">1</span>;</span><br><span class="line">					line.push(side[now][i]);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;			</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> ma=<span class="number">0</span>,num=<span class="number">0</span>,g;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(dis[i]&gt;ma&amp;&amp;dis[i]&lt;inf)&#123;</span><br><span class="line">			ma=dis[i];num=<span class="number">1</span>;g=i;</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(dis[i]==ma) num++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d %d %d"</span>,g,ma,num);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://oigavinzheng.gitee.io/gavinzheng/gavinzheng/2018/10/01/[算法模板]堆优化dijkstra以及对dij的深度理解[14]/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="GavinZheng">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/gavinzheng/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Gavin's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/gavinzheng/2018/10/01/[算法模板]堆优化dijkstra以及对dij的深度理解[14]/" itemprop="url">
-                  [算法模板]堆优化dijkstra以及对dij的深度理解
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-10-01 20:22:00" itemprop="dateCreated datePublished" datetime="2018-10-01T20:22:00+08:00">2018-10-01</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-10-06 18:14:41" itemprop="dateModified" datetime="2018-10-06T18:14:41+08:00">2018-10-06</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/gavinzheng/categories/Historic/" itemprop="url" rel="index"><span itemprop="name">Historic</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>本以为会写模板就是理解了dij，最终因为没有判重被一道矩阵dij卡住。全T，没有一分。。。。。。。</p>
-<h1 id="dijkstra理论知识"><a href="#dijkstra理论知识" class="headerlink" title="dijkstra理论知识"></a>dijkstra理论知识</h1><p>首先，我们需要明确一点：dij的基础原理——贪心。<br>为什么说是贪心呢？因为dij在更新的时候不会像DFS一样一直搜下去。也就是说，对于每一个枚举到的更新节点（堆优化中从堆里拿出来的），我们只会更新与其相邻的一圈节点。（当然，更新前要做判断。这就是松弛操作）。<br>当然，当一个点对与之相邻的所有点进行完松弛操作后，我们就可以不管这个点了。因为我们每次选择进行更新的节点均是没走过中dis最小的。<strong>因此由还未更新的节点中转得到的dis值是不可能大于现在的dis值的。所以在没有更新的节点中dis最小的那一个的dis值一定是已经确定的！</strong><br>在最优化dij中起始的判断有两种写法：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//第一种</span></span><br><span class="line">node now=<span class="built_in">queue</span>.top();<span class="comment">//queue为堆(按照dis从小到大排序)</span></span><br><span class="line"><span class="keyword">if</span>(check[now])&#123;<span class="comment">//若已经被更新过</span></span><br><span class="line"> <span class="keyword">continue</span>；</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//第二种</span></span><br><span class="line">node now=<span class="built_in">queue</span>.top();</span><br><span class="line"><span class="keyword">if</span>(now.dis&gt;=dis[now.num])&#123;</span><br><span class="line"><span class="keyword">continue</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>其实这两种都是正确的。第一种比较好理解（若更新过就不更新了）。在第二种写法中，若一个点已经被更新过，那么这个点的dis值一定是最小的，任何情况的dis值都不可能严格小于它。所以也是成立的。</p>
+            <h2 id="二维数点"><a href="#二维数点" class="headerlink" title="二维数点"></a>二维数点</h2><p>BZOJ2453<br>BZOJ2120</p>
+<p>##线段树</p>
+<h3 id="线段树的特殊运算"><a href="#线段树的特殊运算" class="headerlink" title="线段树的特殊运算"></a>线段树的特殊运算</h3><h4 id="开根号"><a href="#开根号" class="headerlink" title="开根号"></a>开根号</h4><p>首先考虑把一个数分为它所有质因数的积，对于质因数$j$,其指数为$i$,只要开$logi$次$i$就会变成1。因为每一次开根号的实质就是将所有质因子的质数/2。又因为$i_{max}=logn$，所以最多只需要开$loglogn$次这个数就会变成1。</p>
+<p>所以我i们只需要加一个lazytag，标记这个区间内的所有元素是不是都是1。若递归到这里查询lasytag是1的话就不用递归下去了。</p>
+<h4 id="取模"><a href="#取模" class="headerlink" title="取模"></a>取模</h4><p>假设题目要求对区间内的所有数对$y$取模。那么我们只需要维护一个区间最大值，若这个区间的最大值小于y，那么我们则不需要对这个区间进行操作。又因为可以证明对于每个不为1的$y$，对$a$这个元素进行取模。$(a\bmod y) \leq \frac{a}{2}$。所以最多只要进行$loga$次有效取模，a就会变为一个$\leq 1$的数。也就是说不用再进行取模了。</p>
+<p>###线段树的简单应用<br><a href="http://acm.hdu.edu.cn/showproblem.php?pid=6315" title="HDU6315" target="_blank" rel="noopener">HDU6315</a><br><a href="http://www.gavinzheng.tk/index.php/archives/204/" target="_blank" rel="noopener">题解</a></p>
+<p><a href="https://www.spoj.com/problems/GSS3/en/" target="_blank" rel="noopener">SPOJ GSS3</a><br><a href="http://www.gavinzheng.tk/index.php/archives/207/" title="题解" target="_blank" rel="noopener">题解</a></p>
+<p>CF914D</p>
 
           
         
@@ -2033,7 +979,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/gavinzheng/page/3/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/gavinzheng/">1</a><span class="space">&hellip;</span><a class="page-number" href="/gavinzheng/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/gavinzheng/page/5/">5</a><a class="page-number" href="/gavinzheng/page/6/">6</a><a class="extend next" rel="next" href="/gavinzheng/page/5/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/gavinzheng/page/3/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/gavinzheng/">1</a><span class="space">&hellip;</span><a class="page-number" href="/gavinzheng/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/gavinzheng/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/gavinzheng/page/15/">15</a><a class="extend next" rel="next" href="/gavinzheng/page/5/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -2292,18 +1238,6 @@
     
       
         
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
       
     
       
