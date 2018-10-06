@@ -108,15 +108,18 @@
 
 
 
-  <meta name="keywords" content="数学,数论">
+  <meta name="description" content="质数质数筛法埃氏筛法不解释，定义一个数组flag,枚举每个数$i$，若$flag[i]=1$，则$i$是一个质数。当$i$为质数是，进行赋值操作:$flag[ji]_{1\leq ji \leq n}=1$。即将每个素数的倍数标记为和数。 模板题 POJ2689](http://poj.org/problem?id=2689) 参考代码: 123456789101112int prime[maxn">
+<meta name="keywords" content="数学,数论">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数学基础">
 <meta property="og:url" content="https://oigavinzheng.gitee.io/gavinzheng/2018/10/07/数学基础/index.html">
 <meta property="og:site_name" content="Gavin&#39;s Blog">
+<meta property="og:description" content="质数质数筛法埃氏筛法不解释，定义一个数组flag,枚举每个数$i$，若$flag[i]=1$，则$i$是一个质数。当$i$为质数是，进行赋值操作:$flag[ji]_{1\leq ji \leq n}=1$。即将每个素数的倍数标记为和数。 模板题 POJ2689](http://poj.org/problem?id=2689) 参考代码: 123456789101112int prime[maxn">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-06T16:26:52.466Z">
+<meta property="og:updated_time" content="2018-10-06T17:19:35.752Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数学基础">
+<meta name="twitter:description" content="质数质数筛法埃氏筛法不解释，定义一个数组flag,枚举每个数$i$，若$flag[i]=1$，则$i$是一个质数。当$i$为质数是，进行赋值操作:$flag[ji]_{1\leq ji \leq n}=1$。即将每个素数的倍数标记为和数。 模板题 POJ2689](http://poj.org/problem?id=2689) 参考代码: 123456789101112int prime[maxn">
 
 
 
@@ -324,7 +327,7 @@
                 
               
 
-              <time title="Created: 2018-10-07 00:22:29 / Modified: 00:26:52" itemprop="dateCreated datePublished" datetime="2018-10-07T00:22:29+08:00">2018-10-07</time>
+              <time title="Created: 2018-10-07 00:22:29 / Modified: 01:19:35" itemprop="dateCreated datePublished" datetime="2018-10-07T00:22:29+08:00">2018-10-07</time>
             
 
             
@@ -362,7 +365,11 @@
       
 
       
-        
+        <h1 id="质数"><a href="#质数" class="headerlink" title="质数"></a>质数</h1><h2 id="质数筛法"><a href="#质数筛法" class="headerlink" title="质数筛法"></a>质数筛法</h2><h3 id="埃氏筛法"><a href="#埃氏筛法" class="headerlink" title="埃氏筛法"></a>埃氏筛法</h3><p>不解释，定义一个数组flag,枚举每个数$i$，若$flag[i]=1$，则$i$是一个质数。当$i$为质数是，进行赋值操作:$flag[j<em>i]_{1\leq j</em>i \leq n}=1$。即将每个素数的倍数标记为和数。</p>
+<p>模板题 POJ2689](<a href="http://poj.org/problem?id=2689" target="_blank" rel="noopener">http://poj.org/problem?id=2689</a>)</p>
+<p>参考代码:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> prime[maxn];</span><br><span class="line"><span class="keyword">int</span> prime_cnt;</span><br><span class="line"><span class="keyword">bool</span> flag[maxn]=&#123;<span class="number">0</span>&#125;;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">get_prime</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">	flag[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(flag[i])<span class="keyword">continue</span>;</span><br><span class="line">		prime[++prime_cnt]=i;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">2</span>;j*i&lt;=n;j++) flag[j*i]=<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -434,8 +441,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -495,6 +511,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#质数"><span class="nav-number">1.</span> <span class="nav-text">质数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#质数筛法"><span class="nav-number">1.1.</span> <span class="nav-text">质数筛法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#埃氏筛法"><span class="nav-number">1.1.1.</span> <span class="nav-text">埃氏筛法</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
