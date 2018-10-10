@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[进制与编码]]></title>
+    <url>%2Fgavinzheng%2F2018%2F10%2F10%2F48795%2F</url>
+    <content type="text"></content>
+      <tags>
+        <tag>-初赛</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[数学基础]]></title>
     <url>%2Fgavinzheng%2F2018%2F10%2F07%2F26357%2F</url>
     <content type="text"><![CDATA[质数筛法埃氏筛法不解释，定义一个数组flag,枚举每个数$i$，若$flag[i]=1$，则$i$是一个质数。当$i$为质数是，进行赋值操作:$flag[ji]_{1 \leq ji \leq n}=1$。即将每个素数的倍数标记为和数。 模板题 POJ2689 参考代码: 123456789101112int prime[maxn];int prime_cnt;bool flag[maxn]=&#123;0&#125;;void get_prime(int n)&#123; flag[1]=1; for(int i=2;i&lt;=n;i++)&#123; if(flag[i])continue; prime[++prime_cnt]=i; for(int j=2;j*i&lt;=n;j++) flag[j*i]=1; &#125; return;&#125; 线性筛]]></content>
