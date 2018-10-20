@@ -118,7 +118,7 @@
 <meta property="og:site_name" content="Gavin&#39;s Blog">
 <meta property="og:description" content="前言区间重叠问题有很多种情况。这里简单介绍几种。 单点被区间覆盖问题给定一些区间，查询一个点被多少个区间覆盖。 很明显，我们可以用差分的思路来解决。定义$d$为差分数组 当要将一段区间$[l,r]$进行修改时(这里假设操作为给区间加上1)，我们只需要给$d[l]$加上1，然后给$d[r+1]$减掉1。 这样，我们在所有操作结束后，只需要对$d$求一次前缀和即可。 需要注意的是，这种区间修改操作只能">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-10-20T07:11:44.797Z">
+<meta property="og:updated_time" content="2018-10-20T07:29:21.644Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="区间重叠问题">
 <meta name="twitter:description" content="前言区间重叠问题有很多种情况。这里简单介绍几种。 单点被区间覆盖问题给定一些区间，查询一个点被多少个区间覆盖。 很明显，我们可以用差分的思路来解决。定义$d$为差分数组 当要将一段区间$[l,r]$进行修改时(这里假设操作为给区间加上1)，我们只需要给$d[l]$加上1，然后给$d[r+1]$减掉1。 这样，我们在所有操作结束后，只需要对$d$求一次前缀和即可。 需要注意的是，这种区间修改操作只能">
@@ -384,7 +384,7 @@
                 
               
 
-              <time title="创建时间：2018-10-20 13:56:00 / 修改时间：15:11:44" itemprop="dateCreated datePublished" datetime="2018-10-20T13:56:00+08:00">2018-10-20</time>
+              <time title="创建时间：2018-10-20 13:56:00 / 修改时间：15:29:21" itemprop="dateCreated datePublished" datetime="2018-10-20T13:56:00+08:00">2018-10-20</time>
             
 
             
@@ -406,7 +406,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/gavinzheng/categories/Uncategorized/" itemprop="url" rel="index"><span itemprop="name">Uncategorized</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/gavinzheng/categories/基础算法/" itemprop="url" rel="index"><span itemprop="name">基础算法</span></a></span>
 
                 
                 
@@ -452,9 +452,7 @@
 <p>其实这道题只需要使用前缀和（以及后缀和）即可。定义$pre$记录前缀和，$suf$记录后缀和，要求解的区间为$[l,r]$。</p>
 <p>首先，对于所有区间的右端点求前缀和，$pre[r]$则为这个特定区间<strong>前面</strong>所有的<strong>完整</strong>区间。</p>
 <p>同理，对于所有区间的左端点取后缀和，$suf[l]$则为这个特定区间<strong>后面</strong>所有的<strong>完整</strong>区间。</p>
-<p>那我们只需要用$pre[r]+suf[l]-总区间数$即可求出答案。</p>
-<p>证明：</p>
-<p>很明显，若对于要求解的区间，只有包含和无交点这两种关系。那很明显上述结论成立。若加入区间互补包含但是不重叠的情况：$1212$。那么很容易发现$$</p>
+<p>那我们只需要用$n-pre[l]-suf[r]$即可求出答案。($n$为总区间数)</p>
 
       
     </div>
@@ -583,7 +581,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">1</span>
+                      
+                    
+                    <span class="site-state-item-count">2</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
