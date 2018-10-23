@@ -118,7 +118,7 @@
 <meta property="og:site_name" content="Gavin&#39;s Blog">
 <meta property="og:description" content="前言Tarjan算法常用来求解无向图中割边/割点问题。 割边：删去这条边，连通块个数会增加的边。 割点：删去这个点，连通块个数会增加的点。 DFS树：从任意一点开始DFS，经过的所有边和经过的所有点连成的一棵树就叫DFS树。 dfn[x]：指节点x的dfn序（即在DFS中第几个走到） Tarjan算法要求的前置技能并不多。但是重边的问题必须严谨处理，否则很容易写挂。 追溯值：low[x]Tarja">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-10-23T14:27:52.553Z">
+<meta property="og:updated_time" content="2018-10-23T14:37:06.044Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="无向图Tarjan入门">
 <meta name="twitter:description" content="前言Tarjan算法常用来求解无向图中割边/割点问题。 割边：删去这条边，连通块个数会增加的边。 割点：删去这个点，连通块个数会增加的点。 DFS树：从任意一点开始DFS，经过的所有边和经过的所有点连成的一棵树就叫DFS树。 dfn[x]：指节点x的dfn序（即在DFS中第几个走到） Tarjan算法要求的前置技能并不多。但是重边的问题必须严谨处理，否则很容易写挂。 追溯值：low[x]Tarja">
@@ -384,7 +384,7 @@
                 
               
 
-              <time title="创建时间：2018-10-23 22:11:42 / 修改时间：22:27:52" itemprop="dateCreated datePublished" datetime="2018-10-23T22:11:42+08:00">2018-10-23</time>
+              <time title="创建时间：2018-10-23 22:11:42 / 修改时间：22:37:06" itemprop="dateCreated datePublished" datetime="2018-10-23T22:11:42+08:00">2018-10-23</time>
             
 
             
@@ -452,7 +452,12 @@
 <li>通过一条不在搜索树上的边能到达subtree(x)的结点。（即对于subtree(x)，只走“返祖边”能到达的节点）</li>
 </ol>
 <p>不难发现，low[i]按搜索树的递归遍历顺序是单调递增的，因此可以在回溯的过程中求出low[i].</p>
-
+<h1 id="判定割边"><a href="#判定割边" class="headerlink" title="判定割边"></a>判定割边</h1><p>令x是y的父节点，则满足<script type="math/tex">dfn[x]<low[y]</script>。也就是说，从subtree(x)出发，不经过(x,y)的前提下无法走到更早访问的结点，则(x,y)作为subtree(x)与图G的唯一连接，即为割边。</p>
+<h1 id="判定割点"><a href="#判定割点" class="headerlink" title="判定割点"></a>判定割点</h1><ol>
+<li>若x不为根节点，则要求，存在x的子节点y，满足<script type="math/tex">dfn[x] \leq low[y]</script>。即subtree(y)中的结点最多能走到结点x，那么将x删除就会导致subtree(y)与图G不连通。</li>
+<li>若x是根节点，则要求存在<strong>至少2个</strong>的子节点y，满足<script type="math/tex">dfn[x] \leq low[y]</script>。</li>
+</ol>
+<h1 id="重边处理"><a href="#重边处理" class="headerlink" title="重边处理"></a>重边处理</h1>
       
     </div>
 
@@ -697,7 +702,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#追溯值：low-x"><span class="nav-number">2.</span> <span class="nav-text">追溯值：low[x]</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#追溯值：low-x"><span class="nav-number">2.</span> <span class="nav-text">追溯值：low[x]</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#判定割边"><span class="nav-number">3.</span> <span class="nav-text">判定割边</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#判定割点"><span class="nav-number">4.</span> <span class="nav-text">判定割点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#重边处理"><span class="nav-number">5.</span> <span class="nav-text">重边处理</span></a></li></ol></div>
             
 
           </div>

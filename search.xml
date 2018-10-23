@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[无向图Tarjan入门]]></title>
     <url>%2Fgavinzheng%2F2018%2F10%2F23%2F24602%2F</url>
-    <content type="text"><![CDATA[前言Tarjan算法常用来求解无向图中割边/割点问题。 割边：删去这条边，连通块个数会增加的边。 割点：删去这个点，连通块个数会增加的点。 DFS树：从任意一点开始DFS，经过的所有边和经过的所有点连成的一棵树就叫DFS树。 dfn[x]：指节点x的dfn序（即在DFS中第几个走到） Tarjan算法要求的前置技能并不多。但是重边的问题必须严谨处理，否则很容易写挂。 追溯值：low[x]Tarjan算法引入了追溯值low[x].设以x为根的子树为subtree(x).low[x]定义为以下结点的DFN的最小值：（与Tarjan有向图中的low[x]区分） subtree(x)中的结点 通过一条不在搜索树上的边能到达subtree(x)的结点。（即对于subtree(x)，只走“返祖边”能到达的节点） 不难发现，low[i]按搜索树的递归遍历顺序是单调递增的，因此可以在回溯的过程中求出low[i].]]></content>
+    <content type="text"><![CDATA[前言Tarjan算法常用来求解无向图中割边/割点问题。 割边：删去这条边，连通块个数会增加的边。 割点：删去这个点，连通块个数会增加的点。 DFS树：从任意一点开始DFS，经过的所有边和经过的所有点连成的一棵树就叫DFS树。 dfn[x]：指节点x的dfn序（即在DFS中第几个走到） Tarjan算法要求的前置技能并不多。但是重边的问题必须严谨处理，否则很容易写挂。 追溯值：low[x]Tarjan算法引入了追溯值low[x].设以x为根的子树为subtree(x).low[x]定义为以下结点的DFN的最小值：（与Tarjan有向图中的low[x]区分） subtree(x)中的结点 通过一条不在搜索树上的边能到达subtree(x)的结点。（即对于subtree(x)，只走“返祖边”能到达的节点） 不难发现，low[i]按搜索树的递归遍历顺序是单调递增的，因此可以在回溯的过程中求出low[i]. 判定割边令x是y的父节点，则满足dfn[x]]]></content>
       <categories>
         <category>算法模板</category>
       </categories>
