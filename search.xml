@@ -3,7 +3,10 @@
   <entry>
     <title><![CDATA[无向图Tarjan入门]]></title>
     <url>%2Fgavinzheng%2F2018%2F10%2F23%2F24602%2F</url>
-    <content type="text"><![CDATA[前言Tarjan算法常用来求解无向图中割边/割点问题。 割边：删去这条边，连通块个数会增加的边。 割点：删去这个点，连通块个数会增加的点。 DFS树：从任意一点开始DFS，经过的所有边和经过的所有点连成的一棵树就叫DFS树。 dfn[x]：指节点x的dfn序（即在DFS中第几个走到） Tarjan算法要求的前置技能并不多。但是重边的问题必须严谨处理，否则很容易写挂。 追溯值：low[x]Tarjan算法引入了追溯值low[x].设以x为根的子树为subtree(x).low[x]定义为以下结点的DFN的最小值：（与Tarjan有向图中的low[x]区分） subtree(x)中的结点 通过一条不在搜索树上的边能到达subtree(x)的结点。 不难发现，low[i]按搜索树的递归遍历顺序是单调递增的，因此可以在回溯的过程中求出low[i].]]></content>
+    <content type="text"><![CDATA[前言Tarjan算法常用来求解无向图中割边/割点问题。 割边：删去这条边，连通块个数会增加的边。 割点：删去这个点，连通块个数会增加的点。 DFS树：从任意一点开始DFS，经过的所有边和经过的所有点连成的一棵树就叫DFS树。 dfn[x]：指节点x的dfn序（即在DFS中第几个走到） Tarjan算法要求的前置技能并不多。但是重边的问题必须严谨处理，否则很容易写挂。 追溯值：low[x]Tarjan算法引入了追溯值low[x].设以x为根的子树为subtree(x).low[x]定义为以下结点的DFN的最小值：（与Tarjan有向图中的low[x]区分） subtree(x)中的结点 通过一条不在搜索树上的边能到达subtree(x)的结点。（即对于subtree(x)，只走“返祖边”能到达的节点） 不难发现，low[i]按搜索树的递归遍历顺序是单调递增的，因此可以在回溯的过程中求出low[i].]]></content>
+      <categories>
+        <category>算法模板</category>
+      </categories>
       <tags>
         <tag>Tarjan</tag>
         <tag>图论</tag>
@@ -37,7 +40,7 @@
     <url>%2Fgavinzheng%2F2018%2F10%2F07%2F26357%2F</url>
     <content type="text"><![CDATA[质数筛法埃氏筛法不解释，定义一个数组flag,枚举每个数 $i$ ，若 $flag[i]=1$ ，则 $i$ 是一个质数。当 $i$ 为质数是，进行赋值操作: $flag[j\times i]_{1 \leq j\times i \leq n}=1$ 。即将每个素数的倍数标记为和数。 模板题 POJ2689 参考代码: 123456789101112int prime[maxn];int prime_cnt;bool flag[maxn]=&#123;0&#125;;void get_prime(int n)&#123; flag[1]=1; for(int i=2;i&lt;=n;i++)&#123; if(flag[i])continue; prime[++prime_cnt]=i; for(int j=2;j*i&lt;=n;j++) flag[j*i]=1; &#125; return;&#125; 线性筛]]></content>
       <categories>
-        <category>Uncategorized</category>
+        <category>基础算法</category>
       </categories>
       <tags>
         <tag>数学</tag>
