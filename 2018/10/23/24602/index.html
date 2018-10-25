@@ -118,7 +118,7 @@
 <meta property="og:site_name" content="Gavin&#39;s Blog">
 <meta property="og:description" content="前言Tarjan算法常用来求解无向图中割边/割点问题。 割边：删去这条边，连通块个数会增加的边。 割点：删去这个点，连通块个数会增加的点。 DFS树：从任意一点开始DFS，经过的所有边和经过的所有点连成的一棵树就叫DFS树。 dfn[x]：指节点x的dfn序（即在DFS中第几个走到） Tarjan算法要求的前置技能并不多。但是重边的问题必须严谨处理，否则很容易写挂。 正文追溯值：low[x]Tar">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-10-25T05:07:53.473Z">
+<meta property="og:updated_time" content="2018-10-25T05:17:22.218Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="无向图Tarjan入门">
 <meta name="twitter:description" content="前言Tarjan算法常用来求解无向图中割边/割点问题。 割边：删去这条边，连通块个数会增加的边。 割点：删去这个点，连通块个数会增加的点。 DFS树：从任意一点开始DFS，经过的所有边和经过的所有点连成的一棵树就叫DFS树。 dfn[x]：指节点x的dfn序（即在DFS中第几个走到） Tarjan算法要求的前置技能并不多。但是重边的问题必须严谨处理，否则很容易写挂。 正文追溯值：low[x]Tar">
@@ -401,7 +401,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-10-25 13:07:53" itemprop="dateModified" datetime="2018-10-25T13:07:53+08:00">2018-10-25</time>
+                <time title="修改时间：2018-10-25 13:17:22" itemprop="dateModified" datetime="2018-10-25T13:17:22+08:00">2018-10-25</time>
               
             
           </span>
@@ -468,7 +468,7 @@
 <h2 id="判定割边"><a href="#判定割边" class="headerlink" title="判定割边"></a>判定割边</h2><p>令x是y的父节点，则满足<script type="math/tex">dfn[x]<low[y]</script>。也就是说，从subtree(x)出发，不经过(x,y)的前提下无法走到更早访问的结点，则(x,y)作为subtree(x)与图G的唯一连接，即为割边。</p>
 <h2 id="判定割点"><a href="#判定割点" class="headerlink" title="判定割点"></a>判定割点</h2><ol>
 <li>若x不为根节点，则要求，存在x的子节点y，满足<script type="math/tex">dfn[x] \leq low[y]</script>。即subtree(y)中的结点最多能走到结点x，那么将x删除就会导致subtree(y)与图G不连通。</li>
-<li>若x是根节点，则要求存在<strong>至少2个</strong>的子节点y，满足<script type="math/tex">dfn[x] \leq low[y]</script>。因为若根节点度为1，那么删去根节点后连通块个数并不会增加。</li>
+<li>若x是根节点，则要求存在<strong>至少2个</strong>的子节点y，满足<script type="math/tex">dfn[x] \leq low[y]</script>。因为如果将割点删去，会影响割点的子节点“返祖”。但是对于根节点，很明显没有祖先。根节点存在唯一的作用就是维护子树间的联系。所以若根节点为割点，则需要两个子节点均满足条件。</li>
 </ol>
 <h2 id="重边处理"><a href="#重边处理" class="headerlink" title="重边处理"></a>重边处理</h2><h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>若有重边的时候要特殊处理是因为：更新追溯值$low[x]$的时候不能通过<strong>刚刚走过</strong>的那<strong>一条</strong>连接父节点和$x$节点的边来更新追溯值（原因参见上文追溯值的定义）。</p>
 <p>所以在标准模板中我们将<strong>所有</strong>终点为自己父节点的边<strong>全部删除</strong>了。这就导致了当有两条边连接当前节点$x$和自己的父节点时，若删除其中一条边，还能从剩下那一条边“返祖”。</p>
