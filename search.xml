@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[扩展欧几里得-EXGCD]]></title>
+    <url>%2Fgavinzheng%2F2018%2F11%2F06%2F9096%2F</url>
+    <content type="text"><![CDATA[前置知识欧几里得算法 1gcd(a,b)=gcd(b,a%b); 裴蜀定理对于任意整数$a,b$一定存在一对整数$x,y$，使得$ax+by=gcd(a,b)$ 裴蜀定理可以用数学归纳法证明。 因为欧几里得算法求GCD得最后一步，$b=0$时，这组解很明显是$x=1,y=0$，$a+0=gcd(a,0)$ 所以我们可以得到$x’=y,y’=x-\left \lfloor a/b \right \rfloor y$ 其中$x’和y’$是更高一层的解。 代码123456int exgcd(int a,int b,int &amp;x,int &amp;y)&#123; if(b==0)&#123;x=1,y=0;return 0;&#125; int g=gcd(b,a%b,x,y); int z=x;x=y;y=z-(a/b)*y; return g;&#125; 这段代码可以返回$a,b$的GCD，同时x和y是$ax+by=gcd(a,b)$的一组特解。]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[对拍和随机数生成]]></title>
     <url>%2Fgavinzheng%2F2018%2F11%2F06%2F13427%2F</url>
     <content type="text"><![CDATA[对拍12345678910111213141516171819202122232425#include &lt;bits/stdc++.h&gt;using namespace std;int main() &#123; const string file = "cake"; const string checker = file + "_"; const string Input = file + ".in"; const string stdOutput = file + ".ans"; const string Output = file + ".out"; while (1) &#123; system(("./mk &gt; " + Input).data()); system(("./" + checker + " &lt; " + Input + " &gt; " + stdOutput).data()); double st = clock(); system(("./" + file + " &lt; " + Input + " &gt; " + Output).data()); double ed = clock(); if (system(("diff " + Output + " " + stdOutput).data())) &#123; printf("WA\n"); break; &#125; else &#123; if (ed - st &gt; 1000) &#123; printf("TLE %f ms", ed - st); break; &#125; else printf("AC %f ms\n", ed - st); &#125; &#125;&#125; 随机数生成12345678910111213141516171819202122232425#include &lt;bits/stdc++.h&gt;using namespace std;typedef long long ll;int random(int x) &#123; ll res = rand(); res = res * res; return res % x + 1;&#125;int random(int l, int r) &#123; ll res = random(r); while (res &lt; l) res = random(r); return res;&#125;int main() &#123; srand((int)(new char)); const int n = 7, q = 300; printf("%d %d\n", n, q); for (int i = 1; i &lt;= n; ++ i) &#123; printf("%d ", random(100)); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>Uncategorized</category>
+      </categories>
   </entry>
   <entry>
     <title><![CDATA[无向图Tarjan入门]]></title>
