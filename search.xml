@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title><![CDATA[0x01_位运算]]></title>
-    <url>%2Fgavinzheng%2F2018%2F11%2F23%2F28374%2F</url>
+    <url>%2Fgavinzheng%2F2018%2F11%2F24%2F28374%2F</url>
     <content type="text"><![CDATA[0x01 位运算使用位运算的意义 提高程序运行效率（常数优化） 降低编程复杂度（让程序简单易懂）四种算数位运算基本语法即“与，或，异或，非”。 按位与_&amp;如果两个相应的二进制位都为1，则该位的结果值为1，否则为0。 按位或_|两个相应的二进制位中只要有一个为1，该位的结果值为1。 按位异或_^若参加运算的两个二进制位值相同则为0，否则为1 所以称之为“异或”嘛QAQ 取反_~~是一元运算符，用来对一个二进制数按位取反，即将0变1，将1 一些小trick 1234```cppx=1100x-1=1011x&amp;(x-1)=1000 当然 我们用这个方法还可以检测一个数是不是2的幂次。当一个二进制数只有一个1时（即2的幂次），进行这个操作得到的就会是0。 二进制枚举子集思路就是使用一个正整数二进制表示的第i位是1还是0，代表集合的第i个数取或者不取。所以从0到2^n-1总共2^n个整数，正好对应集合的2^n个子集。 123456789101112131415161718192021222324252627282930S = &#123;1,2,3&#125;N bit Combination0 000 &#123;&#125;1 001 &#123;1&#125;2 010 &#123;2&#125;3 011 &#123;1,2&#125;4 100 &#123;3&#125;5 101 &#123;1,3&#125;6 110 &#123;2,3&#125;7 111 &#123;1,2,3&#125;//参考代码#include &lt;bits/stdc++.h&gt;using namespace std;int main()&#123; int n=5;//集合中有5个元素 for(int i=0; i&lt;(1&lt;&lt;n); i++) //从0～2^5-1个状态 &#123; for(int j=0; j&lt;n; j++) //遍历二进制的每一位 &#123; if(i&amp;(1&lt;&lt;j))//判断二进制第j位是否存在 &#123; printf("%d ",j);//如果存在输出第j个元素 &#125; &#125; printf("\n"); &#125; return 0;&#125; 对二进制数上的某一位进行修改将int型变量a的第k位清0，即1将int型变量a的第k位置1， 即```a=a|(1&lt;&lt;k) 移位运算左移即乘上2。$1&lt;&lt;n=2^{n} $$n&lt;&lt;1=2n$ 算术右移即除以2。$n&gt;&gt;1=\left \lfloor \frac{n}{2.0} \right \rfloor$即除以2向零取整。 参考资料位运算——强大得令人害怕二进制枚举子集详解看完这个你的位运算学得就差不多了]]></content>
       <categories>
         <category>征途_算法竞赛进阶指南</category>
@@ -45,7 +45,7 @@
   </entry>
   <entry>
     <title><![CDATA[NOIP2018初赛准备]]></title>
-    <url>%2Fgavinzheng%2F2018%2F10%2F12%2F11873%2F</url>
+    <url>%2Fgavinzheng%2F2018%2F10%2F13%2F11873%2F</url>
     <content type="text"><![CDATA[理论知识二叉树基本性质1、一棵二叉树的第i层有$2^{i-1}$个节点 2、一共有i层的满二叉树/一颗i层的二叉树最多有$2^{i}-1$个节点 知中序和后序遍历求前序遍历因为后序遍历的最后一个一定是整棵树的根，所以我们在后序遍历中找到主根，并且找出它在中序遍历中的位置。那么在他左边的就是第一颗子树，右边的就是第二颗子树。再回到后序遍历找第一颗子树的根即可。 例如：后序 DGJHEBIFCA 中序 DBGEHJACIF 主树根：A 左子树根: B 右子树根:C 组合数学-插板法字符串的子串个数注意！空串也算一个子串！！！ 所以一个长度为n的字符串的字串个数为$n!+1$]]></content>
       <categories>
         <category>Uncategorized</category>
@@ -56,7 +56,7 @@
   </entry>
   <entry>
     <title><![CDATA[数学基础]]></title>
-    <url>%2Fgavinzheng%2F2018%2F10%2F06%2F26357%2F</url>
+    <url>%2Fgavinzheng%2F2018%2F10%2F07%2F26357%2F</url>
     <content type="text"><![CDATA[质数筛法埃氏筛法不解释，定义一个数组flag,枚举每个数 $i$ ，若 $flag[i]=1$ ，则 $i$ 是一个质数。当 $i$ 为质数是，进行赋值操作: $flag[j\times i]_{1 \leq j\times i \leq n}=1$ 。即将每个素数的倍数标记为和数。 模板题 POJ2689 参考代码: 123456789101112int prime[maxn];int prime_cnt;bool flag[maxn]=&#123;0&#125;;void get_prime(int n)&#123; flag[1]=1; for(int i=2;i&lt;=n;i++)&#123; if(flag[i])continue; prime[++prime_cnt]=i; for(int j=2;j*i&lt;=n;j++) flag[j*i]=1; &#125; return;&#125; 线性筛]]></content>
       <categories>
         <category>基础算法</category>
