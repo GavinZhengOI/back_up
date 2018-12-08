@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[CH0103]]></title>
+    <url>%2Fgavinzheng%2F2018%2F12%2F01%2F10212%2F</url>
+    <content type="text"><![CDATA[0103 最短Hamilton路径描述给定一张 n(n≤20) 个点的带权无向图，点从 0~n-1 标号，求起点 0 到终点 n-1 的最短Hamilton路径。 Hamilton路径的定义是从 0 到 n-1 不重不漏地经过每个点恰好一次。 输入格式第一行一个整数n。 接下来n行每行n个整数，其中第i行第j个整数表示点i到j的距离（一个不超过10^7的正整数，记为a[i,j]）。 对于任意的x,y,z，数据保证 a[x,x]=0，a[x,y]=a[y,x] 并且 a[x,y]+a[y,z]&gt;=a[x,z]。 输出格式一个整数，表示最短Hamilton路径的长度。 样例输入1234540 2 1 32 0 2 11 2 0 13 1 1 0 样例输出14 样例解释从0到3的Hamilton路径有两条，0-1-2-3和0-2-1-3。前者的长度为2+2+1=5，后者的长度为1+2+1=4 解法对于这道题，n的数据范围很容易引起注意。这个范围一般是搜索或者状压吧？ 那我们考虑一下如何压缩状态。这道题说的是每个点经过且经过一次。 那我们只需要一个int来储存即可。 定义$f[i][j]$为状态为i（走过的点对应的二进制位数为1，反之为0），当前在第j个点的最短路径长度。 在这里我们可以选用填表法。 当i的第j位为1时就可以枚举一下k，当i的第k位也是1时就可以使用这个方程转移了，$f[i][j]=min(f[i][j],f[i\;xor\;(1&lt;&lt;j)][k]+w[k][j])$ 其中$i\;xor\;1&lt;&lt;j$就是将i的第j位改成0。那么这个方程的状态转移就是从k走到j。 所以最终的答案就是$f[(1&lt;&lt;n)-1][n]$，即所有点都走过且现在在第n个点时的最短路。 代码实现12345678910111213141516171819202122232425262728293031323334//可能跟博客中的有些细节不同//这份代码是从1开始编号的#include&lt;iostream&gt;#include&lt;cstdio&gt;#include&lt;algorithm&gt;using namespace std;#define inf (int)(1e9+1000)int f[(1&lt;&lt;20)+10][30];int w[30][30];int main()&#123; int n;cin&gt;&gt;n; for(int i=1;i&lt;=n;i++)&#123; for(int h=1;h&lt;=n;h++)&#123; cin&gt;&gt;w[i][h]; &#125; &#125; for(int i=1;i&lt;=(1&lt;&lt;20)+5;i++)&#123; for(int h=0;h&lt;=25;h++)f[i][h]=inf; &#125; f[1][1]=0; for(int i=1;i&lt;=(1&lt;&lt;n)-1;i++)&#123;//枚举状态 for(int j=1;j&lt;=n;j++)&#123;//枚举现在是在哪个点 if(!(i&amp;1&lt;&lt;(j-1)))continue; for(int k=1;k&lt;=n;k++)&#123;//枚举由哪个点更新而来 if(!(i&amp;1&lt;&lt;(k-1))||j==k)continue; f[i][j]=min(f[i][j],f[i^(1&lt;&lt;(j-1))][k]+w[k][j]); &#125; &#125; &#125; cout&lt;&lt;f[(1&lt;&lt;(n))-1][n]; return 0;&#125;]]></content>
+      <categories>
+        <category>题解</category>
+        <category>Contest_Hunter</category>
+      </categories>
+      <tags>
+        <tag>位运算</tag>
+        <tag>状压dp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CH0102]]></title>
+    <url>%2Fgavinzheng%2F2018%2F12%2F01%2F59173%2F</url>
+    <content type="text"><![CDATA[CH0102 64位整数乘法求 a 乘 b 对 p 取模的值，其中 1≤a,b,p≤10^18。 输入格式第一行a，第二行b，第三行p。 输出格式一个整数，表示a*b mod p的值。 样例输入123239 样例输出16 解法很明显，两个ll乘在一起会炸掉。我们很容易想到可以用高精乘。但是高精乘写出来太麻烦了。我们就有了另外一个方法。 先将a分解为k二进制的乘积形式：$\sum _{i=0}^{k} c_{i} \times 2^{i}$其中c为1或0。 那么a*b就可以分成$\sum _{i=0}^{k} c_{i} \times 2^{i} \times a$ 那么，当i=0时，我们很容易计算上式的值为$c_{0}\times 2^{0} \times a$，设$x_{0}= 2^{0} \times a=a$ 那么，当i=1时，很容易得到$2^{1}\times a=x\times2=x_{1}$ 。 因为对于所有的x，都是小于等于$10^{18}$的，但是对于ll的范围是$2^{63}$（64位整数，其中一个是符号位），大概是$9\times10^{18}$,又因为在计算x的过程中最大值也只会是$2\times 10^{18}$所以不会炸。 那么很容易推得$ans=\sum_{i=0}^{k} c_{i}\times x_{i} $ 其中c为0或1。代表这个二进制位为0或1。 代码实现123456789101112131415#include&lt;iostream&gt;#include&lt;cstdio&gt;#include&lt;algorithm&gt;using namespace std;#define ll long longll a,b,p;int main()&#123; cin&gt;&gt;a&gt;&gt;b&gt;&gt;p;ll ans=0; for(;a;a&gt;&gt;=1)&#123;//遍历a的每个二进制位 if(a&amp;1)&#123;ans+=b;ans%=p;&#125;//若当前最低位为1,累计当前答案,这里的b为博客中的x b*=2;b%=p; &#125; cout&lt;&lt;ans; return 0;&#125;]]></content>
+      <categories>
+        <category>题解</category>
+        <category>Contest_Hunter</category>
+      </categories>
+      <tags>
+        <tag>位运算</tag>
+        <tag>高精度</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[0x01_位运算]]></title>
+    <url>%2Fgavinzheng%2F2018%2F12%2F01%2F28374%2F</url>
+    <content type="text"><![CDATA[0x01 位运算使用位运算的意义 提高程序运行效率（常数优化） 降低编程复杂度（让程序简单易懂） 四种算数位运算基本语法即“与，或，异或，非”。 按位与_&amp; 如果两个相应的二进制位都为1，则该位的结果值为1，否则为0。 按位或_| 两个相应的二进制位中只要有一个为1，该位的结果值为1。 按位异或_^ 若参加运算的两个二进制位值相同则为0，否则为1 所以称之为“异或”嘛QAQ 取反_~ ~是一元运算符，用来对一个二进制数按位取反，即将0变1，将1 一些小trick1.x&amp;=(x-1)消除一个二进制数最后一个1 123x=1100x-1=1011x&amp;(x-1)=1000 当然 我们用这个方法还可以检测一个数是不是2的幂次。 当一个二进制数只有一个1时（即2的幂次），进行这个操作得到的就会是0。 2.二进制枚举子集 思路就是使用一个正整数二进制表示的第i位是1还是0，代表集合的第i个数取或者不取。所以从0到2^n-1总共2^n个整数，正好对应集合的2^n个子集。 123456789101112131415161718192021222324252627282930S = &#123;1,2,3&#125;N bit Combination0 000 &#123;&#125;1 001 &#123;1&#125;2 010 &#123;2&#125;3 011 &#123;1,2&#125;4 100 &#123;3&#125;5 101 &#123;1,3&#125;6 110 &#123;2,3&#125;7 111 &#123;1,2,3&#125;//参考代码#include &lt;bits/stdc++.h&gt;using namespace std;int main()&#123; int n=5;//集合中有5个元素 for(int i=0; i&lt;(1&lt;&lt;n); i++) //从0～2^5-1个状态 &#123; for(int j=0; j&lt;n; j++) //遍历二进制的每一位 &#123; if(i&amp;(1&lt;&lt;j))//判断二进制第j位是否存在 &#123; printf("%d ",j);//如果存在输出第j个元素 &#125; &#125; printf("\n"); &#125; return 0;&#125; 3.对二进制数上的某一位进行修改​ 将int型变量a的第k位清0，即a=a&amp;~(1&lt;&lt;k)​ 将int型变量a的第k位置1， 即a=a|(1&lt;&lt;k) 移位运算左移即乘上2。 $1&lt;&lt;n=2^{n} $ $n&lt;&lt;1=2n$ 算术右移即除以2。 $n&gt;&gt;1=\left \lfloor \frac{n}{2.0} \right \rfloor$ 即除以2向零取整。 参考资料位运算——强大得令人害怕 二进制枚举子集详解 看完这个你的位运算学得就差不多了]]></content>
+      <categories>
+        <category>征途_算法竞赛进阶指南</category>
+        <category>0x00_基础算法</category>
+      </categories>
+      <tags>
+        <tag>位运算</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[对拍和随机数生成]]></title>
+    <url>%2Fgavinzheng%2F2018%2F11%2F06%2F13427%2F</url>
+    <content type="text"><![CDATA[对拍12345678910111213141516171819202122232425#include &lt;bits/stdc++.h&gt;using namespace std;int main() &#123; const string file = "cake"; const string checker = file + "_"; const string Input = file + ".in"; const string stdOutput = file + ".ans"; const string Output = file + ".out"; while (1) &#123; system(("./mk &gt; " + Input).data()); system(("./" + checker + " &lt; " + Input + " &gt; " + stdOutput).data()); double st = clock(); system(("./" + file + " &lt; " + Input + " &gt; " + Output).data()); double ed = clock(); if (system(("diff " + Output + " " + stdOutput).data())) &#123; printf("WA\n"); break; &#125; else &#123; if (ed - st &gt; 1000) &#123; printf("TLE %f ms", ed - st); break; &#125; else printf("AC %f ms\n", ed - st); &#125; &#125;&#125; 随机数生成12345678910111213141516171819202122232425#include &lt;bits/stdc++.h&gt;using namespace std;typedef long long ll;int random(int x) &#123; ll res = rand(); res = res * res; return res % x + 1;&#125;int random(int l, int r) &#123; ll res = random(r); while (res &lt; l) res = random(r); return res;&#125;int main() &#123; srand((int)(new char)); const int n = 7, q = 300; printf("%d %d\n", n, q); for (int i = 1; i &lt;= n; ++ i) &#123; printf("%d ", random(100)); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>Uncategorized</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[无向图Tarjan入门]]></title>
+    <url>%2Fgavinzheng%2F2018%2F10%2F23%2F24602%2F</url>
+    <content type="text"><![CDATA[前言Tarjan算法常用来求解无向图中割边/割点问题。 割边：删去这条边，连通块个数会增加的边。 割点：删去这个点，连通块个数会增加的点。 DFS树：从任意一点开始DFS，经过的所有边和经过的所有点连成的一棵树就叫DFS树。 dfn[x]：指节点x的dfn序（即在DFS中第几个走到） Tarjan算法要求的前置技能并不多。但是重边的问题必须严谨处理，否则很容易写挂。 正文追溯值：low[x]Tarjan算法引入了追溯值low[x].设以x为根的子树为subtree(x).low[x]定义为以下结点的DFN的最小值：（与Tarjan有向图中的low[x]区分） subtree(x)中的结点 通过一条不在搜索树上的边能到达subtree(x)的结点。（即对于subtree(x)，只走“返祖边”能到达的节点） 不难发现，low[i]按搜索树的递归遍历顺序是单调递增的，因此可以在回溯的过程中求出low[i]. 模板123456789101112131415int dfn[N],low[N],dfn_cnt;int ans[N],cnt;void tarjan(int k,int p)&#123;//tarjan，k指当前节点，p指上一个节点（即DFS树上的父节点） dfn[k]=low[k]=++dfn_cnt; for(int i=h[k];i;i=e[i].nex)&#123; int u=e[i].t; if(！dfn[u])&#123;//u这个节点没被遍历 tarjan(u,k);//搜索下去 low[k]=min(low[k],low[u]);//追溯值按定义取low &#125; else &#123; if(u!=p)low[k]=min(low[k],dfn[u]);//当不为父节点时，可以更新。 &#125; &#125;&#125; 判定割边令x是y的父节点，则满足dfn[x]]]></content>
+      <categories>
+        <category>算法模板</category>
+      </categories>
+      <tags>
+        <tag>Tarjan</tag>
+        <tag>图论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[区间重叠问题]]></title>
+    <url>%2Fgavinzheng%2F2018%2F10%2F20%2F25904%2F</url>
+    <content type="text"><![CDATA[前言区间重叠问题有很多种情况。这里简单介绍几种。 单点被区间覆盖问题给定一些区间，查询一个点被多少个区间覆盖。 很明显，我们可以用差分的思路来解决。定义$d$为差分数组 当要将一段区间$[l,r]$进行修改时(这里假设操作为给区间加上1)，我们只需要给$d[l]$加上1，然后给$d[r]$减掉1。若两区间边界点重叠的情况（即$区间[1].r==区间[2].l$）算有交点，那么就应该给$d[r+1]$减掉1。想想为什么。 这样，我们在所有操作结束后，只需要对$d$求一次前缀和即可。 需要注意的是，这种区间修改操作只能应用于操作完成后进行查询的情况。 其他查询修改交错进行的情况请使用线段树来防止TLE 修改复杂度$O(1)$ 查询复杂度$O(1)$ 修改后需要O(n)预处理才能再次查询 区间交点问题给定一些区间，求特定区间与多少个其他区间有重叠部分 其实这道题只需要使用前缀和（以及后缀和）即可。定义$pre$记录前缀和，$suf$记录后缀和，要求解的区间为$[l,r]$。 首先，对于所有区间的右端点求前缀和，$pre[r]$则为这个特定区间前面所有的完整区间。 同理，对于所有区间的左端点取后缀和，$suf[l]$则为这个特定区间后面所有的完整区间。 那我们只需要用$n-pre[l]-suf[r]$即可求出答案。($n$为总区间数)]]></content>
+      <categories>
+        <category>基础算法</category>
+      </categories>
+      <tags>
+        <tag>区间</tag>
+        <tag>前缀和</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[NOIP2018初赛准备]]></title>
+    <url>%2Fgavinzheng%2F2018%2F10%2F13%2F11873%2F</url>
+    <content type="text"><![CDATA[理论知识二叉树基本性质1、一棵二叉树的第i层有$2^{i-1}$个节点 2、一共有i层的满二叉树/一颗i层的二叉树最多有$2^{i}-1$个节点 知中序和后序遍历求前序遍历因为后序遍历的最后一个一定是整棵树的根，所以我们在后序遍历中找到主根，并且找出它在中序遍历中的位置。那么在他左边的就是第一颗子树，右边的就是第二颗子树。再回到后序遍历找第一颗子树的根即可。 例如：后序 DGJHEBIFCA 中序 DBGEHJACIF 主树根：A 左子树根: B 右子树根:C 组合数学-插板法字符串的子串个数注意！空串也算一个子串！！！ 所以一个长度为n的字符串的字串个数为$n!+1$]]></content>
+      <categories>
+        <category>Uncategorized</category>
+      </categories>
+      <tags>
+        <tag>初赛</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[数学基础]]></title>
+    <url>%2Fgavinzheng%2F2018%2F10%2F07%2F26357%2F</url>
+    <content type="text"><![CDATA[质数筛法埃氏筛法不解释，定义一个数组flag,枚举每个数 $i$ ，若 $flag[i]=1$ ，则 $i$ 是一个质数。当 $i$ 为质数是，进行赋值操作: $flag[j\times i]_{1 \leq j\times i \leq n}=1$ 。即将每个素数的倍数标记为和数。 模板题 POJ2689 参考代码: 123456789101112int prime[maxn];int prime_cnt;bool flag[maxn]=&#123;0&#125;;void get_prime(int n)&#123; flag[1]=1; for(int i=2;i&lt;=n;i++)&#123; if(flag[i])continue; prime[++prime_cnt]=i; for(int j=2;j*i&lt;=n;j++) flag[j*i]=1; &#125; return;&#125; 线性筛]]></content>
+      <categories>
+        <category>基础算法</category>
+      </categories>
+      <tags>
+        <tag>数学</tag>
+        <tag>数论</tag>
+      </tags>
+  </entry>
+</search>
