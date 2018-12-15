@@ -4,15 +4,23 @@
     <title><![CDATA[CH0201]]></title>
     <url>%2Fgavinzheng%2F2018%2F12%2F15%2F59029%2F</url>
     <content type="text"><![CDATA[CH0201 费解的开关描述你玩过“拉灯”游戏吗？25盏灯排成一个5x5的方形。每一个灯都有一个开关，游戏者可以改变它的状态。每一步，游戏者可以改变某一个灯的状态。游戏者改变一个灯的状态会产生连锁反应：和这个灯上下左右相邻的灯也要相应地改变其状态。 我们用数字“1”表示一盏开着的灯，用数字“0”表示关着的灯。下面这种状态 1011101101101111000011011 在改变了最左上角的灯的状态后将变成： 0111111101101111000011011 再改变它正中间的灯后状态将变成： 0111111001110011010011011 给定一些游戏的初始状态，编写程序判断游戏者是否可能在6步以内使所有的灯都变亮。 输入格式​ 第一行有一个正整数n，代表数据中共有n个待解决的游戏初始状态。​ 以下若干行数据分为n组，每组数据有5行，每行5个字符。每组数据描述了一个游戏的初始状态。各组数据间用一个空行分隔。​ 对于30%的数据，n&lt;=5；​ 对于100%的数据，n&lt;=500。 输出格式​ 输出数据一共有n行，每行有一个小于等于6的整数，它表示对于输入数据中对应的游戏状态最少需要几步才能使所有灯变亮。​ 对于某一个游戏初始状态，若6步以内无法使所有灯变亮，请输出“-1”。 样例输入1234567891011121314151617183001110101110001110101110011101111011111011111111110111111111111111111111111 样例输出12332-1 来源Matrix67 思路这道题很明显是一个暴力（5*5的方格）。我们考虑一下枚举每一次操作的位置。复杂度是$ 500\times(5 \times 5 )^{6}$是要炸的。 我们可以再想一下优化：当一行中哪些点要使用操作已经确定时，要删掉这一行中剩余的1，我们只能在下一行的对应位置使用“操作”。 那很容易可以想到，只需要确定第一行，那么就可以确定第二行。确定第二行就可以确定第三行。所以只需要枚举第一行初始状态就可以了，复杂度$O(2^{5}n)$。 至于枚举状态，我们可以用上一章学到的位运算来枚举。 代码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152#include&lt;iostream&gt;#include&lt;cstdio&gt;#include&lt;algorithm&gt;using namespace std;int map[10][10];int ori[10][10];void work(int data,int line)&#123;//确定标记点后开始标记 for(int i=1;i&lt;=5;i++)&#123; if((1&lt;&lt;(i-1))&amp;data)&#123; map[line][i+1]^=1; map[line][i-1]^=1; map[line][i]^=1; map[line+1][i]^=1; &#125; &#125; return;&#125;void solve()&#123; int mi=(int)(1e9);char a[10]; for(int i=1;i&lt;=5;i++)&#123; scanf("%s",a); for(int j=1;j&lt;=5;j++)ori[i][j]=a[j-1]-'0'; &#125; for(int i=0;i&lt;(1&lt;&lt;5);i++)&#123; for(int j=1;j&lt;=5;j++)for(int k=1;k&lt;=5;k++)map[j][k]=ori[j][k]; int ans=0; int g=i;while(g)&#123;g&amp;=(g-1);ans++;&#125;//统计第一行几个标记 work(i,1);//将第一行标记 for(int j=2;j&lt;=5;j++)&#123;//确定第j行要如何标记 int mark=0; for(int k=1;k&lt;=5;k++)&#123; if(!map[j-1][k])&#123; mark|=1&lt;&lt;(k-1);ans++; &#125; &#125; work(mark,j);//标记这一行 &#125; int test=0; for(int i=1;i&lt;=5;i++)test+=map[5][i]; if(test==5)mi=min(ans,mi); &#125; if(mi&gt;6)mi=-1; printf("%d\n",mi); return;&#125;int main()&#123; int n;scanf("%d",&amp;n); while(n--)&#123; solve(); &#125;&#125;]]></content>
+      <categories>
+        <category>题解</category>
+        <category>Contest_Hunter</category>
+      </categories>
       <tags>
-        <tag>枚举</tag>
         <tag>位运算</tag>
+        <tag>枚举</tag>
       </tags>
   </entry>
   <entry>
     <title><![CDATA[0x02-枚举-模拟-递推]]></title>
     <url>%2Fgavinzheng%2F2018%2F12%2F15%2F13136%2F</url>
     <content type="text"></content>
+      <categories>
+        <category>征途_算法竞赛进阶指南</category>
+        <category>0x00_基础算法</category>
+      </categories>
   </entry>
   <entry>
     <title><![CDATA[CH0103]]></title>
