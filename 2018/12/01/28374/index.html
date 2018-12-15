@@ -118,7 +118,7 @@
 <meta property="og:site_name" content="Gavin&#39;s Blog">
 <meta property="og:description" content="0x01 位运算使用位运算的意义 提高程序运行效率（常数优化）  降低编程复杂度（让程序简单易懂）   四种算数位运算基本语法即“与，或，异或，非”。  按位与_&amp;amp; 如果两个相应的二进制位都为1，则该位的结果值为1，否则为0。  按位或_| 两个相应的二进制位中只要有一个为1，该位的结果值为1。  按位异或_^ 若参加运算的两个二进制位值相同则为0，否则为1  所以称之为“异或”嘛QAQ">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-12-08T05:54:20.708Z">
+<meta property="og:updated_time" content="2018-12-15T15:03:13.881Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="0x01_位运算">
 <meta name="twitter:description" content="0x01 位运算使用位运算的意义 提高程序运行效率（常数优化）  降低编程复杂度（让程序简单易懂）   四种算数位运算基本语法即“与，或，异或，非”。  按位与_&amp;amp; 如果两个相应的二进制位都为1，则该位的结果值为1，否则为0。  按位或_| 两个相应的二进制位中只要有一个为1，该位的结果值为1。  按位异或_^ 若参加运算的两个二进制位值相同则为0，否则为1  所以称之为“异或”嘛QAQ">
@@ -399,7 +399,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-12-08 13:54:20" itemprop="dateModified" datetime="2018-12-08T13:54:20+08:00">2018-12-08</time>
+                <time title="修改时间：2018-12-15 23:03:13" itemprop="dateModified" datetime="2018-12-15T23:03:13+08:00">2018-12-15</time>
               
             
           </span>
@@ -485,6 +485,7 @@
 <pre><code>思路就是使用一个正整数二进制表示的第i位是1还是0，代表集合的第i个数取或者不取。所以从0到2^n-1总共2^n个整数，正好对应集合的2^n个子集。
 </code></pre><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">S = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line">N bit Combination</span><br><span class="line"><span class="number">0</span> <span class="number">000</span> &#123;&#125;</span><br><span class="line"><span class="number">1</span> <span class="number">001</span> &#123;<span class="number">1</span>&#125;</span><br><span class="line"><span class="number">2</span> <span class="number">010</span> &#123;<span class="number">2</span>&#125;</span><br><span class="line"><span class="number">3</span> <span class="number">011</span> &#123;<span class="number">1</span>,<span class="number">2</span>&#125;</span><br><span class="line"><span class="number">4</span> <span class="number">100</span> &#123;<span class="number">3</span>&#125;</span><br><span class="line"><span class="number">5</span> <span class="number">101</span> &#123;<span class="number">1</span>,<span class="number">3</span>&#125;</span><br><span class="line"><span class="number">6</span> <span class="number">110</span> &#123;<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line"><span class="number">7</span> <span class="number">111</span> &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//参考代码</span></span><br><span class="line">#include &lt;bits/stdc++.h&gt;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n=<span class="number">5</span>;<span class="comment">//集合中有5个元素</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;(<span class="number">1</span>&lt;&lt;n); i++) <span class="comment">//从0～2^5-1个状态</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;n; j++) <span class="comment">//遍历二进制的每一位</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(i&amp;(<span class="number">1</span>&lt;&lt;j))<span class="comment">//判断二进制第j位是否存在</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"%d "</span>,j);<span class="comment">//如果存在输出第j个元素</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>3.对二进制数上的某一位进行修改<br>​    将int型变量a的第k位清0，即<code>a=a&amp;~(1&lt;&lt;k)</code><br>​    将int型变量a的第k位置1， 即<code>a=a|(1&lt;&lt;k)</code></p>
+<p>4.x为0或1，对x进行状态转换<code>x^=1</code></p>
 <h2 id="移位运算"><a href="#移位运算" class="headerlink" title="移位运算"></a>移位运算</h2><h3 id="左移"><a href="#左移" class="headerlink" title="左移"></a>左移</h3><p>即乘上2。</p>
 <p>$1&lt;&lt;n=2^{n} $</p>
 <p>$n&lt;&lt;1=2n$</p>
@@ -609,7 +610,7 @@
                 
                   <a href="/gavinzheng/archives/">
                 
-                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-count">10</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -669,7 +670,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">10</span>
+                      
+                    
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
