@@ -121,7 +121,7 @@
 <meta property="og:image" content="https://gavin-1257756441.cos.ap-chengdu.myqcloud.com/网络流初步/1.PNG">
 <meta property="og:image" content="https://gavin-1257756441.cos.ap-chengdu.myqcloud.com/网络流初步/2.PNG">
 <meta property="og:image" content="https://gavin-1257756441.cos.ap-chengdu.myqcloud.com/网络流初步/3.PNG">
-<meta property="og:updated_time" content="2019-01-11T09:16:11.555Z">
+<meta property="og:updated_time" content="2019-01-11T09:20:44.527Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网络流初步">
 <meta name="twitter:description" content="网络流初步前言在实际生活中常常会遇到一下类型的问题： 有一张管道组成的输水/输电/输气网络。每个管道都是单向的，并且有一个流量限制（超过流量限制就会爆管）。很明显，如果我们要通过这张网络将一种物品从起点输送到终点，不能将每个管道都满流（因为网络的瓶颈部分可能会炸）。那么每个管道的流量就需要精密规划了。  一个网络可以用来模拟道路系统的交通量、管中的液体、电路中的电流或类似一些东西在一个结点的网络中">
@@ -386,7 +386,7 @@
                 
               
 
-              <time title="创建时间：2019-01-11 13:16:54 / 修改时间：17:16:11" itemprop="dateCreated datePublished" datetime="2019-01-11T13:16:54+08:00">2019-01-11</time>
+              <time title="创建时间：2019-01-11 13:16:54 / 修改时间：17:20:44" itemprop="dateCreated datePublished" datetime="2019-01-11T13:16:54+08:00">2019-01-11</time>
             
 
             
@@ -396,6 +396,24 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/gavinzheng/categories/算法模板/" itemprop="url" rel="index"><span itemprop="name">算法模板</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -468,13 +486,14 @@
 <p>在代码实现层面，我们可以通过两种算法来实现FF。</p>
 <h5 id="EK-Edmonds-Krap"><a href="#EK-Edmonds-Krap" class="headerlink" title="EK(Edmonds-Krap)"></a>EK(Edmonds-Krap)</h5><p>即使用BFS寻找增广路（这样就可以找到当前状态下最短的增广路）。</p>
 <p>定义一个$pre[]$数组，记录在BFS时每个点的前驱。从源点开始BFS，当BFS到汇点时就停止，并且按照$pre[]$数组的标记回溯，反向建边。并清空队列，重新开始搜索。当无法BFS到汇点时就停止。此时的答案就是正确答案。</p>
-<h5 id="Dinic"><a href="#Dinic" class="headerlink" title="Dinic"></a>Dinic</h5><h5 id=""><a href="#" class="headerlink" title=" "></a> </h5><h4 id="PR-PUSH-RELABLE-预留推进法-推送-重贴标签法"><a href="#PR-PUSH-RELABLE-预留推进法-推送-重贴标签法" class="headerlink" title="PR(PUSH-RELABLE)预留推进法/推送-重贴标签法"></a>PR(PUSH-RELABLE)预留推进法/推送-重贴标签法</h4><p>留坑待填</p>
+<h5 id="Dinic"><a href="#Dinic" class="headerlink" title="Dinic"></a>Dinic</h5><p>留坑待填</p>
+<h4 id="PR-PUSH-RELABLE-预留推进法-推送-重贴标签法"><a href="#PR-PUSH-RELABLE-预留推进法-推送-重贴标签法" class="headerlink" title="PR(PUSH-RELABLE)预留推进法/推送-重贴标签法"></a>PR(PUSH-RELABLE)预留推进法/推送-重贴标签法</h4><p>留坑待填</p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
 <li><a href="https://sshwy.gitee.io/2018/12/21/2855/" target="_blank" rel="noopener">sshwy_网络流初步</a></li>
 <li>PKU_网络流算法</li>
 <li><a href="https://zh.wikipedia.org/wiki/%E7%BD%91%E7%BB%9C%E6%B5%81" target="_blank" rel="noopener">维基百科_网络流</a></li>
 </ul>
-<h4 id="-1"><a href="#-1" class="headerlink" title=" "></a> </h4>
+
       
     </div>
 
@@ -518,6 +537,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/gavinzheng/2019/01/11/31964/" rel="prev" title="洛谷P3376">
+                洛谷P3376 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -587,7 +610,7 @@
                 
                   <a href="/gavinzheng/archives/">
                 
-                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -748,7 +771,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#网络流初步"><span class="nav-number">1.</span> <span class="nav-text">网络流初步</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本术语和定义"><span class="nav-number">1.2.</span> <span class="nav-text">基本术语和定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#流的限制"><span class="nav-number">1.3.</span> <span class="nav-text">流的限制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最大流"><span class="nav-number">1.4.</span> <span class="nav-text">最大流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义"><span class="nav-number">1.4.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解法"><span class="nav-number">1.4.2.</span> <span class="nav-text">解法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#FF-FORD-FULKERSON"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">FF(FORD-FULKERSON)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#EK-Edmonds-Krap"><span class="nav-number">1.4.2.1.1.</span> <span class="nav-text">EK(Edmonds-Krap)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Dinic"><span class="nav-number">1.4.2.1.2.</span> <span class="nav-text">Dinic</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#"><span class="nav-number">1.4.2.1.3.</span> <span class="nav-text"> </span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PR-PUSH-RELABLE-预留推进法-推送-重贴标签法"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">PR(PUSH-RELABLE)预留推进法/推送-重贴标签法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">1.5.</span> <span class="nav-text">参考资料</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#-1"><span class="nav-number">1.5.0.1.</span> <span class="nav-text"> </span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#网络流初步"><span class="nav-number">1.</span> <span class="nav-text">网络流初步</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本术语和定义"><span class="nav-number">1.2.</span> <span class="nav-text">基本术语和定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#流的限制"><span class="nav-number">1.3.</span> <span class="nav-text">流的限制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最大流"><span class="nav-number">1.4.</span> <span class="nav-text">最大流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义"><span class="nav-number">1.4.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解法"><span class="nav-number">1.4.2.</span> <span class="nav-text">解法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#FF-FORD-FULKERSON"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">FF(FORD-FULKERSON)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#EK-Edmonds-Krap"><span class="nav-number">1.4.2.1.1.</span> <span class="nav-text">EK(Edmonds-Krap)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Dinic"><span class="nav-number">1.4.2.1.2.</span> <span class="nav-text">Dinic</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PR-PUSH-RELABLE-预留推进法-推送-重贴标签法"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">PR(PUSH-RELABLE)预留推进法/推送-重贴标签法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">1.5.</span> <span class="nav-text">参考资料</span></a></li></ol></li></ol></div>
             
 
           </div>
