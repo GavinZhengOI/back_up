@@ -118,10 +118,12 @@
 <meta property="og:site_name" content="Gavin&#39;s Blog">
 <meta property="og:description" content="网络流初步前言在实际生活中常常会遇到一下类型的问题： 有一张管道组成的输水/输电/输气网络。每个管道都是单向的，并且有一个流量限制（超过流量限制就会爆管）。很明显，如果我们要通过这张网络将一种物品从起点输送到终点，不能将每个管道都满流（因为网络的瓶颈部分可能会炸）。那么每个管道的流量就需要精密规划了。  一个网络可以用来模拟道路系统的交通量、管中的液体、电路中的电流或类似一些东西在一个结点的网络中">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-11T08:36:53.619Z">
+<meta property="og:image" content="https://gavin-1257756441.cos.ap-chengdu.myqcloud.com/网络流初步/1.PNG">
+<meta property="og:updated_time" content="2019-01-11T08:44:58.389Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网络流初步">
 <meta name="twitter:description" content="网络流初步前言在实际生活中常常会遇到一下类型的问题： 有一张管道组成的输水/输电/输气网络。每个管道都是单向的，并且有一个流量限制（超过流量限制就会爆管）。很明显，如果我们要通过这张网络将一种物品从起点输送到终点，不能将每个管道都满流（因为网络的瓶颈部分可能会炸）。那么每个管道的流量就需要精密规划了。  一个网络可以用来模拟道路系统的交通量、管中的液体、电路中的电流或类似一些东西在一个结点的网络中">
+<meta name="twitter:image" content="https://gavin-1257756441.cos.ap-chengdu.myqcloud.com/网络流初步/1.PNG">
 
 
 
@@ -382,7 +384,7 @@
                 
               
 
-              <time title="创建时间：2019-01-11 13:16:54 / 修改时间：16:36:53" itemprop="dateCreated datePublished" datetime="2019-01-11T13:16:54+08:00">2019-01-11</time>
+              <time title="创建时间：2019-01-11 13:16:54 / 修改时间：16:44:58" itemprop="dateCreated datePublished" datetime="2019-01-11T13:16:54+08:00">2019-01-11</time>
             
 
             
@@ -392,24 +394,6 @@
             
           </span>
 
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/gavinzheng/categories/算法模板/" itemprop="url" rel="index"><span itemprop="name">算法模板</span></a></span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -470,6 +454,8 @@
 <h2 id="最大流"><a href="#最大流" class="headerlink" title="最大流"></a>最大流</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>最大化$\sum_{(s,v) \in E}{f(s,v)}$</p>
 <p>意思就是一个流函数$f$的集合，是源点流出的流的和最大。</p>
 <h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><h4 id="FF-FORD-FULKERSON"><a href="#FF-FORD-FULKERSON" class="headerlink" title="FF(FORD-FULKERSON)"></a>FF(FORD-FULKERSON)</h4><p>即通过寻找增广路来不停更新最大流。</p>
+<p>但是，如果直接傻呵呵的DFS。可能会出现一下状况：</p>
+<p><img src="https://gavin-1257756441.cos.ap-chengdu.myqcloud.com/网络流初步/1.PNG" alt="取消流"></p>
 <p>可以通过两种算法来实现FF。</p>
 <h5 id="EK-Edmonds-Krap"><a href="#EK-Edmonds-Krap" class="headerlink" title="EK(Edmonds-Krap)"></a>EK(Edmonds-Krap)</h5><p>即使用BFS寻找增广路（这样就可以找到当前状态下最短的增广路）。</p>
 <p>定义一个$pre[]$数组，记录在BFS时每个点的前驱。从源点开始BFS，当BFS到汇点时就停止，并且按照$pre[]$数组的标记回溯，反向建边。并清空队列，重新开始搜索。当无法BFS到汇点时就停止。此时的答案就是正确答案。</p>
