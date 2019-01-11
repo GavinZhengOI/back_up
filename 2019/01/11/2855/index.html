@@ -119,7 +119,9 @@
 <meta property="og:description" content="网络流初步前言在实际生活中常常会遇到一下类型的问题： 有一张管道组成的输水/输电/输气网络。每个管道都是单向的，并且有一个流量限制（超过流量限制就会爆管）。很明显，如果我们要通过这张网络将一种物品从起点输送到终点，不能将每个管道都满流（因为网络的瓶颈部分可能会炸）。那么每个管道的流量就需要精密规划了。  一个网络可以用来模拟道路系统的交通量、管中的液体、电路中的电流或类似一些东西在一个结点的网络中">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://gavin-1257756441.cos.ap-chengdu.myqcloud.com/网络流初步/1.PNG">
-<meta property="og:updated_time" content="2019-01-11T08:44:58.389Z">
+<meta property="og:image" content="https://gavin-1257756441.cos.ap-chengdu.myqcloud.com/网络流初步/2.PNG">
+<meta property="og:image" content="https://gavin-1257756441.cos.ap-chengdu.myqcloud.com/网络流初步/3.PNG">
+<meta property="og:updated_time" content="2019-01-11T09:05:51.818Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网络流初步">
 <meta name="twitter:description" content="网络流初步前言在实际生活中常常会遇到一下类型的问题： 有一张管道组成的输水/输电/输气网络。每个管道都是单向的，并且有一个流量限制（超过流量限制就会爆管）。很明显，如果我们要通过这张网络将一种物品从起点输送到终点，不能将每个管道都满流（因为网络的瓶颈部分可能会炸）。那么每个管道的流量就需要精密规划了。  一个网络可以用来模拟道路系统的交通量、管中的液体、电路中的电流或类似一些东西在一个结点的网络中">
@@ -384,7 +386,7 @@
                 
               
 
-              <time title="创建时间：2019-01-11 13:16:54 / 修改时间：16:44:58" itemprop="dateCreated datePublished" datetime="2019-01-11T13:16:54+08:00">2019-01-11</time>
+              <time title="创建时间：2019-01-11 13:16:54 / 修改时间：17:05:51" itemprop="dateCreated datePublished" datetime="2019-01-11T13:16:54+08:00">2019-01-11</time>
             
 
             
@@ -456,7 +458,14 @@
 <h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><h4 id="FF-FORD-FULKERSON"><a href="#FF-FORD-FULKERSON" class="headerlink" title="FF(FORD-FULKERSON)"></a>FF(FORD-FULKERSON)</h4><p>即通过寻找增广路来不停更新最大流。</p>
 <p>但是，如果直接傻呵呵的DFS。可能会出现一下状况：</p>
 <p><img src="https://gavin-1257756441.cos.ap-chengdu.myqcloud.com/网络流初步/1.PNG" alt="取消流"></p>
-<p>可以通过两种算法来实现FF。</p>
+<p>那么为了解决这个问题，我们可以引入一个叫取消流的操作。</p>
+<p><img src="https://gavin-1257756441.cos.ap-chengdu.myqcloud.com/网络流初步/2.PNG" alt="取消流"><br>在代码实现反向建边中，我们可以将所有边都建成双向边。并将初始边的权值记为容量。每次“反向建边”就只用将这条边的权值减去流量，再在反向边加上这个流量。这样就能保证$f(u,v)+f(v,u)=c(u,v)$。我们可以利用成对变换来实现。<a href="https://www.gavinzheng.cf/gavinzheng/2018/12/01/28374/" target="_blank" rel="noopener">0x01_位运算</a></p>
+<p>至于为什么这样反向建边可以求出正解，我们可以感性理解一下：</p>
+<p>反向建边其实是提供了“取消流”这个操作。在初始状态，我们的流不能走一条反向边，因为根本不存在这条边。但是如果我们的流走了一条正向边，与之对应的反向边就是可以“走”的了。之所以这里的走打了引号，是因为我们并没有直接走反向边（也没办法直接走），而是通过取消已经走过了的正向边的流来达到相同的效果。</p>
+<p>这就是<strong>残余网络</strong></p>
+<p>至于如何理性证明：<br><img src="https://gavin-1257756441.cos.ap-chengdu.myqcloud.com/网络流初步/3.PNG" alt="取消流"></p>
+<hr>
+<p>在代码实现层面，我们可以通过两种算法来实现FF。</p>
 <h5 id="EK-Edmonds-Krap"><a href="#EK-Edmonds-Krap" class="headerlink" title="EK(Edmonds-Krap)"></a>EK(Edmonds-Krap)</h5><p>即使用BFS寻找增广路（这样就可以找到当前状态下最短的增广路）。</p>
 <p>定义一个$pre[]$数组，记录在BFS时每个点的前驱。从源点开始BFS，当BFS到汇点时就停止，并且按照$pre[]$数组的标记回溯，反向建边。并清空队列，重新开始搜索。当无法BFS到汇点时就停止。此时的答案就是正确答案。</p>
 <h5 id="Dinic"><a href="#Dinic" class="headerlink" title="Dinic"></a>Dinic</h5><h5 id=""><a href="#" class="headerlink" title=" "></a> </h5><h4 id="PR-PUSH-RELABLE-预留推进法-推送-重贴标签法"><a href="#PR-PUSH-RELABLE-预留推进法-推送-重贴标签法" class="headerlink" title="PR(PUSH-RELABLE)预留推进法/推送-重贴标签法"></a>PR(PUSH-RELABLE)预留推进法/推送-重贴标签法</h4><p>留坑待填</p>
