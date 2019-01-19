@@ -2,15 +2,12 @@
 <search>
   <entry>
     <title><![CDATA[洛谷P3376]]></title>
-    <url>%2Fgavinzheng%2F2019%2F01%2F11%2F31964%2F</url>
-    <content type="text"><![CDATA[【模板】网络最大流1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556#include&lt;iostream&gt;#include&lt;queue&gt;#include&lt;cstdio&gt;#include&lt;algorithm&gt;#include&lt;cstring&gt;using namespace std;#define maxn 10500#define inf (int)(1e9+100)int head[maxn];struct gg&#123; int u,v,w,next;&#125;side[100020*2];int cnt=1;int maxflow=0;void insert(int u,int v,int w)&#123; side[++cnt]=(gg)&#123;u,v,w,head[u]&#125;; head[u]=cnt;&#125;int n,m,s,t,pre[maxn],incf[maxn];bool visit[maxn];bool bfs()&#123; queue&lt;int&gt;line; incf[s]=inf; memset(visit,0,sizeof(visit)); visit[s]=1;line.push(s); while(!line.empty())&#123; int now=line.front();line.pop(); for(int i=head[now];i;i=side[i].next)&#123; int tar=side[i].v,w=side[i].w; if(visit[tar]||w==0)continue; incf[tar]=min(incf[now],w); visit[tar]=1;pre[tar]=i; line.push(tar);if(tar==t)&#123;return 1;&#125; &#125; &#125; return 0;&#125;void update()&#123; maxflow+=incf[t]; for(int i=t;i!=s;i=side[pre[i]^1].v)&#123; side[pre[i]].w-=incf[t]; side[pre[i]^1].w+=incf[t]; &#125; return;&#125;int main()&#123; scanf("%d%d%d%d",&amp;n,&amp;m,&amp;s,&amp;t); for(int i=1;i&lt;=m;i++)&#123; int u,v,w; scanf("%d%d%d",&amp;u,&amp;v,&amp;w); insert(u,v,w);insert(v,u,0); &#125; while(bfs())&#123;update();&#125; cout&lt;&lt;maxflow; return 0;&#125;]]></content>
-      <categories>
-        <category>题解</category>
-        <category>Luogu</category>
-      </categories>
+    <url>%2Fgavinzheng%2F2019%2F01%2F19%2F31964%2F</url>
+    <content type="text"><![CDATA[Luogu1231 教辅的组成两个小trick刚刚写过了网络流模板。准备来写一点练习题。刚拿到这道题其实比较懵。完全找不到入手点。经过学习，我发现网络流操作有两个小trick。 1.加入虚拟源点和汇点。通过虚拟源点和汇点，来将几个图（或几个组合）变成一个有向图，就能在上面跑网络流了。 2.建立虚拟“点对”。因为网络流可以限制每条边的流量不超过容量限制。但是却不能限制每个点经过的流量。这时候我们就需要将任意一个点$x$都生成一个对应点$x’$。并建立一个$x-&gt;x’$的有向边（容量为1）。所有入边连接在$x$上，所有出边连接在$x’$上。这样，任意一个经过点$x$的流都会被$x-&gt;x’$这条边限制，使得只有一条边经过点$x$。大概就是这个样子 思路点的处理我们首先把数组开成双倍空间，那么一下就是所有点在数组中的编号。这里设$N=N1+N2+N3$ 1~N1 对应N1(书的个数) N1+1~N1+N2 对应N2（练习册的个数） N1+N2+1~N1+N2+N3 对应N3（答案的个数） $\forall x,index[x’]=index[x]+N$ 点表示完后，我们就可以处理边了。 边的处理还是按照网络流基本操作来做。但是网络流存边有个小问题。那就是邻接表的$cnt$初值必须要设为1。才能在$++cnt$时保证成对变换的匹配性。 代码EK版一开始听了一个叫hwy的混蛋。写了个EK。长这样的 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788#include&lt;iostream&gt;#include&lt;cstdio&gt;#include&lt;cstring&gt;#include&lt;algorithm&gt;#include&lt;queue&gt;using namespace std;#define maxn 100500#define inf (int)(1e9+1000)#define maxm 100500bool visit[maxn];int head[maxn],pre[maxn];int cnt=1,m1,m2,n,n1,n2,n3,incf[maxn],maxflow;int s=90401,t=90402;struct gg&#123; int u,v,w,next;&#125;side[maxm*4];void insert(int u,int v,int w)&#123;// if(u==3)&#123;// int gg=1;// &#125; side[++cnt]=(gg)&#123;u,v,w,head[u]&#125;; head[u]=cnt;&#125;inline int num(int type,int num)&#123;//三种type分别代表书，练习册，答案。重复代表映射点。 if(type==1)return num; if(type==2)return n1+num; if(type==3)return n1+n2+num; if(type==11)return num+n; if(type==22)return n1+num+n; if(type==33)return n1+n2+num+n; return 0;&#125;bool bfs()&#123; memset(visit,0,sizeof(visit)); incf[s]=inf;visit[s]=1; queue&lt;int&gt;line;line.push(s); while(!line.empty())&#123; int now=line.front();line.pop(); for(int i=head[now];i;i=side[i].next)&#123; int tar=side[i].v;int w=side[i].w; if(visit[tar]||!w)continue; incf[tar]=min(incf[now],1); visit[tar]=1;pre[tar]=i; line.push(tar);if(tar==t)return 1; &#125; &#125; return 0;&#125;void update()&#123; maxflow+=incf[t]; for(int i=t;i!=s;i=side[pre[i]^1].v)&#123;// cout&lt;&lt;i&lt;&lt;endl; side[pre[i]].w-=incf[t]; side[pre[i]^1].w+=incf[t]; &#125; return;&#125;int main()&#123;// freopen("in.txt","r",stdin); scanf("%d%d%d%d",&amp;n1,&amp;n2,&amp;n3,&amp;m1); n=n1+n2+n3; for(int i=1;i&lt;=n;i++)&#123;//建立映射点对 insert(i,i+n,1); insert(i+n,i,0); &#125; for(int i=1;i&lt;=n2;i++)&#123;//建立源点所有练习册的连接 insert(s,num(2,i),1); insert(num(2,i),s,0); &#125; for(int i=1;i&lt;=n3;i++)&#123;//建立所有答案和汇点的连接 insert(num(33,i),t,1); insert(t,num(33,i),0); &#125; for(int i=1;i&lt;=m1;i++)&#123; int x,y;scanf("%d%d",&amp;x,&amp;y); insert(num(22,y),num(1,x),1);//将练习册的映射点和书相连 insert(num(1,x),num(22,y),0); &#125; scanf("%d",&amp;m2); for(int i=1;i&lt;=m2;i++)&#123; int x,y;scanf("%d%d",&amp;x,&amp;y); insert(num(11,x),num(3,y),1);//将书的映射点和答案相连。 insert(num(3,y),num(11,x),0); &#125; while(bfs())&#123;update();&#125; cout&lt;&lt;maxflow; return 0;&#125; 然后。。。 滚回去学Dinic Dinic版未完待续]]></content>
       <tags>
         <tag>图论</tag>
         <tag>网络流</tag>
+        <tag>最大流</tag>
       </tags>
   </entry>
   <entry>
@@ -69,8 +66,8 @@
         <category>Contest_Hunter</category>
       </categories>
       <tags>
-        <tag>高精度</tag>
         <tag>位运算</tag>
+        <tag>高精度</tag>
       </tags>
   </entry>
   <entry>
@@ -101,8 +98,8 @@
         <category>算法模板</category>
       </categories>
       <tags>
-        <tag>图论</tag>
         <tag>Tarjan</tag>
+        <tag>图论</tag>
       </tags>
   </entry>
   <entry>
