@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[洛谷P3376]]></title>
     <url>%2Fgavinzheng%2F2019%2F01%2F11%2F31964%2F</url>
-    <content type="text"><![CDATA[【模板】网络最大流留坑待填]]></content>
+    <content type="text"><![CDATA[【模板】网络最大流1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556#include&lt;iostream&gt;#include&lt;queue&gt;#include&lt;cstdio&gt;#include&lt;algorithm&gt;#include&lt;cstring&gt;using namespace std;#define maxn 10500#define inf (int)(1e9+100)int head[maxn];struct gg&#123; int u,v,w,next;&#125;side[100020*2];int cnt=1;int maxflow=0;void insert(int u,int v,int w)&#123; side[++cnt]=(gg)&#123;u,v,w,head[u]&#125;; head[u]=cnt;&#125;int n,m,s,t,pre[maxn],incf[maxn];bool visit[maxn];bool bfs()&#123; queue&lt;int&gt;line; incf[s]=inf; memset(visit,0,sizeof(visit)); visit[s]=1;line.push(s); while(!line.empty())&#123; int now=line.front();line.pop(); for(int i=head[now];i;i=side[i].next)&#123; int tar=side[i].v,w=side[i].w; if(visit[tar]||w==0)continue; incf[tar]=min(incf[now],w); visit[tar]=1;pre[tar]=i; line.push(tar);if(tar==t)&#123;return 1;&#125; &#125; &#125; return 0;&#125;void update()&#123; maxflow+=incf[t]; for(int i=t;i!=s;i=side[pre[i]^1].v)&#123; side[pre[i]].w-=incf[t]; side[pre[i]^1].w+=incf[t]; &#125; return;&#125;int main()&#123; scanf("%d%d%d%d",&amp;n,&amp;m,&amp;s,&amp;t); for(int i=1;i&lt;=m;i++)&#123; int u,v,w; scanf("%d%d%d",&amp;u,&amp;v,&amp;w); insert(u,v,w);insert(v,u,0); &#125; while(bfs())&#123;update();&#125; cout&lt;&lt;maxflow; return 0;&#125;]]></content>
       <categories>
         <category>题解</category>
         <category>Luogu</category>
@@ -69,8 +69,8 @@
         <category>Contest_Hunter</category>
       </categories>
       <tags>
-        <tag>位运算</tag>
         <tag>高精度</tag>
+        <tag>位运算</tag>
       </tags>
   </entry>
   <entry>
@@ -101,8 +101,8 @@
         <category>算法模板</category>
       </categories>
       <tags>
-        <tag>Tarjan</tag>
         <tag>图论</tag>
+        <tag>Tarjan</tag>
       </tags>
   </entry>
   <entry>
