@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[魔术球问题]]></title>
+    <url>%2Fgavinzheng%2F2019%2F01%2F21%2F17034%2F</url>
+    <content type="text"><![CDATA[魔术球问题题面先贴题目链接：P2765 魔术球问题 题目描述«问题描述： 假设有n根柱子，现要按下述规则在这n根柱子中依次放入编号为1，2，3，…的球。 （1）每次只能在某根柱子的最上面放球。 （2）在同一根柱子中，任何2个相邻球的编号之和为完全平方数。 试设计一个算法，计算出在n根柱子上最多能放多少个球。例如，在4 根柱子上最多可放11 个球。 «编程任务： 对于给定的n，计算在n根柱子上最多能放多少个球。 输入输出格式输入格式： 第1 行有1个正整数n，表示柱子数。 输出格式： 程序运行结束时，将n 根柱子上最多能放的球数以及相应的放置方案输出。文件的第一行是球数。接下来的n行，每行是一根柱子上的球的编号。 输入输出样例输入样例#1： 14 输出样例#1： 12345111 82 7 93 6 104 5 11 数据范围4&lt;=n&lt;=55 思路刚看到这道题，我是一脸懵逼的。毫无思路。然后我就发现这道题需要用到网络流常用的两个套路： 分点——把一个点分成两个，方便限制点的“流量”和点的可用性。 创建虚拟源点，汇点。 那么我们就可以建立模型： 先建立源点s和汇点t。 然后从第一个球开始一次加入新的球$i$。我们用两个点:$x$和$x’$代表一个球。然后连接两条边：$s-&gt;x,x’-&gt;t$。因为一个球只能用一次，所以我们把容量设为1。同时$\forall k i’$。这样，我们在跑网络流时，就可以增加一个单位的流。 若没有增加，则代表这个球无法叠加在其他球上，需要新开柱子。 只需要引入一个计数器$cnt$，用来计入现在放进去了多少个球。 那么当$cnt-maxflow&gt;n$时，$cnt-1$就是答案。 这道题的实质就是把当前状态的所有决策(即放在那个球上方)，抽象成网络流上的边，就转换成了经典网络流问题。 代码留坑待填]]></content>
+      <tags>
+        <tag>网络流</tag>
+        <tag>网络流24题</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[洛谷P3376]]></title>
     <url>%2Fgavinzheng%2F2019%2F01%2F19%2F31964%2F</url>
     <content type="text"><![CDATA[【模板】网络最大流EK版1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556#include&lt;iostream&gt;#include&lt;queue&gt;#include&lt;cstdio&gt;#include&lt;algorithm&gt;#include&lt;cstring&gt;using namespace std;#define maxn 10500#define inf (int)(1e9+100)int head[maxn];struct gg&#123; int u,v,w,next;&#125;side[100020*2];int cnt=1;int maxflow=0;void insert(int u,int v,int w)&#123; side[++cnt]=(gg)&#123;u,v,w,head[u]&#125;; head[u]=cnt;&#125;int n,m,s,t,pre[maxn],incf[maxn];bool visit[maxn];bool bfs()&#123; queue&lt;int&gt;line; incf[s]=inf; memset(visit,0,sizeof(visit)); visit[s]=1;line.push(s); while(!line.empty())&#123; int now=line.front();line.pop(); for(int i=head[now];i;i=side[i].next)&#123; int tar=side[i].v,w=side[i].w; if(visit[tar]||w==0)continue; incf[tar]=min(incf[now],w); visit[tar]=1;pre[tar]=i; line.push(tar);if(tar==t)&#123;return 1;&#125; &#125; &#125; return 0;&#125;void update()&#123; maxflow+=incf[t]; for(int i=t;i!=s;i=side[pre[i]^1].v)&#123; side[pre[i]].w-=incf[t]; side[pre[i]^1].w+=incf[t]; &#125; return;&#125;int main()&#123; scanf("%d%d%d%d",&amp;n,&amp;m,&amp;s,&amp;t); for(int i=1;i&lt;=m;i++)&#123; int u,v,w; scanf("%d%d%d",&amp;u,&amp;v,&amp;w); insert(u,v,w);insert(v,u,0); &#125; while(bfs())&#123;update();&#125; cout&lt;&lt;maxflow; return 0;&#125; Dinic版12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061#include&lt;iostream&gt;#include&lt;cstdio&gt;#include&lt;algorithm&gt;#include&lt;cstring&gt;#include&lt;queue&gt;using namespace std;#define maxn 10500#define maxm 105000#define inf (1e9+1000)int head[maxn];int cnt=1;struct gg&#123; int u,v,w,next;&#125;side[maxm*2];int n,m,s,t,rk[maxn];void insert(int u,int v,int w)&#123; side[++cnt]=(gg)&#123;u,v,w,head[u]&#125;;head[u]=cnt;return;&#125;int maxflow=0;bool bfs()&#123; memset(rk,0,sizeof(rk)); rk[s]=1; queue&lt;int&gt;line;line.push(s); while(!line.empty())&#123; int now=line.front();line.pop(); for(int i=head[now];i;i=side[i].next)&#123; int tar=side[i].v; if(!side[i].w)continue; if(rk[tar])continue; rk[tar]=rk[now]+1;line.push(tar); &#125; &#125; if(rk[t])return 1; return 0;&#125;int dfs(int now,int flow)&#123; if(now==t)&#123;return flow;&#125; int rest=flow;int tot=0; for(int i=head[now];i;i=side[i].next)&#123; int tar=side[i].v,w=side[i].w; if(!w||rk[now]+1!=rk[tar])continue; int used=dfs(tar,min(w,rest));rest-=used;tot+=used; side[i].w-=used;side[i^1].w+=used; &#125; return tot;&#125;void dinic()&#123; while(bfs())&#123; maxflow+=dfs(s,inf); &#125;&#125;int main()&#123; scanf("%d%d%d%d",&amp;n,&amp;m,&amp;s,&amp;t); for(int i=1;i&lt;=m;i++)&#123; int u,v,w;scanf("%d%d%d",&amp;u,&amp;v,&amp;w); insert(u,v,w);insert(v,u,0); &#125; dinic(); cout&lt;&lt;maxflow; return 0;&#125;]]></content>
@@ -84,8 +93,8 @@
         <category>Contest_Hunter</category>
       </categories>
       <tags>
-        <tag>位运算</tag>
         <tag>高精度</tag>
+        <tag>位运算</tag>
       </tags>
   </entry>
   <entry>
