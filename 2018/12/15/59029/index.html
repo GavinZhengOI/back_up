@@ -118,7 +118,7 @@
 <meta property="og:site_name" content="Gavin&#39;s Blog">
 <meta property="og:description" content="CH0201 费解的开关描述你玩过“拉灯”游戏吗？25盏灯排成一个5x5的方形。每一个灯都有一个开关，游戏者可以改变它的状态。每一步，游戏者可以改变某一个灯的状态。游戏者改变一个灯的状态会产生连锁反应：和这个灯上下左右相邻的灯也要相应地改变其状态。 我们用数字“1”表示一盏开着的灯，用数字“0”表示关着的灯。下面这种状态 1011101101101111000011011 在改变了最左上角的灯的状">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-21T03:35:11.811Z">
+<meta property="og:updated_time" content="2019-01-21T03:45:01.440Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CH0201">
 <meta name="twitter:description" content="CH0201 费解的开关描述你玩过“拉灯”游戏吗？25盏灯排成一个5x5的方形。每一个灯都有一个开关，游戏者可以改变它的状态。每一步，游戏者可以改变某一个灯的状态。游戏者改变一个灯的状态会产生连锁反应：和这个灯上下左右相邻的灯也要相应地改变其状态。 我们用数字“1”表示一盏开着的灯，用数字“0”表示关着的灯。下面这种状态 1011101101101111000011011 在改变了最左上角的灯的状">
@@ -399,7 +399,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-01-21 11:35:11" itemprop="dateModified" datetime="2019-01-21T11:35:11+08:00">2019-01-21</time>
+                <time title="修改时间：2019-01-21 11:45:01" itemprop="dateModified" datetime="2019-01-21T11:45:01+08:00">2019-01-21</time>
               
             
           </span>
@@ -432,6 +432,16 @@
           
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/gavinzheng/2018/12/15/59029/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/gavinzheng/2018/12/15/59029/" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -544,6 +554,9 @@
           </div>
           
 
+  
+    <div class="comments" id="comments">
+    </div>
   
 
 
@@ -933,6 +946,31 @@
 
 
 
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: false,
+        appId: 'enNLYYb1pf4Ttj9GGWAuGbPh-gzGzoHsz',
+        appKey: 'D6OBq1GTfi1VxALogC1Y5CJ1',
+        placeholder: 'QWQ',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });
+  </script>
 
 
 
