@@ -121,7 +121,7 @@
 <meta property="og:image" content="https://gavin-1257756441.cos.ap-chengdu.myqcloud.com/网络流初步/1.PNG">
 <meta property="og:image" content="https://gavin-1257756441.cos.ap-chengdu.myqcloud.com/网络流初步/2.PNG">
 <meta property="og:image" content="https://gavin-1257756441.cos.ap-chengdu.myqcloud.com/网络流初步/3.PNG">
-<meta property="og:updated_time" content="2019-01-21T03:35:01.695Z">
+<meta property="og:updated_time" content="2019-01-21T03:44:53.281Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网络流初步">
 <meta name="twitter:description" content="网络流初步前言在实际生活中常常会遇到一下类型的问题： 有一张管道组成的输水/输电/输气网络。每个管道都是单向的，并且有一个流量限制（超过流量限制就会爆管）。很明显，如果我们要通过这张网络将一种物品从起点输送到终点，不能将每个管道都满流（因为网络的瓶颈部分可能会炸）。那么每个管道的流量就需要精密规划了。  一个网络可以用来模拟道路系统的交通量、管中的液体、电路中的电流或类似一些东西在一个结点的网络中">
@@ -403,7 +403,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-01-21 11:35:01" itemprop="dateModified" datetime="2019-01-21T11:35:01+08:00">2019-01-21</time>
+                <time title="修改时间：2019-01-21 11:44:53" itemprop="dateModified" datetime="2019-01-21T11:44:53+08:00">2019-01-21</time>
               
             
           </span>
@@ -514,6 +514,9 @@ rk[v]=rk[u]+1\\
 w(u,v)
 \end{matrix}\right.</script><p>对于DFS树上的每一个点，我们从父节点传递一个flow，代表“楼上”分配给当前节点的流量，并记录一个resr，代表当前节点还能给子节点分配的流量。很明显，初始情况下$rest = flow$。</p>
 <p>另外提一句，因为是DFS,所以在EK中的“update”操作我们就可以在DFS的返回过程中实现。</p>
+<blockquote>
+<p>DinicDinic 算法的时间复杂度为 $O(n^2m)$。我们可以证明最多需要建立 $O(n)$ 个层次图，每次建立层次图的复杂度为 $O(m)$。接下来分析 DFS 的复杂度，每次最多増广 $O(m)$ 次，每次修改流量的复杂度为 $O(n)$，所以 DFS 的复杂度为$ O(nm)$。再加上$ O(n)$ 个层次图，总复杂度为 $O(n^2m)$。绝大多数情况下这个复杂度都跑不满。    ——Siyuan</p>
+</blockquote>
 <p><a href="https://www.luogu.org/problemnew/show/P3376" target="_blank" rel="noopener">例题：洛谷P3376【模板】网络最大流</a></p>
 <p><a href="https://www.gavinzheng.cf/gavinzheng/2019/01/19/31964/#Dinic%E7%89%88" target="_blank" rel="noopener">题解</a></p>
 <h4 id="PR-PUSH-RELABLE-预留推进法-推送-重贴标签法"><a href="#PR-PUSH-RELABLE-预留推进法-推送-重贴标签法" class="headerlink" title="PR(PUSH-RELABLE)预留推进法/推送-重贴标签法"></a>PR(PUSH-RELABLE)预留推进法/推送-重贴标签法</h4><p>留坑待填</p>
