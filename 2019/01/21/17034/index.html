@@ -118,7 +118,7 @@
 <meta property="og:site_name" content="Gavin&#39;s Blog">
 <meta property="og:description" content="魔术球问题题面先贴题目链接：P2765 魔术球问题 题目描述«问题描述： 假设有n根柱子，现要按下述规则在这n根柱子中依次放入编号为1，2，3，…的球。 （1）每次只能在某根柱子的最上面放球。 （2）在同一根柱子中，任何2个相邻球的编号之和为完全平方数。 试设计一个算法，计算出在n根柱子上最多能放多少个球。例如，在4 根柱子上最多可放11 个球。 «编程任务： 对于给定的n，计算在n根柱子上最多能">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-21T10:03:34.602Z">
+<meta property="og:updated_time" content="2019-01-21T10:06:57.637Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="魔术球问题">
 <meta name="twitter:description" content="魔术球问题题面先贴题目链接：P2765 魔术球问题 题目描述«问题描述： 假设有n根柱子，现要按下述规则在这n根柱子中依次放入编号为1，2，3，…的球。 （1）每次只能在某根柱子的最上面放球。 （2）在同一根柱子中，任何2个相邻球的编号之和为完全平方数。 试设计一个算法，计算出在n根柱子上最多能放多少个球。例如，在4 根柱子上最多可放11 个球。 «编程任务： 对于给定的n，计算在n根柱子上最多能">
@@ -382,7 +382,7 @@
                 
               
 
-              <time title="创建时间：2019-01-21 16:41:48 / 修改时间：18:03:34" itemprop="dateCreated datePublished" datetime="2019-01-21T16:41:48+08:00">2019-01-21</time>
+              <time title="创建时间：2019-01-21 16:41:48 / 修改时间：18:06:57" itemprop="dateCreated datePublished" datetime="2019-01-21T16:41:48+08:00">2019-01-21</time>
             
 
             
@@ -455,7 +455,9 @@
 <p>那么我们就可以建立模型：</p>
 <p>先建立源点s和汇点t。</p>
 <p>然后从第一个球开始一次加入新的球$i$。我们用两个点:$x$和$x’$代表一个球。然后连接两条边：$s-&gt;x,x’-&gt;t$。因为一个球只能用一次，所以我们把容量设为1。</p>
-<p>同时：$\forall k <i \space="" and="" k+i="a^2,a" \in="" \mathbb{z}$，我们就能再连一条边：$k-="">i’$。这样，我们在跑网络流时，就可以增加一个单位的流。</i></p>
+<p>同时：</p>
+<script type="math/tex; mode=display">
+\forall k <i \space and \space k+i=a^2,a \in \mathbb{Z}</script><p>我们就能再连一条边：$k-&gt;i’​$。这样，我们在跑网络流时，就可以增加一个单位的流。</p>
 <p>若没有增加，则代表这个球无法叠加在其他球上，需要新开柱子。</p>
 <p>只需要引入一个计数器$cnt$，用来计入现在放进去了多少个球。</p>
 <p>那么当$cnt-maxflow&gt;n$时，$cnt-1$就是答案。</p>
